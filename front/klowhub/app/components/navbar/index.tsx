@@ -29,13 +29,10 @@ export default function NavBar() {
                     <NavbarContent className="hidden sm:flex gap-4" justify="center">
 
                         {navLinks.map(({ id, path, text }) => (
-                            <NavbarItem>
-
-                                <Link key={id}
-                                    href={path}>
-                                    {text + " "}
+                            <NavbarItem key={id}>
+                                <Link href={path}>
+                                    {text}
                                 </Link>
-
                             </NavbarItem>
                         ))}
                     </NavbarContent>
