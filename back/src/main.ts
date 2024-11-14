@@ -4,18 +4,42 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './common/exceptions/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Global configurations
-  app.useGlobalPipes(new ValidationPipe());
-  // app.useGlobalInterceptors(new TransformInterceptor());
+  // CORS primero
+  app.enableCors();
+
+  // prefix global
   app.setGlobalPrefix('api');
 
-  const options = new DocumentBuilder()
+  // instancia de ValidationPipe
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
+
+  // filtro de excepciones
+  app.useGlobalFilters(new HttpExceptionFilter());
+
+  // body parser
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+  // compresión
+  app.use(compression());
+
+  // Swagger
+  const config = new DocumentBuilder()
     .setTitle('Klowhub - hackathon 3 grups 04')
     .setDescription('API documentation for Klowhub project')
     .setVersion('1.0')
@@ -23,35 +47,8 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
 
-  app.use(
-    bodyParser.json({
-      limit: '50mb',
-    }),
-  );
-  app.use(
-    bodyParser.urlencoded({
-      limit: '50mb',
-      extended: true,
-    }),
-  );
-
-  //Compress response
-  app.use(compression());
-
-  //Activate CORS
-  app.enableCors();
-
-  const document = SwaggerModule.createDocument(app, options);
+  const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true,
-    }),
-  );
-
-  app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(Number(process.env.PORT) ?? 3001);
 }
