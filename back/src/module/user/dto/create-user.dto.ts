@@ -1,3 +1,4 @@
+import { ApiParam, ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class CreateUserDto {
@@ -5,6 +6,7 @@ export class CreateUserDto {
   @MaxLength(100, {
     message: 'El correo electrónico no puede tener más de 100 caracteres',
   })
+  @ApiProperty({ example: 'john@gmail.com' })
   email: string;
 
   @IsString({ message: 'La contraseña debe ser una cadena de texto' })

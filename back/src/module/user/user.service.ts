@@ -13,6 +13,10 @@ export class UserService {
     private readonly usersRepository: Repository<User>,
   ) {}
   async create(createUserDto: CreateUserDto): Promise<User> {
+    // validar que el email no este registrado
+
+    // si el email esta registrado enviar un httpException con un mensaje y el error 400
+
     const { password: unhashPwd, ...rest } = createUserDto;
     const password = await hash(unhashPwd);
     const user = this.usersRepository.create({ password, ...rest });
@@ -23,12 +27,19 @@ export class UserService {
     return await this.usersRepository.find();
   }
 
-  async findOne(id: string) {
+  async findById(id: string) {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
       throw new Error('User not found');
     }
     return user;
+  }
+
+  async findByparams(where: Partial<User>): Promise<User[]> {
+    return await this.usersRepository.find({ where });
+  }
+  async findOneByparams(where: Partial<User>): Promise<User> {
+    return await this.usersRepository.findOne({ where });
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
