@@ -7,5 +7,5 @@ export interface AuthCredetials {
 
 export interface LoginCredentials {
   profile: User;
-  credential: AuthCredetials;
+  access: string;
 }

@@ -8,7 +8,6 @@ export class AuthService {
 
   async validateUser(email: string, pass: string): Promise<User | null> {
     const user = await this.usersService.findOneByparams({ email });
-    console.log('[USER]', user);
     const validatePass = compareSync(pass, user.password);
     if (user && validatePass) {
       return user;

@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 import * as compression from 'compression';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './common/exceptions/http-exception.filter';
@@ -34,7 +35,7 @@ async function bootstrap() {
   // body parser
   app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
+  app.use(cookieParser());
   // compresión
   app.use(compression());
 

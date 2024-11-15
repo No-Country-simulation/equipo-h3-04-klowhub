@@ -16,19 +16,19 @@ export class TokenService {
   }
 
   async genareteCredential(payload: JwtPayload): Promise<AuthCredetials> {
-    const access = await this.jwtService.sign(payload, {
+    const access = await this.jwtService.signAsync(payload, {
       secret: this.SECRET,
       expiresIn: this.EXPIRE,
     });
 
-    const refresh = await this.jwtService.sign(payload, {
+    const refresh = await this.jwtService.signAsync(payload, {
       secret: this.SECRET,
       expiresIn: this.REFRESH_EXPIRE,
     });
     return { access, refresh };
   }
 
-  async verifyToken(token: string) {
-    return this.jwtService.verify(token);
+  async verifyToken(token: string): Promise<JwtPayload> {
+    return await this.jwtService.verifyAsync(token, { secret: this.SECRET });
   }
 }

@@ -3,22 +3,18 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
-  Logger,
   Put,
   HttpException,
   HttpStatus,
   UseGuards,
-  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { GenericResponse } from 'src/common/dto/generic.response';
-import { User } from 'src/entity/user.entity';
 import { JwtAuthGuard } from '../auth/guards/jwt.guards';
 
 @Controller('user')
@@ -51,11 +47,10 @@ export class UserController {
     }
   }
 
-  @Get('profile')
+  @Get()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  getProfile(@Req() req: any) {
-    console.log(req.user);
+  getProfile() {
     return this.userService.findAll();
   }
 
