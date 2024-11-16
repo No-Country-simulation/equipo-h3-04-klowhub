@@ -7,54 +7,51 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
+  Index,
+  OneToMany,
+  OneToOne,
 } from 'typeorm';
+import { VendorProfile } from './vendor-profile.entity';
+
+export enum RoleType {
+  ADMIN = 'admin',
+  USER = 'user',
+  VENDEDOR = 'vendedor',
+}
 
 @Entity({ name: 'user', schema: 'public' })
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('character varying', {
-    name: 'email',
-    length: 100,
-    nullable: false,
-    unique: true,
-  })
+  @Index()
+  @Column({ unique: true, type: 'varchar', length: 100, nullable: false })
   email: string;
 
-  @Column('character varying', {
-    name: 'password',
+  @Column({
+    type: 'varchar',
     length: 100,
-    nullable: false,
+    nullable: true,
   })
   password: string;
 
-  @Exclude()
-  @CreateDateColumn({
-    type: 'timestamptz',
-    name: 'createdAt',
-    default: () => `now()`,
-    onUpdate: `now()`,
+  @Column({
+    type: 'varchar',
+    length: 100,
+    nullable: true,
   })
-  createdAt: Date;
+  name: string;
 
-  @UpdateDateColumn({
-    type: 'timestamptz',
-    name: 'updatedAt',
-    default: () => `now()`,
-    onUpdate: `now()`,
+  @Column({
+    type: 'varchar',
+    length: 100,
+    nullable: true,
   })
-  updatedAt: Date;
+  picture: string;
 
-  @Exclude()
-  @DeleteDateColumn({
-    type: 'timestamptz',
-    name: 'deletedAt',
-    onUpdate: `now()`,
-  })
-  deletedAt?: Date;
+  @Column({ type: 'enum', enum: RoleType, default: RoleType.USER })
+  rol: RoleType;
 
-  constructor(partial: Partial<User>) {
-    Object.assign(this, partial);
-  }
+  @OneToOne(() => VendorProfile, (vendorProfile) => vendorProfile.user)
+  vendorProfile?: VendorProfile;
 }

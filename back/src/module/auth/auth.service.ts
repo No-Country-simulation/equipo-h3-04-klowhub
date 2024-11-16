@@ -14,8 +14,4 @@ export class AuthService {
     }
     return null;
   }
-  // generateCredential (payload) devuelva los token
-  async generateCredential(payload: any) {
-    return payload;
-  }
 }
