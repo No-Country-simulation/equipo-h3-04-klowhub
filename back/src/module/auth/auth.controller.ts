@@ -85,7 +85,6 @@ export class AuthController {
         id: payload.id,
         profile: payload.profile,
       });
-      //return { access: credentials.access };
       console.log({ payload });
       return new GenericResponse({
         code: 201,
