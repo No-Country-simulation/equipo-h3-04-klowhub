@@ -8,18 +8,7 @@ import {
 } from 'src/entity/course.entity';
 import { FindOneOptions, Repository } from 'typeorm';
 import { FindOneCourseParamsDto } from './dto/find-one.dto';
-
-export interface FindOneCourseParams {
-  where?: Partial<Course>;
-  relations?: string[];
-  select?: (keyof Course)[];
-}
-
-export interface FindAllCourseParams extends FindOneCourseParams {
-  limit?: number;
-  offset?: number;
-  order?: Record<string, 'ASC' | 'DESC'>;
-}
+import { FindAllCourseParamsDto } from './dto/find-all.dto';
 
 export interface CourseProperties {
   levels?: CourseLevel[];
@@ -32,7 +21,7 @@ export interface CourseProperties {
   sector?: string[];
 }
 
-export interface FindByProperties extends FindAllCourseParams {
+export interface FindByProperties extends FindAllCourseParamsDto {
   properties: CourseProperties;
 }
 
@@ -43,13 +32,17 @@ export class CourseService {
     private courseRepository: Repository<Course>,
   ) {}
 
-  private readonly DEFAULT_LIMIT = 50;
+  private readonly DEFAULT_LIMIT = 30;
 
-  async findAll(params?: FindAllCourseParams): Promise<Course[]> {
+  async findAll(params?: FindAllCourseParamsDto): Promise<Course[]> {
     try {
       return await this.courseRepository.find({
-        take: this.DEFAULT_LIMIT,
-        ...params,
+        take: params?.take || this.DEFAULT_LIMIT,
+        skip: params?.offset || 0,
+        order: params?.order,
+        where: params?.where,
+        relations: params.relations,
+        select: params?.select ? ['id', ...params.select] : undefined,
       });
     } catch (error: unknown) {
       console.error(error);

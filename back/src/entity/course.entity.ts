@@ -14,9 +14,9 @@ import { Module } from './module.entity';
 import { ContentPillar } from './content-pillar.entity';
 import { Sector } from './sector.entity';
 import { Functionality } from './funcionality.entity';
-import { Tool } from './tool.entity';
 import { Platform } from './platform.entity';
 import { PlatformAndTool } from './plantform_and_tool.entity';
+import { ICourse } from 'src/common/interface/db/course.interface';
 
 export enum CourseLevel {
   BASIC = 'basic',
@@ -40,7 +40,7 @@ export enum CourseType {
 @Index(['isFree', 'price'])
 @Index(['language', 'level'])
 @Entity('course')
-export class Course {
+export class Course implements ICourse {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -77,35 +77,29 @@ export class Course {
   @Column({ type: 'enum', enum: CourseLanguage })
   language: CourseLanguage;
 
-  @ManyToMany(() => ContentPillar, { eager: true })
+  @ManyToMany(() => ContentPillar)
   @JoinTable({ name: 'course_content_pillar' })
   contentPillars: ContentPillar[];
 
-  @ManyToMany(() => Sector, { eager: true })
+  @ManyToMany(() => Sector)
   @JoinTable({
     name: 'course_sector',
   })
   sectors: Sector[];
 
-  @ManyToMany(() => Functionality, { eager: true })
+  @ManyToMany(() => Functionality)
   @JoinTable({
     name: 'course_functionality',
   })
   functionalities: Functionality[];
 
-  @ManyToMany(() => Tool, { eager: true })
-  @JoinTable({
-    name: 'course_tool',
-  })
-  tools: Tool[];
-
-  @ManyToMany(() => Platform, { eager: true })
+  @ManyToMany(() => Platform)
   @JoinTable({
     name: 'course_platform',
   })
   platforms: Platform[];
 
-  @ManyToMany(() => PlatformAndTool, { eager: true })
+  @ManyToMany(() => PlatformAndTool)
   @JoinTable({
     name: 'course_platform_and_tool',
   })
