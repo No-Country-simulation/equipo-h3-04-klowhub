@@ -15,4 +15,11 @@ export class CreateUserDto {
     message: 'La contraseña no puede tener más de 50 caracteres',
   })
   password: string;
+
+  @IsString({ message: 'El nombre debe ser una cadena de texto' })
+  @MinLength(6, { message: 'El nombre debe tener al menos 6 caracteres' })
+  @MaxLength(30, {
+    message: 'El nombre no puede tener más de 50 caracteres',
+  })
+  name: string;
 }
