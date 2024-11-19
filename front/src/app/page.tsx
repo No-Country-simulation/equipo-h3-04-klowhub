@@ -7,7 +7,7 @@ export default function Home() {
   const { user } = useUserStore();
   console.log(user);
   if (!user) return <div>No tienes usuario
-    
+
   </div>;
   else return <div>Tienes usuario: {JSON.stringify(user)}</div>;
 
