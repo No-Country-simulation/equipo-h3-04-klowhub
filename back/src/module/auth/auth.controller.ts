@@ -8,6 +8,7 @@ import {
   Response,
   Req,
   Get,
+  Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { LocalAuthGuard } from './guards/local.guards';
@@ -19,11 +20,16 @@ import {
 } from 'src/common/interface/logincredential.interface';
 import { Request as ExpressRequest } from 'express';
 import { User } from 'src/entity/user.entity';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { UserService } from '../user/user.service';
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
-  constructor(private readonly tokenService: TokenService) {}
+  constructor(
+    private readonly tokenService: TokenService,
+    private readonly userService: UserService,
+  ) {}
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(
@@ -58,6 +64,40 @@ export class AuthController {
       }
       throw new HttpException(
         'Internal server error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Post('register')
+  async register(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<GenericResponse<User>> {
+    try {
+      const existingUser = await this.userService.findOneByparams({
+        email: createUserDto.email,
+      });
+
+      if (existingUser) {
+        throw new HttpException(
+          'User with this email already exists',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
+      const newUser = await this.userService.create(createUserDto);
+
+      return new GenericResponse({
+        code: 201,
+        message: 'Registration successful. Please login to continue.',
+        data: newUser,
+      });
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        error.message || 'Internal server error',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

@@ -50,7 +50,7 @@ export class User {
   picture: string;
 
   @Column({ type: 'enum', enum: RoleType, default: RoleType.USER })
-  rol: RoleType;
+  role: RoleType;
 
   @OneToOne(() => VendorProfile, (vendorProfile) => vendorProfile.user)
   vendorProfile?: VendorProfile;
