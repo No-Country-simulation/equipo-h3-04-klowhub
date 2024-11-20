@@ -11,17 +11,18 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import SwitchHome from '../switchhome';
+import SwitchCreator from '../switchcreator';
 
 export default function NavBar() {
     return (
         <>
-            <div className=" w-full h-[93px]">
+            <div className="w-full h-[93px]">
                 <Image
                     src="/navbar.png"
                     alt="Navbar background"
                     fill
                     priority
-                    className="object-cover"
+                    className="object-cover w-full h-full"
                 />
                 <Navbar maxWidth="full"
                     className="absolute top-[14px] h-[79px] z-10 bg-[rgba(31,32,38,0.6)]"
@@ -41,12 +42,12 @@ export default function NavBar() {
                         <div></div>
                     </NavbarBrand>
 
-                    <NavbarContent className="hidden sm:flex gap-4" justify="center">
+                    <NavbarContent className="hidden lg:flex gap-4" justify="center">
 
                         {navLinks.map(({ id, path, text }) => (
                             <NavbarItem key={id}>
 
-                                <Link
+                                <Link className='text-sm lg:text-base xl:text-xl'
                                     href={path}>
                                     {text + " "}
                                 </Link>
@@ -55,14 +56,19 @@ export default function NavBar() {
                         ))}
                     </NavbarContent>
                     <NavbarContent justify="end">
+                        <NavbarItem className="hidden lg:flex mr-20">
+                            <SwitchCreator />
+                        </NavbarItem>
+
                         <NavbarItem className="hidden lg:flex">
-                            <Link href="/login">Login</Link>
+                            <Link className='text-sm lg:text-base xl:text-xl' href="/login">Login</Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Button as={Link} color="primary" href="#" variant="flat">
+                            <Button className='text-sm lg:text-base xl:text-xl' as={Link} color="primary" href="#" variant="flat">
                                 Sign Up
                             </Button>
                         </NavbarItem>
+
                     </NavbarContent>
                 </Navbar>
             </div>
