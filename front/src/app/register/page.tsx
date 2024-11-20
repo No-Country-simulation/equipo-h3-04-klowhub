@@ -1,11 +1,10 @@
-import LoginForm from '@/components/forms/login';
+import RegisterForm from '@/components/forms/register';
 import SocialIcon from '@/components/icons/social';
 import { Link } from '@nextui-org/react';
 import Image from 'next/image';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
-    // min-h calculado quitandole navbar
     <div className='grid place-content-center space-y-10 min-h-[calc(100vh-93px)] text-white'>
       <Image
         src="/imgs/auth-bg.jpg"
@@ -16,13 +15,13 @@ export default function LoginPage() {
 
       <div className='relative z-10 space-y-4'>
         <div className='space-y-10'>
-          <h1 className="text-3xl font-semibold text-center">KlowHub - Acceso</h1>
+          <h1 className="text-3xl font-semibold text-center">KlowHub - Registro</h1>
           <div>
             <p>Explora, aprende, enseña y conecta. </p>
             <p>Crea tu cuenta en KlowHub y accede a un mundo de posibilidades.</p>
           </div>
         </div>
-        <LoginForm />
+        <RegisterForm />
         <div className='space-y-4'>
           <p className='text-center font-semibold'>O continuar con:</p>
           <div className='flex flex-row justify-center gap-4'>
@@ -38,9 +37,9 @@ export default function LoginPage() {
           </div>
         </div>
         <p className='text-center'>
-          ¿No tienes cuenta? {" "}
-          <Link href={'/register'} className='font-bold text-sky-300'>
-            Registrarse
+          ¿Ya tienes cuenta? {" "}
+          <Link href={'/login'} className='font-bold text-sky-300'>
+            Acceder
           </Link>
         </p>
       </div>
