@@ -9,6 +9,7 @@ import {
 import { FindOneOptions, Repository } from 'typeorm';
 import { FindOneCourseParamsDto } from './dto/find-one.dto';
 import { FindAllCourseParamsDto } from './dto/find-all.dto';
+import { FindAllCourseResponse } from './interface/find-all.response';
 
 export interface CourseProperties {
   levels?: CourseLevel[];
@@ -34,9 +35,11 @@ export class CourseService {
 
   private readonly DEFAULT_LIMIT = 30;
 
-  async findAll(params?: FindAllCourseParamsDto): Promise<Course[]> {
+  async findAll(
+    params?: FindAllCourseParamsDto,
+  ): Promise<FindAllCourseResponse> {
     try {
-      return await this.courseRepository.find({
+      const result = await this.courseRepository.find({
         take: params?.take || this.DEFAULT_LIMIT,
         skip: params?.offset || 0,
         order: params?.order,
@@ -44,6 +47,15 @@ export class CourseService {
         relations: params.relations,
         select: params?.select ? ['id', ...params.select] : undefined,
       });
+
+      const total = await this.courseRepository.count();
+
+      return {
+        result,
+        page: params?.offset || 0,
+        perPage: params?.take || this.DEFAULT_LIMIT,
+        total,
+      };
     } catch (error: unknown) {
       console.error(error);
 

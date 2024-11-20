@@ -6,6 +6,6 @@ export interface AuthCredetials {
 }
 
 export interface LoginCredentials {
-  profile: User;
+  profile: Partial<User>;
   access: string;
 }

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import NavBar from '@/components/navbar';
-import { ProvidersNextUi } from '@/provider/providerNextUi';
 import { Toaster } from 'sonner';
 import { NextUIProvider } from '@nextui-org/react';
 
