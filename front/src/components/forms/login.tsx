@@ -35,6 +35,7 @@ export default function LoginForm() {
                 },
                 body: JSON.stringify(form),
             });
+            console.log(await fetchData.json())
             if (fetchData.ok) {
                 const data: ResLogin = await fetchData.json();
                 setUser(data.data.profile);

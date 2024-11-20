@@ -65,8 +65,9 @@ export class FindOneCourseParamsDto {
   })
   @Transform((param) => {
     if (typeof param.value === 'string') {
-      return [param.value];
+      return param.value.split(',');
     }
+    console.log('param.value', param.value);
 
     if (!param.value.every((e) => allowedRelations.includes(e))) {
       throw new HttpException(

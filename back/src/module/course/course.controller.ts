@@ -12,6 +12,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Course } from 'src/entity/course.entity';
 import { FindOneCourseParamsDto } from './dto/find-one.dto';
 import { FindAllCourseParamsDto } from './dto/find-all.dto';
+import { FindAllCourseResponse } from './interface/find-all.response';
 
 @ApiTags('course')
 @Controller('course')
@@ -25,11 +26,11 @@ export class CourseController {
   async findAll(
     @Query(ValidationPipe)
     params: FindAllCourseParamsDto,
-  ): Promise<GenericResponse<Course[]>> {
+  ): Promise<GenericResponse<FindAllCourseResponse>> {
     try {
       const data = await this.courseService.findAll(params);
 
-      return new GenericResponse<Course[]>({
+      return new GenericResponse<FindAllCourseResponse>({
         data,
         message: 'Course found',
         code: HttpStatus.OK,

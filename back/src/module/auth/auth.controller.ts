@@ -10,18 +10,16 @@ import {
   Get,
   Body,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { LocalAuthGuard } from './guards/local.guards';
 import { GenericResponse } from 'src/common/dto/generic.response';
 import { TokenService } from 'src/common/service/jwt/jwt.service';
-import {
-  AuthCredetials,
-  LoginCredentials,
-} from 'src/common/interface/logincredential.interface';
+import { LoginCredentials } from 'src/common/interface/logincredential.interface';
 import { Request as ExpressRequest } from 'express';
 import { User } from 'src/entity/user.entity';
-import { CreateUserDto } from '../user/dto/create-user.dto';
+import { CreateUserDto } from './dto/register.dto';
 import { UserService } from '../user/user.service';
+import { LoginUserDto } from './dto/login.dto';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -30,6 +28,10 @@ export class AuthController {
     private readonly tokenService: TokenService,
     private readonly userService: UserService,
   ) {}
+
+  @ApiBody({
+    type: LoginUserDto,
+  })
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(
@@ -46,7 +48,7 @@ export class AuthController {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Lax',
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+        maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
       return new GenericResponse({
