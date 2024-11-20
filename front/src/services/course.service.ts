@@ -1,5 +1,5 @@
-import { BACK_URL } from '@/enums/constants';
 import { Course, IFindAllCourseParams } from '@/interfaces/course';
+import { fetchData } from '@/utils/fetchData';
 
 interface ResCourse {
   message: string;
@@ -26,18 +26,15 @@ export const courseService = async (
     if (params.select)
       queryParams.append('select', JSON.stringify(params.select));
 
-    const res = await fetch(`${BACK_URL}/course?${queryParams.toString()}`, {
+    const url = `/course?${queryParams.toString()}`;
+    const options = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-    });
-
-    if (res.ok) {
-      const { data }: ResCourse = await res.json();
-      return data.result;
-    }
-    return [];
+    };
+    const resCourse: ResCourse = await fetchData(url, options);
+    return resCourse.data.result;
   } catch (error) {
     console.error('Error fetching courses', error);
     return [];

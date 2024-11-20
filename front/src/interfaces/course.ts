@@ -2,7 +2,31 @@ export interface Sector {
   id: string;
   name: string;
 }
-export interface Pillar {}
+
+export interface Pillar {
+  id: string;
+  name: string;
+}
+
+export interface Functionality {
+  id: string;
+  name: string;
+}
+
+export interface Platform {
+  id: string;
+  name: string;
+}
+
+export interface PlatformAndTool {
+  id: string;
+  name: string;
+}
+
+export interface Module {
+  id: string;
+  name: string;
+}
 
 export interface Course {
   id: string;
