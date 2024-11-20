@@ -4,15 +4,15 @@ import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card"
 import { Button } from "@nextui-org/button"
 import { Chip } from "@nextui-org/chip"
 import { Image } from "@nextui-org/image"
-import { StarIcon, Heart } from 'lucide-react';
+import { StarIcon, Heart, TvMinimalPlay } from 'lucide-react';
 import { useState } from "react"
+import { Course } from "@/interfaces/course"
 
-export default function CourseCard() {
+export default function CourseCard({ course }: { course: Course }) {
   const [isLiked, setIsLiked] = useState(false); // Estado para el corazón
 
-
   return (
-    <Card className="max-w-md bg-background ">
+    <Card className="max-w-md bg-purple-950">
       <CardHeader className="relative p-0">
         <Image
           alt="Course banner showing connected gears"
@@ -25,7 +25,7 @@ export default function CourseCard() {
           variant="solid"
           size="sm"
         >
-          Lección
+          Curso
         </Chip>
         <Button
           className={`absolute top-2 right-2 z-10 ${isLiked ? "bg-red-800" : ""} `}
@@ -39,24 +39,17 @@ export default function CourseCard() {
       </CardHeader>
       <CardBody className="p-3 text-small gap-4">
         <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-xl">Gestión de inventarios con AppSheet</h3>
-          <p className="text-default-500">
-            Aprende a crear aplicaciones para controlar inventarios.
-            Descubre cómo desarrollar aplicaciones personalizadas
-          </p>
+          <h3 className="font-bold text-xl">{course.title}</h3>
+          <p className="text-default-300">{course.description}</p>
         </div>
         <div className="flex gap-2">
-          <Image
-            alt="AppSheet logo"
-            className="w-6 h-6 rounded"
-            src="/placeholder.svg?height=24&width=24"
-          />
-          <span className="font-semibold">AppSheet</span>
+          <TvMinimalPlay color="white" className="w-6 h-6" />
+          <span className="font-semibold">{course.type}</span>
         </div>
         <div className="flex gap-2 flex-wrap">
-          <Chip size="sm" variant="flat" className="text-text-button bg-back-button">Logística</Chip>
-          <Chip size="sm" variant="flat" className="text-text-button bg-back-button">Optimización</Chip>
-          <Chip size="sm" variant="flat" className="text-text-button bg-back-button">Inventarios</Chip>
+          {
+            course.sectors.map((sector) => <Chip color="secondary" key={sector.id} size="sm" variant="flat" className="text-white">{sector.name}</Chip>)
+          }
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center">
@@ -74,7 +67,7 @@ export default function CourseCard() {
       </CardBody>
       <CardFooter className="flex flex-col px-3 justify-between gap-2 items-start">
         <div className="flex flex-col">
-          <span className="text-xl font-bold">$80.000</span>
+          <span className="text-xl font-bold">{course.price}</span>
         </div>
         <div className="flex gap-2 mt-3">
 
