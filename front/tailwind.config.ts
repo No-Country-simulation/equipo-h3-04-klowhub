@@ -15,15 +15,15 @@ export default {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         primario: {
-          100: '#dfd1f3', // Morado muy claro
-          200: '#E5CCFF',
-          300: '#D6B3FF',
-          400: '#C799FF',
-          500: '#B880FF',
-          600: '#A966FF',
-          700: '#9A4DFF',
-          800: '#8B33FF',
-          900: '#7C1AFF', // Morado oscuro
+          100: '#e8c9f1', // Morado muy claro
+          200: '#d194e2',
+          300: '#b95ed4',
+          400: '#9d32bc',
+          500: '#702846',
+          600: '#5a1d6b',
+          700: '#431650',
+          800: '#2d0e36',
+          900: '#16071b', // Morado oscuro
         },
         secundario: {
           100: '#c0d6fb', // Azul claro
@@ -31,24 +31,25 @@ export default {
           300: '#81aef8',
           400: '#6299f6',
           500: '#4285F4',
-          600: '#4285F4',
+          600: '#0e51ea',
           700: '#0a49b0',
-          800: '#4285F4',
-          900: '#1A75FF', // Azul oscuro
+          800: '#073075',
+          900: '#03183B', // Azul oscuro
         },
         complemento: {
           // Nuevo nombre para el segundo conjunto de morados
           100: '#dfd1f3', // Similar al primary pero podría tener variaciones
           200: '#bfa3e7',
           300: '#9f74dc',
-          400: '#9f74dc',
-          500: '#632daf',
+          400: '#632daf',
+          500: '#492181',
           600: '#532692',
           700: '#421e75',
           800: '#321758',
           900: '#210f3a',
         },
       },
+     
     },
   },
   darkMode: 'class',
