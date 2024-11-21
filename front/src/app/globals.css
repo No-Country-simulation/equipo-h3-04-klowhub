@@ -3,17 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
   --navbar-height: 79px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   color: var(--foreground);
@@ -29,4 +23,8 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+.rounded-switch {
+  border-radius: 999px; /* Aplica un radio de borde de 999px al switch */
 }
