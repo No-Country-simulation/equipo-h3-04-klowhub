@@ -1,6 +1,5 @@
 'use client';
-import { BACK_URL } from "@/enums/constants";
-import { IUser } from "@/interfaces/user";
+import { BACK_URL } from '@/constants/constants';
 import { useUserStore } from "@/store/user.store";
 import { Button, Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
