@@ -7,8 +7,8 @@ import Image from 'next/image';
 
 export function Navbutton() {
   return (
-    <nav className="flex justify-around bg-transparent p-4 ">
-      <Button variant="ghost" className="relative text-white border-none bg-black z-10 w-80 h-20">
+    <nav className="grid grid-cols-2 gap-4 xl:grid-cols-4 ">
+      <Button variant="ghost" className="relative text-white border-none w-full h-20">
         <Image
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
@@ -19,7 +19,7 @@ export function Navbutton() {
           Aprende en KlowHub
         </span>
       </Button>
-      <Button variant="ghost" className="relative text-white border-none  w-80 h-20">
+      <Button variant="ghost" className="relative text-white border-none w-full h-20">
         <Image
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
@@ -30,7 +30,7 @@ export function Navbutton() {
           Encuentra aplicaciones
         </span>
       </Button>
-      <Button variant="ghost" className="relative text-white border-none w-80 h-20">
+      <Button variant="ghost" className="relative text-white border-none w-full h-20">
         <Image
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
@@ -41,7 +41,7 @@ export function Navbutton() {
           Publica proyectos
         </span>
       </Button>
-      <Button variant="ghost" className="relative text-white border-none w-80 h-20">
+      <Button variant="ghost" className="relative text-white border-none w-full h-20">
         <Image
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
