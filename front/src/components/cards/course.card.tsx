@@ -4,15 +4,16 @@ import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card"
 import { Button } from "@nextui-org/button"
 import { Chip } from "@nextui-org/chip"
 import { Image } from "@nextui-org/image"
-import { StarIcon, Heart, TvMinimalPlay } from 'lucide-react';
+import { StarIcon, TvMinimalPlay } from 'lucide-react';
 import { useState } from "react"
 import { Course } from "@/interfaces/course"
+import { HeartIcon } from "@/components/icons/hearticon"
 
 export default function CourseCard({ course }: { course: Course }) {
   const [isLiked, setIsLiked] = useState(false); // Estado para el corazón
 
   return (
-    <Card className="max-w-md bg-purple-950">
+    <Card fullWidth className=" bg-purple-950">
       <CardHeader className="relative p-0">
         <Image
           alt="Course banner showing connected gears"
@@ -28,13 +29,15 @@ export default function CourseCard({ course }: { course: Course }) {
           Curso
         </Chip>
         <Button
-          className={`absolute top-2 right-2 z-10 ${isLiked ? "bg-red-800" : ""} `}
-          variant="light"
           isIconOnly
-          aria-label="Like"
-          onClick={() => setIsLiked(!isLiked)}
+          className="absolute top-2 right-2 z-10"
+          radius="full"
+          variant="light"
+          onPress={() => setIsLiked((v) => !v)}
         >
-          <Heart color={`${isLiked ? "red" : "white"}`} className="w-5 h-5" />
+          <HeartIcon
+            className={isLiked ? "[&>path]:stroke-transparent" : "[&>path]:stroke-white"}
+            fill={isLiked ? "red" : "none"} width={undefined} height={undefined} />
         </Button>
       </CardHeader>
       <CardBody className="p-3 text-small gap-4">
