@@ -1,8 +1,11 @@
+// TODO - El componente de tabs necesita ser un client component
 "use client"
 
-import { Tab, Tabs } from "@nextui-org/react";
 import { GeneralInformation } from "./my-projects/GeneralInformation";
+import { Tabs } from "./my-projects/MyProjectsTabs";
 import { ProjectsTable } from "./my-projects/ProjectsTable";
+
+const MY_PROJECTS_TABS = ["general", "aplicaciones", "cursos", "proyectos", "mentoria"]
 
 export function MyProjects() {
   return (
@@ -13,60 +16,7 @@ export function MyProjects() {
       </header>
       <section className="grid grid-cols-4 gap-6">
         <section className="col-span-4 lg:col-span-3 flex flex-col gap-6">
-          <div className="flex w-full flex-col">
-            <Tabs
-              aria-label="Options"
-              color="primary"
-              variant="underlined"
-              classNames={{
-                tabList: "w-full relative rounded-none p-0 border-b border-divider",
-                cursor: "w-full bg-[#B95ED4]",
-                tab: "max-w-fit px-0 h-12",
-                tabContent: "group-data-[selected=true]:text-[#B95ED4] p-2"
-              }}
-            >
-              <Tab
-                key="general"
-                title={
-                  <div className="flex items-center space-x-2">
-                    <span>general</span>
-                  </div>
-                }
-              />
-              <Tab
-                key="aplicaciones"
-                title={
-                  <div className="flex items-center space-x-2">
-                    <span>aplicaciones</span>
-                  </div>
-                }
-              />
-              <Tab
-                key="cursos"
-                title={
-                  <div className="flex items-center space-x-2">
-                    <span>cursos</span>
-                  </div>
-                }
-              />
-              <Tab
-                key="proyectos"
-                title={
-                  <div className="flex items-center space-x-2">
-                    <span>proyectos</span>
-                  </div>
-                }
-              />
-              <Tab
-                key="mentoria"
-                title={
-                  <div className="flex items-center space-x-2">
-                    <span>mentoria</span>
-                  </div>
-                }
-              />
-            </Tabs>
-          </div>
+          <Tabs tabs={MY_PROJECTS_TABS} />
           <ProjectsTable />
         </section>
         <GeneralInformation />
