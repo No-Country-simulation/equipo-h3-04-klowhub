@@ -13,7 +13,7 @@ export function Navbutton() {
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
           src="/backbutton.png"
-          layout="fill" // Cambia a layout="fill" para que ocupe el contenedor
+          fill
         />
         <span className="relative z-10"> {/* Asegúrate de que el texto esté por encima de la imagen */}
           Aprende en KlowHub
@@ -24,7 +24,7 @@ export function Navbutton() {
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
           src="/backbutton.png"
-          layout="fill" // Cambia a layout="fill" para que ocupe el contenedor
+          fill
         />
         <span className="relative z-10"> {/* Asegúrate de que el texto esté por encima de la imagen */}
           Encuentra aplicaciones
@@ -35,7 +35,7 @@ export function Navbutton() {
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
           src="/backbutton.png"
-          layout="fill" // Cambia a layout="fill" para que ocupe el contenedor
+          fill
         />
         <span className="relative z-10"> {/* Asegúrate de que el texto esté por encima de la imagen */}
           Publica proyectos
@@ -46,7 +46,7 @@ export function Navbutton() {
           alt="profile avatar"
           className="object-cover scale-125  transition-transform duration-300 transform hover:scale-150" // Asegúrate de que la imagen ocupe el contenedor
           src="/backbutton.png"
-          layout="fill" // Cambia a layout="fill" para que ocupe el contenedor
+          fill
         />
         <span className="relative z-10"> {/* Asegúrate de que el texto esté por encima de la imagen */}
           Consultas técnicas

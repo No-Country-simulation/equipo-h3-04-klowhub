@@ -31,7 +31,7 @@ export default async function UltimateCourseCard() {
             >
                 <CardBody className="p-0 w-full h-full">
                     <div className="grid grid-cols-6 p-0 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
-                        <div className="relative col-span-9 md:col-span-4 xl:col-span-3 h-96">
+                        <div className="relative col-span-9 md:col-span-4 xl:col-span-3 h-80">
                             <Image
                                 src="/imgs/DALL·E 2024-09-04 01.44.37.webp"
                                 alt="Imagen del curso de Automatización de flujos de trabajo"
@@ -39,16 +39,16 @@ export default async function UltimateCourseCard() {
                                 className="object-fill"
                             />
                         </div>
-                        <div className="flex flex-col w-full justify-center h-full col-span-9 md:col-span-8 xl:col-span-9">
-                            <div className="flex justify-between items-start">
-                                <div className="flex flex-col gap-0">
+                        <div className="flex flex-col w-full  h-full overflow-hidden col-span-9 md:col-span-8 xl:col-span-9">
+                            <div className="flex justify-around items-start h-full">
+                                <div className="flex flex-col gap-0 w-full h-full m-4">
                                     <TextTitleSub title="Automatización de flujos de trabajo con AppSheet" subtitle="                                        Aprende a crear flujos de trabajo automatizados en AppSheet, optimizando la gestión de tareas y aprobaciones, lo que mejorará la productividad en tus proyectos.
 "/>
 
                                     <div className="flex m-4 ml-0 gap-2 flex-wrap">
                                         {
                                             courses[0].sectors.map((sector) => (
-                                                <Chip color="secondary" key={sector.id} size="sm" variant="flat" className="text-white">
+                                                <Chip color="secondary" key={sector.id} size="md" variant="flat" className="text-white">
                                                     {sector.name}
                                                 </Chip>
                                             ))
@@ -61,7 +61,7 @@ export default async function UltimateCourseCard() {
                                         </div>
                                         <Progress value={30} className="bg-purple-600" />
                                     </div>
-                                    <Button className="mt-4 bg-purple-700 hover:bg-purple-800">Continuar viendo</Button>
+                                    <Button className="mt-4 w-40 bg-purple-700 hover:bg-purple-800 text-white">Continuar viendo</Button>
                                 </div>
                             </div>
                         </div>

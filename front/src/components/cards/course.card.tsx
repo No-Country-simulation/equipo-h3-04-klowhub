@@ -8,17 +8,19 @@ import { StarIcon, TvMinimalPlay } from 'lucide-react';
 import { useState } from "react"
 import { Course } from "@/interfaces/course"
 import { HeartIcon } from "@/components/icons/hearticon"
+import { uniqueFileName } from '../../../../back/src/common/utils/unique-filename';
 
 export default function CourseCard({ course }: { course: Course }) {
   const [isLiked, setIsLiked] = useState(false); // Estado para el corazón
 
   return (
-    <Card fullWidth className=" bg-purple-950">
+    <Card fullWidth className=" bg-#1f2937 " shadow="lg"  >
       <CardHeader className="relative p-0">
+
         <Image
           alt="Course banner showing connected gears"
           className="object-cover rounded-sm w-full aspect-video -z-1"
-          src="https://s3-alpha-sig.figma.com/img/506c/cc48/851ee65298dd8406740d3074280195ef?Expires=1732492800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZOa5FQu0fCAoRU1nKuBlxnQPkf4b~AL3xA7zrCY9RYi3cY-nwH0dOinrOE98CPm561r~5fnpDsdKqnyWFBl7CPC5jLd5Db3ZgvB0KHsMVybk5VqHgkJhbjth0nWtRRS0j5nAc6WSVSxVOCgt5B38Kq3SXNGLqt90VR~oG~4d8DeCwFIzp4sv1ftj40OcdWkaVKLsjBGz5oKmIv~PBKllh7Zhnw8EZMGeBJh-REhXNzT6nt~rwGKhet9wXPtcRvgNbjmOKb81LWvtdD~yMtsv8J7q4zio6BQaeizzU65pLQPyMAN~pKVDJbWE98Mi7qpVoxX0ttksorVuDjSWXTs2Ng__"
+          src="/imgs/DALL·E 2024-09-04 14.27.44.webp"
         />
         <Chip
           className="absolute top-2 left-2 z-15 bg-green-200 text-green-600"
@@ -26,7 +28,7 @@ export default function CourseCard({ course }: { course: Course }) {
           variant="solid"
           size="sm"
         >
-          Curso
+          {course.type}
         </Chip>
         <Button
           isIconOnly
@@ -46,8 +48,10 @@ export default function CourseCard({ course }: { course: Course }) {
           <p className="text-default-300">{course.description}</p>
         </div>
         <div className="flex gap-2">
-          <TvMinimalPlay color="white" className="w-6 h-6" />
-          <span className="font-semibold">{course.type}</span>
+          {/* <div>
+            {course.platforms}
+          </div> */}
+
         </div>
         <div className="flex gap-2 flex-wrap">
           {
