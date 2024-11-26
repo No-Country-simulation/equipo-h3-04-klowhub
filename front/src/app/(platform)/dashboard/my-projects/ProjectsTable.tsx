@@ -16,8 +16,6 @@ export function ProjectsTable() {
   const renderCell = React.useCallback((user: IUser, columnKey: keyof IUser) => {
     const cellValue = user[columnKey as keyof IUser];
 
-    console.log({ cellValue });
-
     switch (columnKey) {
       case "name":
         return (
