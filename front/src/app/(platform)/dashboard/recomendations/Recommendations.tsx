@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import { RecommendationCard } from "./RecommendationCard";
 
 const cardsData = [
@@ -69,6 +70,9 @@ export function Recomendations() {
             <RecommendationCard key={recomendation.id} recommendation={recomendation} />)
         }
       </ul>
+      <Button variant="bordered" className="w-fit mx-auto px-16 text-primario-200 border-primario-200">
+        Ver Proyectos
+      </Button>
     </section>
   )
 }
