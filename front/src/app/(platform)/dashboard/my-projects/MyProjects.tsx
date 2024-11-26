@@ -1,9 +1,9 @@
 // TODO - El componente de tabs necesita ser un client component
 "use client"
 
-import { GeneralInformation } from "./my-projects/GeneralInformation";
-import { Tabs } from "./my-projects/MyProjectsTabs";
-import { ProjectsTable } from "./my-projects/ProjectsTable";
+import { GeneralInformation } from "./GeneralInformation"
+import { Tabs } from "./MyProjectsTabs"
+import { ProjectsTable } from "./ProjectsTable"
 
 const MY_PROJECTS_TABS = ["general", "aplicaciones", "cursos", "proyectos", "mentoria"]
 
