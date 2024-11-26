@@ -1,5 +1,5 @@
 export const navLinks = [
-    { id: 1, text: "Dashboard", path: "/" },
+    { id: 1, text: "Dashboard", path: "/dashboard" },
     { id: 2, text: "Curso y lecciones", path: "/curso" },
     { id: 3, text: "Appstore", path: "/appstore" },
     { id: 4, text: "Proyectos", path: "/proyectos" },
