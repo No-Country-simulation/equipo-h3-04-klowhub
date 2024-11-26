@@ -1,9 +1,8 @@
+import { NextUIProvider } from '@nextui-org/react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import './globals.css';
-import NavBar from '@/components/navbar/navprincipal';
 import { Toaster } from 'sonner';
-import { NextUIProvider } from '@nextui-org/react';
+import './globals.css';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -32,14 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-b from-[#34395C] via-[#181941] to-[#1B1B1F]`}
       >
         <NextUIProvider>
-          <div className="flex flex-col min-h-screen">
-            <div className="relative">
-              <NavBar />
-            </div>
-            <main className="flex-grow">
-              {children}
-            </main>
-          </div>
+          {children}
           <Toaster />
         </NextUIProvider>
       </body>

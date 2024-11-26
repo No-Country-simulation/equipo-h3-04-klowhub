@@ -1,8 +1,5 @@
 import UltimateCourseCard from '@/components/cards/ultimatecourse.card';
 import { Navbutton } from '@/components/navbar/navbutton';
-import { useUserStore } from '@/store/user.store';
-import { Link } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Home() {
   return (
