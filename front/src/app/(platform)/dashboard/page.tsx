@@ -1,6 +1,7 @@
 import { Banner } from "./Banner";
 import { DashboardNav } from "./DashboardNav";
 import { MyProjects } from "./MyProjects";
+import { Recomendations } from "./recomendations/Recommendations";
 import { Scheduler } from "./scheduler/Scheduler";
 
 export default function DashboardPage() {
@@ -10,6 +11,7 @@ export default function DashboardPage() {
       <DashboardNav />
       <MyProjects />
       <Scheduler />
+      <Recomendations />
     </section>
   )
 }
