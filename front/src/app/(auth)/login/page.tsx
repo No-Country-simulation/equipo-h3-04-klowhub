@@ -1,19 +1,10 @@
 import LoginForm from '@/components/forms/login';
 import SocialIcon from '@/components/icons/social';
 import { Link } from '@nextui-org/react';
-import Image from 'next/image';
 
 export default function LoginPage() {
   return (
-    // min-h calculado quitandole navbar
-    <div className='grid place-content-center space-y-10 min-h-[calc(100vh-93px)] text-white'>
-      <Image
-        src="/imgs/auth-bg.jpg"
-        alt="Background"
-        fill
-        className="z-0 absolute top-0 left-0 w-full h-full object-cover blur-lg"
-      />
-
+    <div className='w-full grid place-content-center space-y-10 text-white h-full'>
       <div className='relative z-10 space-y-4'>
         <div className='space-y-10'>
           <h1 className="text-3xl font-semibold text-center">KlowHub - Acceso</h1>

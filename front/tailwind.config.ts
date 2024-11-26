@@ -3,7 +3,7 @@ import type { Config } from 'tailwindcss';
 
 export default {
   content: [
-    './src/**/*.{js,jsx,ts,tsx}', 
+    './src/**/*.{js,jsx,ts,tsx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -48,8 +48,12 @@ export default {
           800: '#321758',
           900: '#210f3a',
         },
+        acento: {
+          900: '#201C2D',
+          800: '#201D43',
+          700: '#262136',
+        },
       },
-     
     },
   },
   darkMode: 'class',
