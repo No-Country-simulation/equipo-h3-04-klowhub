@@ -1,3 +1,4 @@
+import { TechnicalInquiries } from "../technical-inquiries/TechnicalInquiries";
 import { Banner } from "./Banner";
 import { DashboardNav } from "./DashboardNav";
 import { MyProjects } from "./my-projects/MyProjects";
@@ -14,6 +15,7 @@ export default function DashboardPage() {
       <Scheduler />
       <Recomendations />
       <SalesChart />
+      <TechnicalInquiries />
     </section>
   )
 }
