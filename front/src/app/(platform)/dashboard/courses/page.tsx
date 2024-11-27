@@ -4,6 +4,7 @@ import { Tabs } from "@/components/dashboard/my-projects/MyProjectsTabs";
 import { Section } from "@/components/ui/Section";
 import { BreadcrumbItem, Breadcrumbs, Button } from "@nextui-org/react";
 import Link from "next/link";
+import { CoursesChart } from "./CoursesChart";
 import { CoursesTable } from "./CoursesTable";
 
 export default function MyCoursesPage() {
@@ -21,8 +22,9 @@ export default function MyCoursesPage() {
       </header>
       <Section className="bg-card">
         <Tabs tabs={["Ultimos movimientos", "Este Mes", "3 Meses", "Este Año"]} />
-        <section className="grid grid-cols-[1fr_300px]">
+        <section className="grid grid-cols-[1fr_auto] gap-6">
           <CoursesTable />
+          <CoursesChart />
         </section>
         <section className="">
           <header>

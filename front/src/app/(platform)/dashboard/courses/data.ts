@@ -2,6 +2,7 @@ export const columns = [
   { name: 'Nombre del cliente', uid: 'name' },
   { name: 'Monto', uid: 'monto' },
   { name: 'Estado', uid: 'status' },
+  { name: '', uid: 'plataforma' },
 ];
 
 export const clientes = [

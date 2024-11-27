@@ -2,6 +2,7 @@
 
 import { statusColorMap, tableStyles } from "@/lib/table-styles";
 import { Chip, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, User } from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
 import { clientes, columns } from "./data";
 
@@ -29,7 +30,10 @@ export function CoursesTable() {
       case "plataforma":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize text-acento-400">ver detalle</p>
+            {/* TODO - Cambiar por un link que sea valida */}
+            <Link href="#">
+              <p className="text-bold text-sm capitalize text-acento-400">ver detalle</p>
+            </Link>
           </div>
         );
       case "tipo":
