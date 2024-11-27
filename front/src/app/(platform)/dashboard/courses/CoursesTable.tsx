@@ -2,12 +2,13 @@
 
 import { statusColorMap, tableStyles } from "@/lib/table-styles";
 import { Chip, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, User } from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
-import { columns, users } from "./data";
+import { clientes, columns } from "./data";
 
-type IUser = typeof users[number]
+type IUser = typeof clientes[number]
 
-export function ProjectsTable() {
+export function CoursesTable() {
   const renderCell = React.useCallback((user: IUser, columnKey: keyof IUser) => {
     const cellValue = user[columnKey as keyof IUser];
 
@@ -29,7 +30,10 @@ export function ProjectsTable() {
       case "plataforma":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize text-acento-400">ver detalle</p>
+            {/* TODO - Cambiar por un link que sea valida */}
+            <Link href="#">
+              <p className="text-bold text-sm capitalize text-acento-400">ver detalle</p>
+            </Link>
           </div>
         );
       case "tipo":
@@ -60,7 +64,7 @@ export function ProjectsTable() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={users}>
+      <TableBody items={clientes}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey as any)}</TableCell>}

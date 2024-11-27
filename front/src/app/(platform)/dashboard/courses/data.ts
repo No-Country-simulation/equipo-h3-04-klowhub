@@ -1,22 +1,11 @@
-const columns = [
+export const columns = [
   { name: 'Nombre del cliente', uid: 'name' },
   { name: 'Monto', uid: 'monto' },
-  { name: 'Tipo', uid: 'tipo' },
   { name: 'Estado', uid: 'status' },
-  { name: 'Plataforma', uid: 'plataforma' },
+  { name: '', uid: 'plataforma' },
 ];
 
-export interface Cliente {
-  id: number;
-  name: string;
-  tipo: 'curso' | 'leccion' | 'aplicación' | 'proyecto' | 'mentoria';
-  status: string;
-  plataforma: string;
-  avatar: string;
-  monto: number;
-}
-
-const clientes: Cliente[] = [
+export const clientes = [
   {
     id: 1,
     monto: 650,
@@ -63,5 +52,3 @@ const clientes: Cliente[] = [
     monto: 650,
   },
 ];
-
-export { columns, clientes as users };
