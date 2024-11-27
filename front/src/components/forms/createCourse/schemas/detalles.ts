@@ -6,7 +6,7 @@ const MAX_SIZE = 5 * 1024 * 1024;
 // Tipo valido de archivo
 const VALID_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 
-const imageValidation = z
+export const imageValidation = z
   .instanceof(File, { message: 'Insertar portada del curso' })
   .refine(
     (file) => VALID_TYPES.includes(file.type),
@@ -16,6 +16,15 @@ const imageValidation = z
     (file) => file.size <= MAX_SIZE,
     'La imagen no debe superar los 5 MB',
   );
+
+export const pdfSchema = z
+  .instanceof(File)
+  .refine((file) => file.type === 'application/pdf', {
+    message: 'File must be a PDF',
+  })
+  .refine((file) => file.size <= MAX_SIZE, {
+    message: 'File size must not exceed 5MB',
+  });
 
 export const detallesSchema = z.object({
   learningOutcomes: z

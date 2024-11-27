@@ -4,8 +4,9 @@ import { useFormContext } from "react-hook-form";
 import { BaseFieldProps } from "./InputField";
 import { DetallesRichTextFields } from "./schemas/detalles";
 import { InformacionGeneralRichTextFields } from "./schemas/informacion-general";
+import { ModulosRichTextFields } from "./schemas/modulos-y-lecciones";
 
-type RichTextFields = DetallesRichTextFields & InformacionGeneralRichTextFields
+type RichTextFields = DetallesRichTextFields & InformacionGeneralRichTextFields & ModulosRichTextFields
 
 type RichTextFieldProps = BaseFieldProps<RichTextFields>
 
