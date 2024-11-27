@@ -56,9 +56,19 @@ export default {
           100: '#D194E2',
         },
         card: '#1F2937',
+        gradient: {
+          start: '#492181',
+          second: '#514B8F',
+          third: '#556096',
+          end: '#58759D',
+        },
+        'link-blue': '#7CB4FF',
       },
       gridTemplateColumns: {
         consults: 'repeat(auto-fit, minmax(150px, 1fr))',
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to right, #58759D, #556096, #514B8F, #492181)',
       },
     },
   },
