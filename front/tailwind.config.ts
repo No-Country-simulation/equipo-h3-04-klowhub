@@ -52,7 +52,13 @@ export default {
           900: '#201C2D',
           800: '#201D43',
           700: '#262136',
+          400: '#B95ED4',
+          100: '#D194E2',
         },
+        card: '#1F2937',
+      },
+      gridTemplateColumns: {
+        consults: 'repeat(auto-fit, minmax(150px, 1fr))',
       },
     },
   },
