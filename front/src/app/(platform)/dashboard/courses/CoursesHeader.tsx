@@ -6,11 +6,7 @@ import Link from "next/link"
 export function CoursesHeader() {
   return (
     <>
-      <Breadcrumbs
-        itemClasses={{
-          item: "text-white/60 data-[current=true]:text-white",
-          separator: "text-white/40",
-        }}>
+      <Breadcrumbs>
         <BreadcrumbItem>Dashboard</BreadcrumbItem>
         <BreadcrumbItem>Mis Cursos</BreadcrumbItem>
       </Breadcrumbs>
