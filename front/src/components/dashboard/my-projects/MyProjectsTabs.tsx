@@ -1,15 +1,14 @@
-import { Tabs as NextUiTabs, Tab } from "@nextui-org/react";
+import { Tabs as NextUiTabs, Tab, TabsProps } from "@nextui-org/react";
 
-
-
-interface Props {
+interface Props extends TabsProps {
   tabs: string[]
 }
 
-export function Tabs({ tabs }: Props) {
+export function Tabs({ tabs, ...props }: Props) {
   return (
     <div className="flex w-full flex-col">
       <NextUiTabs
+        {...props}
         aria-label="Options"
         color="primary"
         variant="underlined"
