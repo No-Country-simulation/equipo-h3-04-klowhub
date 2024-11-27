@@ -6,10 +6,9 @@ import { SalesChart } from "@/components/dashboard/sales-chart/SalesChart";
 import { Scheduler } from "@/components/dashboard/scheduler/Scheduler";
 import { TechnicalInquiries } from "@/components/dashboard/technical-inquiries/TechnicalInquiries";
 
-
 export default function DashboardPage() {
   return (
-    <section className="flex flex-col p-14 gap-12">
+    <section className="flex flex-col gap-12">
       <Banner />
       <DashboardNav />
       <MyProjects />

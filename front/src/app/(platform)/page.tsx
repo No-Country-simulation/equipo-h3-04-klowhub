@@ -6,10 +6,8 @@ import TextTitleSub from '@/components/text/titlesubtitle';
 import Image from 'next/image';
 
 export default async function Home() {
-
-
   return (
-    <div className='ml-10 mr-10 mt-5 mb-5'>
+    <section>
       <Navbutton />
       <div className='mt-5 mb-5'>
         <UltimateCourseCard />
@@ -37,7 +35,7 @@ export default async function Home() {
         <p className="relative m-2 ml-0 text-sm text-gray-400">Aprende de los mejores: Impulsa tu conocimiento con nuestros mentores especializados</p>
       </div>
       <CardMore service="app" />
-    </div>
+    </section>
   );
 }
 
