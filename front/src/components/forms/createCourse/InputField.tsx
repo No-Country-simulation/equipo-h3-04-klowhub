@@ -1,24 +1,28 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input, InputProps } from "@nextui-org/react";
 import { useFormContext } from "react-hook-form";
-import { InformacionGeneralInputFields, InformacionGeneralSchema } from "./schemas/informacion-general";
+import { DetallesInputFields } from "./schemas/detalles";
+import { InformacionGeneralInputFields } from "./schemas/informacion-general";
 
 export interface BaseFieldProps<T> {
   field: keyof T,
-  label: string
+  label: string,
+  itemStyle?: string;
 }
 
-type InputFieldProps = BaseFieldProps<InformacionGeneralInputFields> & InputProps
+type InputFields = InformacionGeneralInputFields & DetallesInputFields
 
-export function InputField({ field, label, ...args }: InputFieldProps) {
-  const form = useFormContext<InformacionGeneralSchema>()
+type InputFieldProps = BaseFieldProps<InputFields> & InputProps
+
+export function InputField({ field, label, itemStyle, ...args }: InputFieldProps) {
+  const form = useFormContext<InputFields>()
 
   return (
     <FormField
       control={form.control}
       name={field}
       render={({ field }) =>
-        <FormItem>
+        <FormItem className={itemStyle}>
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input {...args} {...field} />

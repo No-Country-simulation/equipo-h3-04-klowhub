@@ -26,13 +26,12 @@ export default function InformacionGeneralPage() {
   return (
     <form className="grid grid-cols-2 gap-12" onSubmit={form.handleSubmit(handleSubmit)}>
       <Form {...form}>
-        <div className='col-span-2'>
-          <InputField
-            placeholder='Nombrá tu curso o lección'
-            label='Título del curso/lección'
-            field='title'
-          />
-        </div>
+        <InputField
+          itemStyle='col-span-2'
+          placeholder='Nombrá tu curso o lección'
+          label='Título del curso/lección'
+          field='title'
+        />
         <p className='col-span-2 text-red-300'>FALTA AGREGAR COMPONENTE MARKDOWN</p>
         <RadioField
           field='contentType'
