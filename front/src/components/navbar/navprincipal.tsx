@@ -44,12 +44,12 @@ export default function NavBar() {
             <div></div>
           </NavbarBrand>
 
-          <NavbarContent className="hidden lg:flex gap-4" justify="center">
+          <NavbarContent className="hidden lg:flex gap-2" justify="center">
 
             {navLinks.map(({ id, path, text }) => (
               <NavbarItem key={id}>
 
-                <Link className='text-sm lg:text-base xl:text-xl'
+                <Link className='text-sm lg:text-base '
                   href={path}>
                   {text + " "}
                 </Link>
@@ -68,17 +68,18 @@ export default function NavBar() {
               <Mail />
             </NavbarItem>
 
-            <NavbarItem className="hidden lg:flex mr-20">
+            <NavbarItem className="hidden lg:flex mr-5">
               <SwitchCreator />
             </NavbarItem>
             <NavbarItem>
-              <Image
-                alt="profile avatar"
-                className="object-cover rounded-switch w-full"
-                src="/avatar.png"
-                width={40}
-                height={40}
-              />
+              <Link href="/perfil">
+                <Image
+                  alt="profile avatar"
+                  className="object-cover rounded-switch w-full"
+                  src="/avatar.png"
+                  width={40}
+                  height={40}
+                /></Link>
             </NavbarItem>
           </NavbarContent>
         </Navbar>
