@@ -9,7 +9,7 @@ export default function CreateCourseLayout({ children }: PropsWithChildren) {
     <section className="flex flex-col gap-12">
       <CreateCourseHeader />
       <CreateCourseFormStepper />
-      <Section className="bg-card grid grid-cols-1 xl:grid-cols-[1fr_minmax(auto,300px)] gap-20">
+      <Section className="bg-card grid grid-cols-1 xl:grid-cols-[1fr_minmax(auto,300px)] gap-32">
         {children}
         <section className="hidden xl:flex flex-col gap-5 rounded-lg overflow-hidden">
           <Image className="w-full h-full object-cover" width={300} height={250} alt="form aside image" src="/imgs/form-aside.webp" />

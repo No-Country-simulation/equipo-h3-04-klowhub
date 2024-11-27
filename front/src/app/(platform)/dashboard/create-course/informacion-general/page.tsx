@@ -2,6 +2,7 @@
 
 import { InputField } from '@/components/forms/createCourse/InputField'
 import { RadioField } from '@/components/forms/createCourse/RadioField'
+import { RichTextField } from '@/components/forms/createCourse/RichTextField'
 import { InformacionGeneralSchema, informacionGeneralSchema } from '@/components/forms/createCourse/schemas/informacion-general'
 import { Form } from '@/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -32,7 +33,6 @@ export default function InformacionGeneralPage() {
           label='Título del curso/lección'
           field='title'
         />
-        <p className='col-span-2 text-red-300'>FALTA AGREGAR COMPONENTE MARKDOWN</p>
         <RadioField
           field='contentType'
           options={["gratuito", "pago"]}
@@ -41,6 +41,11 @@ export default function InformacionGeneralPage() {
           field='creationType'
           options={["curso", "lección"]}
           label='Seleccioná si vas a crear un curso  o una lección.' />
+        <RichTextField
+          field='description'
+          label='Contá de qué trata, en no más de 3 líneas.'
+          itemStyle='col-span-2'
+        />
         <RadioField
           field='skillLevel'
           options={["básico", "intermedio"]}

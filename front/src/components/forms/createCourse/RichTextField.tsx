@@ -3,11 +3,14 @@ import { FormItem, FormLabel } from "@/components/ui/form";
 import { useFormContext } from "react-hook-form";
 import { BaseFieldProps } from "./InputField";
 import { DetallesRichTextFields } from "./schemas/detalles";
+import { InformacionGeneralRichTextFields } from "./schemas/informacion-general";
 
-type RichTextFieldProps = BaseFieldProps<DetallesRichTextFields>
+type RichTextFields = DetallesRichTextFields & InformacionGeneralRichTextFields
+
+type RichTextFieldProps = BaseFieldProps<RichTextFields>
 
 export function RichTextField({ field, label, itemStyle }: RichTextFieldProps) {
-  const form = useFormContext<DetallesRichTextFields>()
+  const form = useFormContext<RichTextFields>()
 
   const handleOnChange = (text: string) => {
     form.setValue(field, text)

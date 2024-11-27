@@ -29,13 +29,13 @@ export const detallesSchema = z.object({
   detailedDescription: z
     .string()
     .min(1, 'Por favor, escribe una descripción detallada del contenido')
-    .max(1000, 'La descripción no puede exceder los 1000 caracteres'),
+    .max(500, 'La descripción no puede exceder los 1000 caracteres'),
   coverImage: imageValidation,
 });
 
 export type DetallesSchema = z.infer<typeof detallesSchema>;
 
-export type DetallesInputFields = Pick<
+export type DetallesRichTextFields = Pick<
   DetallesSchema,
   'detailedDescription' | 'learningOutcomes' | 'prerequisites'
 >;

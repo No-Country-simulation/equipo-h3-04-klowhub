@@ -14,8 +14,7 @@ export const informacionGeneralSchema = z.object({
   description: z
     .string()
     .min(1, 'La descripción es obligatoria')
-    .max(300, 'La descripción no puede superar las 3 líneas')
-    .optional(),
+    .max(300, 'La descripción no puede superar las 3 líneas'),
   skillLevel: z.enum(['básico', 'intermedio'], {
     errorMap: () => ({ message: 'Seleccioná un nivel' }),
   }),
@@ -55,9 +54,13 @@ export type InformacionGeneralInputFields = Pick<
   | 'labels'
   | 'functionalities'
   | 'sector'
-  | 'description'
   | 'toolsAndPlatforms'
   | 'contentPillar'
+>;
+
+export type InformacionGeneralRichTextFields = Pick<
+  InformacionGeneralSchema,
+  'description'
 >;
 
 export type InformacionGeneralRadioFields = Pick<
