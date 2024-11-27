@@ -1,10 +1,11 @@
-import { TechnicalInquiries } from "../technical-inquiries/TechnicalInquiries";
-import { Banner } from "./Banner";
-import { DashboardNav } from "./DashboardNav";
-import { MyProjects } from "./my-projects/MyProjects";
-import { Recomendations } from "./recomendations/Recommendations";
-import { SalesChart } from "./sales-chart/SalesChart";
-import { Scheduler } from "./scheduler/Scheduler";
+import { Banner } from "@/components/dashboard/Banner";
+import { DashboardNav } from "@/components/dashboard/DashboardNav";
+import { MyProjects } from "@/components/dashboard/my-projects/MyProjects";
+import { Recomendations } from "@/components/dashboard/recomendations/Recommendations";
+import { SalesChart } from "@/components/dashboard/sales-chart/SalesChart";
+import { Scheduler } from "@/components/dashboard/scheduler/Scheduler";
+import { TechnicalInquiries } from "@/components/dashboard/technical-inquiries/TechnicalInquiries";
+
 
 export default function DashboardPage() {
   return (
