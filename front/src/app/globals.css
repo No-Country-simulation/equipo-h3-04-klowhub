@@ -36,3 +36,13 @@ body {
     --chart-2: 287 58% 47%;
   }
 }
+
+/* Modificar estilos del editor de quilljs (Formulario creacion de curso)*/
+.ql-container.ql-snow {
+  border: none !important;
+}
+
+.ql-toolbar.ql-snow {
+  border-top: none !important;
+  border-inline: none !important;
+}
