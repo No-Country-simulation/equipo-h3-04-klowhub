@@ -1,7 +1,7 @@
 "use client"
 
 import { BreadcrumbItem, Breadcrumbs, Button } from "@nextui-org/react"
-import { Link } from "lucide-react"
+import Link from "next/link"
 
 export function CoursesHeader() {
   return (
