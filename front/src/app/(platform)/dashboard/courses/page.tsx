@@ -1,11 +1,8 @@
-"use client"
-
-import { Tabs } from "@/components/dashboard/my-projects/MyProjectsTabs";
 import { Section } from "@/components/ui/Section";
 import { BreadcrumbItem, Breadcrumbs, Button } from "@nextui-org/react";
 import Link from "next/link";
-import { CoursesChart } from "./CoursesChart";
-import { CoursesTable } from "./CoursesTable";
+import { CreatedCourses } from "./CreatedCourses";
+import { RecentMovements } from "./RecentMovements";
 
 export default function MyCoursesPage() {
   return (
@@ -20,20 +17,9 @@ export default function MyCoursesPage() {
           <Button className="bg-primario-400 text-white px-20">Crear curso</Button>
         </Link>
       </header>
-      <Section className="bg-card">
-        <Tabs tabs={["Ultimos movimientos", "Este Mes", "3 Meses", "Este Año"]} />
-        <section className="grid grid-cols-[1fr_auto] gap-6">
-          <CoursesTable />
-          <CoursesChart />
-        </section>
-        <section className="">
-          <header>
-            <p>Cursos Creados</p>
-          </header>
-          <ul className="">
-
-          </ul>
-        </section>
+      <Section className="bg-card flex flex-col gap-12">
+        <RecentMovements />
+        <CreatedCourses />
       </Section>
     </section>
   )
