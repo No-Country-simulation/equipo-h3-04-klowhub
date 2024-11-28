@@ -1,19 +1,19 @@
 'use client'
 
-import React from "react"
 import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableColumn,
-  TableRow,
-  TableCell,
-  User,
-  Chip,
-  Button,
   Card,
+  Chip,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  User,
 } from "@nextui-org/react"
 import Image from "next/image"
+import React from "react"
+import { Button } from "../ui/Button"
 
 interface Query {
   id: string
@@ -172,11 +172,7 @@ export default function LatestQueries() {
         </TableBody>
       </Table>
       <div className="flex justify-center mt-6">
-        <Button
-          color="secondary"
-          variant="flat"
-          className="w-40 bg-primario-500 text-white text-md hover:bg-[#5b33a0] rounded-md"
-        >
+        <Button size="big">
           Ir a consultas
         </Button>
       </div>

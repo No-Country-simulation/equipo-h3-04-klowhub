@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export function SalesChartImage() {
         <p>¡Crea tu perfil como mentor y únete a nuestra comunidad de expertos! Comparte tu experienciay conecta con personas que buscan aprender. ¡Personaliza tu perfil y muestra al mundo lo que puedes aportar!</p>
         {/* TODO - Agregar un link valido para crear perfil de mentor */}
         <Link href="#">
-          <Button className="bg-primario-400 text-white">Crear perfil</Button>
+          <Button>Crear perfil</Button>
         </Link>
       </section>
     </section>
