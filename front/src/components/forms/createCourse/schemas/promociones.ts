@@ -1,36 +1,42 @@
 import { z } from 'zod';
 
-const productSchema = z.object({
-  id: z.string(),
-  percentage: z.coerce.number().min(1).max(100),
-});
-
 export const promocionesSchema = z
   .object({
-    discount: z.enum(['si', 'no'], {
+    hasDiscount: z.enum(['si', 'no'], {
       errorMap: () => ({ message: 'Seleccione una de las opciones' }),
     }),
-    discountApplications: z.array(productSchema).optional(),
-    discountCourses: z.array(productSchema).optional(),
+    discountPercentage: z.coerce.number().min(1).max(100).optional(),
+    discountProductId: z.coerce.string(),
+    discountTypeProduct: z.enum(['application', 'course']).optional(),
   })
   .refine(
     (schema) => {
-      if (schema.discount === 'no') {
+      if (schema.hasDiscount === 'no') {
         return true;
       }
 
-      // Valida que si en caso de eligir descuento, haya al menos una aplicacion o curso
-      return (
-        (schema.discountApplications?.length || 0) +
-          (schema.discountCourses?.length || 0) >=
-        1
-      );
+      // Valida que si se selecciono descuento, que haya un producto
+      if (!schema.discountProductId) {
+        return false;
+      }
+
+      return true;
     },
     {
       message: 'Agregar un producto en descuento',
-      path: ['discountApplications', 'discountCourses'],
+      path: ['discountProductId'],
     },
   );
 
+// export const promocionesSchema = z.discriminatedUnion('hasDiscount', [
+//   z.object({
+//     hasDiscount: z.literal('si'),
+//     discountPercentage: z.coerce.number().min(1).max(100),
+//     discountProductId: z.string(),
+//     discountTypeProduct: z.enum(['application', 'course']),
+//   }),
+//   z.object({ hasDiscount: z.literal('no') }),
+// ]);
+
 export type PromocionesSchema = z.infer<typeof promocionesSchema>;
-export type PromocionesRadioFields = Pick<PromocionesSchema, 'discount'>;
+export type PromocionesRadioFields = Pick<PromocionesSchema, 'hasDiscount'>;
