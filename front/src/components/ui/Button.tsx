@@ -3,16 +3,16 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 // Estilos de Figma
 const buttonStyles = cva(
-  "",
+  "w-fit font-bold",
   {
     variants: {
       variant: {
-        regular: "bg-primario-400 text-white",
+        regular: "bg-primario-500 text-white",
         outlined: "text-primario-200 border-primario-200 bg-transparent border-2"
       },
       size: {
         regular: "w-fit",
-        big: "px-20"
+        big: "w-full max-w-[280px]"
       }
     },
     defaultVariants: {
