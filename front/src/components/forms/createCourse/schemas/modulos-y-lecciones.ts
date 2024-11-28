@@ -3,7 +3,7 @@ import { imageValidation, pdfSchema } from './detalles';
 
 const MAX_COVER_IMAGES = 3;
 
-const leccionSchema = z.object({
+export const leccionSchema = z.object({
   lessionTitle: z
     .string()
     .min(1, 'El título es obligatorio')
@@ -15,6 +15,10 @@ const leccionSchema = z.object({
   lessonCoverImages: z.array(imageValidation).min(1).max(MAX_COVER_IMAGES),
   lessonAditionalResources: z.array(pdfSchema).max(5).optional(),
 });
+
+export type LeccionSchema = z.infer<typeof leccionSchema>;
+export type LeccionInputFields = Pick<LeccionSchema, 'lessionTitle'>;
+export type LeccionRichTextFields = Pick<LeccionSchema, 'lessonDescription'>;
 
 export const modulosSchema = z.object({
   moduleTitle: z

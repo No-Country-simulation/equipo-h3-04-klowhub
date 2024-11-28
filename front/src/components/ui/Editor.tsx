@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useQuill } from 'react-quilljs';
 
 interface Props {
-  onChange: (value: string) => void
+  onChange: (value: string) => void;
 }
 
 export function Editor({ onChange }: Props) {

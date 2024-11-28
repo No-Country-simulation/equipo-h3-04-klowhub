@@ -5,7 +5,7 @@ export function FileField({ ...args }: DropzoneProps) {
   return (
     <Dropzone
       {...args}
-      dropZoneClassName='bg-white/10 border-primario-400 hover:bg-white/5 transition'
+      dropZoneClassName='bg-white/10 border-primario-400 hover:bg-white/5 transition h-[200px]'
     >
       {(dropzone: DropzoneState) => (
         <>

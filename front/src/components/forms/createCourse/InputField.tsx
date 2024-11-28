@@ -25,7 +25,7 @@ export function InputField({ field, label, itemStyle, ...args }: InputFieldProps
         <FormItem className={itemStyle}>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input {...args} {...field} />
+            <Input className="max-w-[400px]" {...args} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>
