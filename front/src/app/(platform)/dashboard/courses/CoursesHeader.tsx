@@ -7,7 +7,7 @@ export function CoursesHeader() {
   return (
     <>
       <Breadcrumbs>
-        <BreadcrumbItem>Dashboard</BreadcrumbItem>
+        <BreadcrumbItem href="/dashboard">Dashboard</BreadcrumbItem>
         <BreadcrumbItem>Mis Cursos</BreadcrumbItem>
       </Breadcrumbs>
       <header className="flex justify-between items-center">

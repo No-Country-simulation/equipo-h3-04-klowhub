@@ -1,24 +1,19 @@
-import { Tabs as NextUiTabs, Tab } from "@nextui-org/react";
+import { tabsStyles } from "@/lib/tabs-styles";
+import { Tabs as NextUiTabs, Tab, TabsProps } from "@nextui-org/react";
 
-
-
-interface Props {
+interface Props extends TabsProps {
   tabs: string[]
 }
 
-export function Tabs({ tabs }: Props) {
+export function Tabs({ tabs, ...props }: Props) {
   return (
     <div className="flex w-full flex-col">
       <NextUiTabs
+        {...props}
         aria-label="Options"
         color="primary"
         variant="underlined"
-        classNames={{
-          tabList: "w-full relative rounded-none p-0 border-b border-divider",
-          cursor: "w-full bg-[#B95ED4]",
-          tab: "max-w-fit px-0 h-12",
-          tabContent: "group-data-[selected=true]:text-[#B95ED4] p-2"
-        }}
+        classNames={tabsStyles}
       >
         {
           tabs.map((tab) =>
