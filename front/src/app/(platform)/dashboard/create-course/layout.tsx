@@ -12,7 +12,7 @@ export default function CreateCourseLayout({ children }: PropsWithChildren) {
       <Section className="bg-card grid grid-cols-1 xl:grid-cols-[1fr_minmax(auto,300px)] gap-32">
         {children}
         <section className="hidden xl:flex flex-col gap-5 rounded-lg overflow-hidden">
-          <Image className="w-full h-full object-cover" width={300} height={250} alt="form aside image" src="/imgs/form-aside.webp" />
+          <Image className="object-cover" width={300} height={250} alt="form aside image" src="/imgs/form-aside.webp" />
           <footer className="relative flex flex-col gap-3 items-center">
             <p className="font-bold text-sm">Optimiza tu Perfil</p>
             <p className="text-center text-sm">Optimizá tu perfil y llevá tus apps al siguiente nivel. Accedé a recursos exclusivos que te ayudarán a mejorar tus habilidades y maximizar el potencial de tus proyectos.</p>

@@ -2,7 +2,7 @@ import { ErrorMessage } from "@/components/forms/createCourse/ErrorMessage"
 import { FileField } from "@/components/forms/createCourse/FileField"
 import { ModulosSchema } from "@/components/forms/createCourse/schemas/modulos-y-lecciones"
 import { Editor } from "@/components/ui/Editor"
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form"
+import { FormItem, FormLabel } from "@/components/ui/form"
 import { Section } from "@/components/ui/Section"
 import { Button, Input } from "@nextui-org/react"
 import { XIcon } from "lucide-react"
@@ -27,14 +27,12 @@ export function LeccionesForm() {
         <Section key={lesson.id} className='col-span-2  gap-6'>
           <FormItem>
             <FormLabel htmlFor={`lessons.${index}.lessionTitle`}>Lesson Title</FormLabel>
-            <FormControl>
-              <Input
-                placeholder='Nombrá tu curso o lección'
-                {...form.register(`lessons.${index}.lessionTitle`)}
-                id={`lessons.${index}.lessionTitle`}
-                className='max-w-[400px]'
-              />
-            </FormControl>
+            <Input
+              placeholder='Nombrá tu curso o lección'
+              {...form.register(`lessons.${index}.lessionTitle`)}
+              id={`lessons.${index}.lessionTitle`}
+              className='max-w-[400px]'
+            />
             <ErrorMessage
               message={form.formState.errors.lessons?.[index]?.lessionTitle?.message} />
           </FormItem>

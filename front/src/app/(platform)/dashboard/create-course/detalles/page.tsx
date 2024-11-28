@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
 import { FORM_STEPS_PATHS } from "../steps-paths"
 
-export default function InformacionGeneralPage() {
+export default function DetallesPage() {
   const router = useRouter()
   const form = useForm<DetallesSchema>({
     resolver: zodResolver(detallesSchema)
