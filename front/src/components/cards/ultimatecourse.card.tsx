@@ -1,8 +1,9 @@
 import { Course } from "@/interfaces/course";
 import { courseService } from "@/services/course.service";
-import { Button, Card, CardBody, Chip, Progress } from "@nextui-org/react";
+import { Card, CardBody, Chip, Progress } from "@nextui-org/react";
 import Image from "next/image";
 import TextTitleSub from "../text/titlesubtitle";
+import { Button } from "../ui/Button";
 
 export default async function UltimateCourseCard() {
   let courses: Course[];
@@ -53,14 +54,14 @@ export default async function UltimateCourseCard() {
                       ))
                     }
                   </div>
-                  <div className="mt-4">
-                    <div className="flex items-center justify-between mb-2">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
                       <span>Mi progreso</span>
                       <span>30%</span>
                     </div>
                     <Progress value={30} className="bg-purple-600" />
+                    <Button className="">Continuar viendo</Button>
                   </div>
-                  <Button className="mt-4 w-40 bg-purple-700 hover:bg-purple-800 text-white">Continuar viendo</Button>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
+import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
-import { Button, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { FilterIcon, SortAscIcon } from "lucide-react";
 import { InquiryItem } from "./InquiryItem";
 
@@ -59,8 +60,8 @@ export function TechnicalInquiries() {
         <header className="flex gap-6">
           {/* TODO - Agregar logica para manejar la busqueda */}
           <Input className="max-w-[700px]" />
-          <Button className="text-primario-200 border-primario-200" variant="bordered"><FilterIcon />Filtrar</Button>
-          <Button className="text-primario-200 border-primario-200" variant="bordered"><SortAscIcon />Ordenar por</Button>
+          <Button variant="outlined"><FilterIcon />Filtrar</Button>
+          <Button variant="outlined"><SortAscIcon />Ordenar por</Button>
         </header>
         <ul className="flex flex-col gap-2 rounded-xl overflow-hidden">
           {
@@ -70,7 +71,7 @@ export function TechnicalInquiries() {
           }
         </ul>
       </Section>
-      <Button className="self-end bg-primario-400 text-white px-20">
+      <Button size="big" className="self-end">
         Ir a consultas
       </Button>
     </section>
