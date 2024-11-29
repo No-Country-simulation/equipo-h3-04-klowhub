@@ -29,11 +29,13 @@ export default function InformacionGeneralPage() {
       <Form {...form}>
         <InputField<CreateProfileInputFields>
           label="¿En qué áreas sos un experto?"
+          placeholder="Elegí al menos un área"
           field="area"
           itemStyle="col-span-2"
         />
         <InputField<CreateProfileInputFields>
           label="¿Cuál es el costo de tu hora de mentoria?"
+          placeholder="Ingresa el monto por hora"
           itemStyle="col-span-2"
           field="pricePerHour"
           type="number"
