@@ -20,6 +20,7 @@ export function RadioField<T extends FieldValues>({ field, label, options, itemS
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <RadioGroup
+              defaultValue={field.value}
               onValueChange={field.onChange}
               className="flex flex-col space-y-1"
             >

@@ -8,6 +8,7 @@ import { SelectField } from "@/components/forms/multiStepForm/SelectField"
 import { Button } from "@/components/ui/Button"
 import { Form } from "@/components/ui/form"
 import { LENGUAJES, PLATAFORMA } from "@/constants/filters"
+import { useCreateProfileStore } from "@/store/createMentorProfile.store"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -15,13 +16,18 @@ import { toast } from "sonner"
 import { FORM_STEPS_PATHS } from "../steps-paths"
 
 export default function InformacionGeneralPage() {
+  const setState = useCreateProfileStore((state) => state.setGeneralInformation)
+  const state = useCreateProfileStore((state) => state.generalInformation!)
   const router = useRouter()
+
   const form = useForm<GeneralInformationSchema>({
-    resolver: zodResolver(generalInformationSchema)
+    resolver: zodResolver(generalInformationSchema),
+    defaultValues: state
   })
 
   const handleSubmit = (data: GeneralInformationSchema) => {
     console.log({ data });
+    setState(data)
     toast("Informacion guardada")
     router.replace(FORM_STEPS_PATHS[2])
   }

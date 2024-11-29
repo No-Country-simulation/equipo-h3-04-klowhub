@@ -8,20 +8,28 @@ import { FileField } from "@/components/forms/multiStepForm/FileField"
 import { RichTextField } from "@/components/forms/multiStepForm/RichTextField"
 import { Button } from "@/components/ui/Button"
 import { Form, FormLabel } from "@/components/ui/form"
+import { useCreateProfileStore } from "@/store/createMentorProfile.store"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useDisclosure } from "@nextui-org/react"
 import { useForm } from "react-hook-form"
 
 export default function EducationPage() {
+  const resetForm = useCreateProfileStore((state) => state.resetFields)
+  const setState = useCreateProfileStore((state) => state.setEducation)
+  const state = useCreateProfileStore((state) => state.education!)
+
   const form = useForm<EducationSchema>({
-    resolver: zodResolver(educationSchema)
+    resolver: zodResolver(educationSchema),
+    defaultValues: state
   })
 
   const dialogState = useDisclosure()
 
   const handleSubmit = (data: EducationSchema) => {
     console.log({ data });
+    setState(data)
     dialogState.onOpen()
+    resetForm()
   }
 
   return (

@@ -7,6 +7,7 @@ import { SelectField } from "@/components/forms/multiStepForm/SelectField"
 import { Button } from "@/components/ui/Button"
 import { Form } from "@/components/ui/form"
 import { HERRAMIENTAS_Y_PLATAFORMAS, SECTOR } from "@/constants/filters"
+import { useCreateProfileStore } from "@/store/createMentorProfile.store"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -14,13 +15,18 @@ import { toast } from "sonner"
 import { FORM_STEPS_PATHS } from "../steps-paths"
 
 export default function ExperiencePage() {
+  const setState = useCreateProfileStore((state) => state.setExperience)
+  const state = useCreateProfileStore((state) => state.experience!)
   const router = useRouter()
+
   const form = useForm<ExperienceSchema>({
-    resolver: zodResolver(experienceSchema)
+    resolver: zodResolver(experienceSchema),
+    defaultValues: state
   })
 
   const handleSubmit = (data: ExperienceSchema) => {
     console.log({ data });
+    setState(data)
     toast("Informacion guardada")
     router.replace(FORM_STEPS_PATHS[3])
   }

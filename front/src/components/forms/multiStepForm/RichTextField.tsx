@@ -15,7 +15,7 @@ export function RichTextField<T extends FieldValues>({ field, label, itemStyle }
   return (
     <FormItem className={itemStyle}>
       <FormLabel>{label}</FormLabel>
-      <Editor onChange={handleOnChange}
+      <Editor onChange={handleOnChange} defaultValue={form.getValues(field as any)}
       />
       {
         form.formState.errors[field]

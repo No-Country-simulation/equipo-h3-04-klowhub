@@ -2,10 +2,12 @@ import { LENGUAJES, PLATAFORMA } from '@/constants/filters';
 import { z } from 'zod';
 
 export const generalInformationSchema = z.object({
-  area: z.string({
-    required_error: 'El campo "Área" es obligatorio.',
-    invalid_type_error: 'El campo "Área" debe ser un texto válido.',
-  }),
+  area: z
+    .string({
+      required_error: 'El campo "Área" es obligatorio.',
+      invalid_type_error: 'El campo "Área" debe ser un texto válido.',
+    })
+    .min(1),
   pricePerHour: z.coerce
     .number({
       invalid_type_error: 'El precio por hora debe ser un número.',
