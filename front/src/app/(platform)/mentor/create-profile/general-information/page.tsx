@@ -7,10 +7,11 @@ import { RadioField } from "@/components/forms/multiStepForm/RadioField"
 import { SelectField } from "@/components/forms/multiStepForm/SelectField"
 import { Button } from "@/components/ui/Button"
 import { Form } from "@/components/ui/form"
-import { LENGUAJES } from "@/constants/filters"
+import { LENGUAJES, PLATAFORMA } from "@/constants/filters"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { FORM_STEPS_PATHS } from "../steps-paths"
 
 export default function InformacionGeneralPage() {
@@ -21,6 +22,7 @@ export default function InformacionGeneralPage() {
 
   const handleSubmit = (data: GeneralInformationSchema) => {
     console.log({ data });
+    toast("Informacion guardada")
     router.replace(FORM_STEPS_PATHS[2])
   }
 
@@ -48,19 +50,19 @@ export default function InformacionGeneralPage() {
         <RadioField<CreateProfileRadioFields>
           field="platform"
           label="¿Con que plataformas sueles trabajar?"
-          options={["AppSheet", "Powerapps"]}
+          options={PLATAFORMA.map((l) => l)}
         />
         <SelectField<CreateProfileSelectFields>
           field="languague"
           label="¿En qué idiomas ofreces las mentorias?"
           options={LENGUAJES.map((l) => l)}
         />
-        <SelectField<CreateProfileSelectFields>
+        {/* <SelectField<CreateProfileSelectFields>
           field="area"
           label="¿En que área te especializas?"
           options={LENGUAJES.map((l) => l)}
-        />
-        <Button size="big" type="submit">Continuar</Button>
+        /> */}
+        <Button className="col-span-2" size="big" type="submit">Continuar</Button>
       </Form>
     </form>
   )

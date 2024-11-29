@@ -10,6 +10,7 @@ import { HERRAMIENTAS_Y_PLATAFORMAS, SECTOR } from "@/constants/filters"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { FORM_STEPS_PATHS } from "../steps-paths"
 
 export default function ExperiencePage() {
@@ -20,6 +21,7 @@ export default function ExperiencePage() {
 
   const handleSubmit = (data: ExperienceSchema) => {
     console.log({ data });
+    toast("Informacion guardada")
     router.replace(FORM_STEPS_PATHS[3])
   }
 

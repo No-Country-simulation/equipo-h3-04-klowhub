@@ -1,4 +1,4 @@
-import { LENGUAJES, PILAR_DE_CONTENIDO } from '@/constants/filters';
+import { LENGUAJES, PLATAFORMA } from '@/constants/filters';
 import { z } from 'zod';
 
 export const generalInformationSchema = z.object({
@@ -15,7 +15,7 @@ export const generalInformationSchema = z.object({
     invalid_type_error: 'El nivel de experiencia no es válido.',
     required_error: 'El nivel de experiencia es obligatorio.',
   }),
-  platform: z.enum(['appsheet', 'powerapps'], {
+  platform: z.enum(PLATAFORMA, {
     invalid_type_error: 'La plataforma seleccionada no es válida.',
     required_error: 'La plataforma es obligatoria.',
   }),
@@ -23,10 +23,10 @@ export const generalInformationSchema = z.object({
     invalid_type_error: 'El idioma seleccionado no es válido.',
     required_error: 'El idioma es obligatorio.',
   }),
-  pilar: z.enum(PILAR_DE_CONTENIDO, {
-    invalid_type_error: 'El pilar seleccionado no es válido.',
-    required_error: 'El pilar es obligatorio.',
-  }),
+  // pilar: z.enum(PILAR_DE_CONTENIDO, {
+  //   invalid_type_error: 'El pilar seleccionado no es válido.',
+  //   required_error: 'El pilar es obligatorio.',
+  // }),
 });
 
 export type GeneralInformationSchema = z.infer<typeof generalInformationSchema>;
