@@ -1,8 +1,13 @@
+import { DetallesRichTextFields } from './detalles';
 import {
   InformacionGeneralInputFields,
   InformacionGeneralRadioFields,
+  InformacionGeneralRichTextFields,
 } from './informacion-general';
-import { ModulosInputFields } from './modulos-y-lecciones';
+import {
+  ModulosInputFields,
+  ModulosRichTextFields,
+} from './modulos-y-lecciones';
 import { PromocionesRadioFields } from './promociones';
 
 export type CreateCourseInputFields = InformacionGeneralInputFields &
@@ -10,3 +15,7 @@ export type CreateCourseInputFields = InformacionGeneralInputFields &
 
 export type CreateCourseRadioFields = InformacionGeneralRadioFields &
   PromocionesRadioFields;
+
+export type CreateCourseRichTextFields = DetallesRichTextFields &
+  InformacionGeneralRichTextFields &
+  ModulosRichTextFields;

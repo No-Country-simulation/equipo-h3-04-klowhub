@@ -7,7 +7,7 @@ interface SelectFieldProps<T> extends BaseFieldProps<T> {
   options: string[];
 }
 
-export function SelectField<T extends FieldValues>({ field, label, options }: SelectFieldProps<T>) {
+export function SelectField<T extends FieldValues>({ field, label, options, itemStyle }: SelectFieldProps<T>) {
   const form = useFormContext<T>()
 
   return (
@@ -15,11 +15,11 @@ export function SelectField<T extends FieldValues>({ field, label, options }: Se
       control={form.control}
       name={field as any}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={itemStyle}>
           <FormLabel>{label}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger className="bg-white placeholder:text-black/20 text-background">
+              <SelectTrigger className="bg-white placeholder:text-black/20 text-background max-w-[400px] ">
                 <SelectValue placeholder="Selecciona una opción" />
               </SelectTrigger>
             </FormControl>

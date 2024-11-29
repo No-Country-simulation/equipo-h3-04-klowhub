@@ -9,15 +9,19 @@ import { Button } from "@/components/ui/Button"
 import { Form } from "@/components/ui/form"
 import { LENGUAJES } from "@/constants/filters"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { FORM_STEPS_PATHS } from "../steps-paths"
 
 export default function InformacionGeneralPage() {
+  const router = useRouter()
   const form = useForm<GeneralInformationSchema>({
     resolver: zodResolver(generalInformationSchema)
   })
 
   const handleSubmit = (data: GeneralInformationSchema) => {
     console.log({ data });
+    router.replace(FORM_STEPS_PATHS[2])
   }
 
   return (
@@ -54,7 +58,7 @@ export default function InformacionGeneralPage() {
           label="¿En que área te especializas?"
           options={LENGUAJES.map((l) => l)}
         />
-        <Button type="submit">Continuar</Button>
+        <Button size="big" type="submit">Continuar</Button>
       </Form>
     </form>
   )
