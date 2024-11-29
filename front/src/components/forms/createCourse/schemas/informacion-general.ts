@@ -49,13 +49,16 @@ export type InformacionGeneralSchema = z.infer<typeof informacionGeneralSchema>;
 
 export type InformacionGeneralInputFields = Pick<
   InformacionGeneralSchema,
-  | 'title'
+  'title' | 'labels'
+>;
+
+export type InformacionGeneralSelecFields = Pick<
+  InformacionGeneralSchema,
   | 'language'
-  | 'labels'
+  | 'contentPillar'
   | 'functionalities'
   | 'sector'
   | 'toolsAndPlatforms'
-  | 'contentPillar'
 >;
 
 export type InformacionGeneralRichTextFields = Pick<

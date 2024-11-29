@@ -1,29 +1,26 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
-import { useFormContext } from "react-hook-form";
+import { FieldValues, useFormContext } from "react-hook-form";
 import { BaseFieldProps } from "./InputField";
-import { InformacionGeneralRadioFields } from "./schemas/informacion-general";
-import { PromocionesRadioFields } from "./schemas/promociones";
 
-type RadioFields = InformacionGeneralRadioFields & PromocionesRadioFields
-
-type RadioFieldProps = BaseFieldProps<RadioFields> & {
+type RadioFieldProps<T> = BaseFieldProps<T> & {
   options: string[];
 }
 
-export function RadioField({ field, label, options, itemStyle }: RadioFieldProps) {
-  const form = useFormContext<RadioFields>()
+export function RadioField<T extends FieldValues>({ field, label, options, itemStyle }: RadioFieldProps<T>) {
+  const form = useFormContext<T>()
 
   return (
     <FormField
       control={form.control}
-      name={field}
+      name={field as any}
       render={({ field }) => (
         <FormItem className={cn("flex flex-col gap-2", itemStyle)}>
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <RadioGroup
+              defaultValue={field.value}
               onValueChange={field.onChange}
               className="flex flex-col space-y-1"
             >
