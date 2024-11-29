@@ -1,14 +1,15 @@
 import { Section } from "@/components/ui/Section";
 import Image from "next/image";
 import { PropsWithChildren } from "react";
-import { CreateCourseFormStepper } from "./CreateCourseFormStepper";
+import { NavigationTabs } from "../../../../components/ui/NavigationTabs";
 import { CreateCourseHeader } from "./CreateCourseHeader";
+import { TABS } from "./steps-paths";
 
 export default function CreateCourseLayout({ children }: PropsWithChildren) {
   return (
     <section className="flex flex-col gap-12">
       <CreateCourseHeader />
-      <CreateCourseFormStepper />
+      <NavigationTabs links={TABS} />
       <Section className="bg-card grid grid-cols-1 xl:grid-cols-[1fr_minmax(auto,300px)] gap-32">
         {children}
         <section className="hidden xl:flex flex-col gap-5 rounded-lg overflow-hidden">
