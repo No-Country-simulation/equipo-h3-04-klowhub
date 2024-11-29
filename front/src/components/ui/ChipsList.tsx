@@ -11,7 +11,9 @@ export function ChipsList({ items, className, ...args }: Props) {
     <ul className={cn('flex flex-col gap-2 items-center flex-wrap', className)} {...args}>
       {
         items.map(item =>
-          <Chip className='bg-primario-100 text-primario-400 text-xs'>
+          <Chip
+            key={item}
+            className={cn('bg-primario-100 text-primario-400 text-xs rounded-lg')}>
             {item}
           </Chip>
         )
