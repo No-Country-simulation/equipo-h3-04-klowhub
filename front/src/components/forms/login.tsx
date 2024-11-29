@@ -2,10 +2,11 @@
 import { BACK_URL } from "@/constants/constants";
 import { IUser } from "@/interfaces/user";
 import { useUserStore } from "@/store/user.store";
-import { Button, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Button } from "../ui/Button";
 
 interface ResLogin {
   code: number;
@@ -72,7 +73,7 @@ export default function LoginForm() {
         required
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
-      <Button type="submit" color="secondary" className="mt-4" isLoading={loading} isDisabled={loading}>
+      <Button type="submit" size="big" isLoading={loading} isDisabled={loading}>
         Iniciar Sesión
       </Button>
     </form>

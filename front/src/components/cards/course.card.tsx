@@ -1,14 +1,13 @@
 'use client'
 
-import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card"
-import { Button } from "@nextui-org/button"
-import { Chip } from "@nextui-org/chip"
-import { Image } from "@nextui-org/image"
-import { StarIcon, TvMinimalPlay } from 'lucide-react';
-import { useState } from "react"
-import { Course } from "@/interfaces/course"
 import { HeartIcon } from "@/components/icons/hearticon"
-import { uniqueFileName } from '../../../../back/src/common/utils/unique-filename';
+import { Course } from "@/interfaces/course"
+import { Button } from "@nextui-org/react"
+import { Chip } from "@nextui-org/react"
+import { Image } from "@nextui-org/react"
+import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react"
+import { StarIcon } from 'lucide-react'
+import { useState } from "react"
 
 export default function CourseCard({ course }: { course: Course }) {
   const [isLiked, setIsLiked] = useState(false); // Estado para el corazón

@@ -1,14 +1,9 @@
 "use client"
 
+import { statusColorMap, tableStyles } from "@/lib/table-styles";
 import { Chip, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, User } from "@nextui-org/react";
 import React from "react";
 import { columns, users } from "./data";
-
-const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
-};
 
 type IUser = typeof users[number]
 
@@ -57,23 +52,18 @@ export function ProjectsTable() {
   }, []);
 
   return (
-    <Table classNames={{
-      wrapper: "bg-transparent p-0 rounded-md shadow-none border-none",
-      th: "rounded-none bg-white/10",
-      // td: "pb-4",
-      table: "[border-spacing:0_.25em] [border-collapse:separate]"
-    }} aria-label="Example table with custom cells" className="gap-2">
+    <Table classNames={tableStyles} aria-label="Example table with custom cells" className="gap-2">
       <TableHeader className="rounded-none" columns={columns}>
         {(column) => (
-          <TableColumn className="font-light text-primary-50" key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
+          <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
             {column.name}
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody className="flex flex-col gap-1" items={users}>
+      <TableBody items={users}>
         {(item) => (
-          <TableRow className="bg-white/10" key={item.id}>
-            {(columnKey) => <TableCell className="">{renderCell(item, columnKey as any)}</TableCell>}
+          <TableRow key={item.id}>
+            {(columnKey) => <TableCell>{renderCell(item, columnKey as any)}</TableCell>}
           </TableRow>
         )}
       </TableBody>

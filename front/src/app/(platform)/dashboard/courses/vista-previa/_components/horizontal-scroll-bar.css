@@ -1,0 +1,22 @@
+/* width */
+#free-courses-list::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 0.5em;
+}
+
+/* Track */
+#free-courses-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0.5em;
+}
+
+/* Handle */
+#free-courses-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.5em;
+}
+
+/* Handle on hover */
+#free-courses-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

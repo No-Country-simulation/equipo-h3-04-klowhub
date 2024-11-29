@@ -6,7 +6,7 @@ const columns = [
   { name: 'Plataforma', uid: 'plataforma' },
 ];
 
-interface Cliente {
+export interface Cliente {
   id: number;
   name: string;
   tipo: 'curso' | 'leccion' | 'aplicación' | 'proyecto' | 'mentoria';
