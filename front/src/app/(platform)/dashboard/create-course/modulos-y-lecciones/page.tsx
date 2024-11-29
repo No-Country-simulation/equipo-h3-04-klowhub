@@ -5,6 +5,7 @@ import { CreateCourseInputFields, CreateCourseRichTextFields } from '@/component
 import { InputField } from '@/components/forms/multiStepForm/InputField'
 import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
 import { Form } from '@/components/ui/form'
+import { useCreateCourseStore } from '@/store/createCourseStore'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
@@ -14,13 +15,15 @@ import { FORM_STEPS_PATHS } from "../steps-paths"
 import { LeccionesForm } from './LeccionesForm'
 
 export default function ModulosYLeccionesPage() {
+  const state = useCreateCourseStore(state => state.modulesAndLessons)!
+  const setState = useCreateCourseStore(state => state.setModulesAndLessons)
+
   const router = useRouter()
   const form = useForm<ModulosSchema>({
     resolver: zodResolver(modulosSchema),
     defaultValues: {
-      moduleDescription: "",
-      moduleTitle: "",
-      lessons: [{
+      ...state,
+      lessons: [...state?.lessons ?? [], {
         lessonAditionalResources: [],
         lessonCoverImages: [],
         lessonDescription: "",
@@ -31,6 +34,7 @@ export default function ModulosYLeccionesPage() {
 
   const handleSubmit = (data: ModulosSchema) => {
     console.log({ data });
+    setState(data)
     toast("Progreso guardado!")
     router.replace(FORM_STEPS_PATHS[4])
   }

@@ -8,6 +8,7 @@ import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
 import { SelectField } from '@/components/forms/multiStepForm/SelectField'
 import { Form } from '@/components/ui/form'
 import { FUNCIONALIDADES, HERRAMIENTAS_Y_PLATAFORMAS, LENGUAJES, PILAR_DE_CONTENIDO, SECTOR } from '@/constants/filters'
+import { useCreateCourseStore } from '@/store/createCourseStore'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
@@ -16,13 +17,18 @@ import { toast } from 'sonner'
 import { FORM_STEPS_PATHS } from "../steps-paths"
 
 export default function InformacionGeneralPage() {
+  const state = useCreateCourseStore(state => state.generalInformation)!
+  const setState = useCreateCourseStore(state => state.setGeneralInformation)
+
   const router = useRouter()
   const form = useForm<InformacionGeneralSchema>({
-    resolver: zodResolver(informacionGeneralSchema)
+    resolver: zodResolver(informacionGeneralSchema),
+    defaultValues: state
   })
 
   const handleSubmit = (data: InformacionGeneralSchema) => {
     console.log({ data });
+    setState(data)
     toast("Progreso guardado!")
     router.replace(FORM_STEPS_PATHS[2])
   }
