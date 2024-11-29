@@ -1,7 +1,7 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FieldValues, useFormContext } from "react-hook-form";
-import { BaseFieldProps } from "../createCourse/InputField";
+import { BaseFieldProps } from "./InputField";
 
 interface SelectFieldProps<T> extends BaseFieldProps<T> {
   options: string[];

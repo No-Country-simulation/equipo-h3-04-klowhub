@@ -1,8 +1,9 @@
 "use client"
 
-import { InputField } from '@/components/forms/createCourse/InputField'
-import { RichTextField } from '@/components/forms/createCourse/RichTextField'
 import { modulosSchema, ModulosSchema } from '@/components/forms/createCourse/schemas/modulos-y-lecciones'
+import { CreateCourseInputFields, CreateCourseRichTextFields } from '@/components/forms/createCourse/schemas/type'
+import { InputField } from '@/components/forms/multiStepForm/InputField'
+import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
 import { Form } from '@/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from "@nextui-org/react"
@@ -37,13 +38,13 @@ export default function ModulosYLeccionesPage() {
   return (
     <form className="grid grid-cols-2 gap-12" onSubmit={form.handleSubmit(handleSubmit)}>
       <Form {...form}>
-        <InputField
+        <InputField<CreateCourseInputFields>
           itemStyle='col-span-2'
           placeholder='Nombrá tu modulo'
           label='Título del módulo'
           field='moduleTitle'
         />
-        <RichTextField
+        <RichTextField<CreateCourseRichTextFields>
           label='Descripción'
           field='moduleDescription'
           itemStyle='col-span-2'

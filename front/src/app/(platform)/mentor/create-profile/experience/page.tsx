@@ -1,8 +1,8 @@
 "use client"
 
-import { RichTextField } from "@/components/forms/createCourse/RichTextField"
 import { experienceSchema, ExperienceSchema } from "@/components/forms/createProfile/schemas/experience"
 import { CreateProfileRichTextFields, CreateProfileSelectFields } from "@/components/forms/createProfile/schemas/type"
+import { RichTextField } from "@/components/forms/multiStepForm/RichTextField"
 import { SelectField } from "@/components/forms/multiStepForm/SelectField"
 import { Button } from "@/components/ui/Button"
 import { Form } from "@/components/ui/form"

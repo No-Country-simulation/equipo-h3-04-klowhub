@@ -1,9 +1,9 @@
 "use client"
 
-import { InputField } from "@/components/forms/createCourse/InputField"
-import { RadioField } from "@/components/forms/createCourse/RadioField"
 import { generalInformationSchema, GeneralInformationSchema } from "@/components/forms/createProfile/schemas/general-information"
 import { CreateProfileInputFields, CreateProfileRadioFields, CreateProfileSelectFields } from "@/components/forms/createProfile/schemas/type"
+import { InputField } from "@/components/forms/multiStepForm/InputField"
+import { RadioField } from "@/components/forms/multiStepForm/RadioField"
 import { SelectField } from "@/components/forms/multiStepForm/SelectField"
 import { Button } from "@/components/ui/Button"
 import { Form } from "@/components/ui/form"

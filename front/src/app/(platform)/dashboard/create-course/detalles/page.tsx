@@ -1,8 +1,9 @@
 "use client"
 
-import { FileField } from '@/components/forms/createCourse/FileField'
-import { RichTextField } from '@/components/forms/createCourse/RichTextField'
 import { detallesSchema, DetallesSchema } from '@/components/forms/createCourse/schemas/detalles'
+import { CreateCourseRichTextFields } from '@/components/forms/createCourse/schemas/type'
+import { FileField } from '@/components/forms/multiStepForm/FileField'
+import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
 import { Form } from '@/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from "@nextui-org/react"
@@ -26,17 +27,17 @@ export default function DetallesPage() {
   return (
     <form className="grid grid-cols-2 gap-12" onSubmit={form.handleSubmit(handleSubmit)}>
       <Form {...form}>
-        <RichTextField
+        <RichTextField<CreateCourseRichTextFields>
           label='Decinos qué van a aprender tus estudiantes al finalizar el curso.'
           field='learningOutcomes'
           itemStyle='col-span-2'
         />
-        <RichTextField
+        <RichTextField<CreateCourseRichTextFields>
           label='¿Qué necesitan saber o tener tus estudiantes antes de empezar?'
           field='prerequisites'
           itemStyle='col-span-2'
         />
-        <RichTextField
+        <RichTextField<CreateCourseRichTextFields>
           label='Hacé una descripción detallada del contenido y de los beneficios que ofrece.'
           field='detailedDescription'
           itemStyle='col-span-2'

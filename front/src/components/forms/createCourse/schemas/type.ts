@@ -3,6 +3,7 @@ import {
   InformacionGeneralInputFields,
   InformacionGeneralRadioFields,
   InformacionGeneralRichTextFields,
+  InformacionGeneralSelecFields,
 } from './informacion-general';
 import {
   ModulosInputFields,
@@ -19,3 +20,5 @@ export type CreateCourseRadioFields = InformacionGeneralRadioFields &
 export type CreateCourseRichTextFields = DetallesRichTextFields &
   InformacionGeneralRichTextFields &
   ModulosRichTextFields;
+
+export type CreateCourseSelectFields = InformacionGeneralSelecFields;

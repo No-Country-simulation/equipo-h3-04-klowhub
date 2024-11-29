@@ -1,9 +1,9 @@
 "use client"
 
 import CourseCard from '@/components/cards/course.card'
-import { ErrorMessage } from '@/components/forms/createCourse/ErrorMessage'
-import { RadioField } from '@/components/forms/createCourse/RadioField'
 import { promocionesSchema, PromocionesSchema } from '@/components/forms/createCourse/schemas/promociones'
+import { ErrorMessage } from '@/components/forms/multiStepForm/ErrorMessage'
+import { RadioField } from '@/components/forms/multiStepForm/RadioField'
 import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Section } from '@/components/ui/Section'
 import { Course } from '@/interfaces/course'

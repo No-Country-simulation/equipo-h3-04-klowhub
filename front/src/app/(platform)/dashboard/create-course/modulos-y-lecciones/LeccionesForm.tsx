@@ -1,6 +1,6 @@
-import { ErrorMessage } from "@/components/forms/createCourse/ErrorMessage"
-import { FileField } from "@/components/forms/createCourse/FileField"
 import { ModulosSchema } from "@/components/forms/createCourse/schemas/modulos-y-lecciones"
+import { ErrorMessage } from "@/components/forms/multiStepForm/ErrorMessage"
+import { FileField } from "@/components/forms/multiStepForm/FileField"
 import { Editor } from "@/components/ui/Editor"
 import { FormItem, FormLabel } from "@/components/ui/form"
 import { Section } from "@/components/ui/Section"

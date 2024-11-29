@@ -1,12 +1,12 @@
 "use client"
 
-import { ErrorMessage } from "@/components/forms/createCourse/ErrorMessage"
-import { FileField } from "@/components/forms/createCourse/FileField"
-import { RichTextField } from "@/components/forms/createCourse/RichTextField"
 import { educationSchema, EducationSchema } from "@/components/forms/createProfile/schemas/education"
 import { CreateProfileRichTextFields } from "@/components/forms/createProfile/schemas/type"
+import { ErrorMessage } from "@/components/forms/multiStepForm/ErrorMessage"
+import { FileField } from "@/components/forms/multiStepForm/FileField"
+import { RichTextField } from "@/components/forms/multiStepForm/RichTextField"
 import { Button } from "@/components/ui/Button"
-import { Form } from "@/components/ui/form"
+import { Form, FormLabel } from "@/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -30,7 +30,8 @@ export default function EducationPage() {
           label="Ingresá tu formación académica"
           itemStyle="col-span-2"
         />
-        <section className='flex flex-col gap-2'>
+        <section className='flex flex-col gap-4'>
+          <FormLabel>Agregá certificaciones relevantes</FormLabel>
           <FileField onDrop={(file) => form.setValue("certifications", file)} />
           <ErrorMessage message={form.formState.errors.certifications?.message} />
         </section>
