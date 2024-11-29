@@ -33,8 +33,8 @@ export function BrowseCard({ description, functionalities, image, title }: Props
           <p>{description}</p>
         </header>
         <PlatformLink platform={"AppSheet"} />
-        <RatingSection rating={3} reviews={12} />
         <ChipsList className="flex-row" items={functionalities} />
+        <RatingSection rating={3} reviews={12} />
         <footer className="flex items-center gap-6 flex-wrap">
           <Button>
             <ShoppingCartIcon />
