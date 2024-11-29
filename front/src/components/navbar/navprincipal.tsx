@@ -1,5 +1,6 @@
 'use client';
-import { navLinks } from '@/constants/navLinks';
+
+import { NAV_LINKS } from '@/constants/navLinks';
 import {
   Navbar,
   NavbarBrand,
@@ -11,6 +12,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SwitchCreator from '../switch/switch.creator';
 import SwitchHome from '../switch/switch.home';
+import { NavigationTabs } from '../ui/NavigationTabs';
 
 export default function NavBar() {
   return (
@@ -23,7 +25,7 @@ export default function NavBar() {
         className="object-cover w-full h-full"
       />
       <Navbar maxWidth="full"
-        className="absolute top-[24px] z-10 bg-[rgba(31,32,38,0.6)] flex justify-between gap-4"
+        className="absolute top-[14px] h-[79px] z-10 bg-[rgba(31,32,38,0.6)] flex justify-between gap-4"
       >
         <section className='flex items-center gap-6'>
           <NavbarBrand className='justify-between'>
@@ -35,7 +37,6 @@ export default function NavBar() {
                   fill
                   style={{ transform: 'rotate(212.69deg)' }}
                   className="object-cover w-full h-full"
-
                 />
               </Link>
             </div>
@@ -43,14 +44,7 @@ export default function NavBar() {
             <div></div>
           </NavbarBrand>
           <NavbarContent className="hidden lg:flex" justify="center">
-            {navLinks.map(({ id, path, text }) => (
-              <NavbarItem key={id}>
-                <Link className='text-sm text-primario-200 hover:text-primario-500 transition p-2'
-                  href={path}>
-                  {text}
-                </Link>
-              </NavbarItem>
-            ))}
+            <NavigationTabs links={NAV_LINKS} />
           </NavbarContent>
         </section>
         <section className='flex items-center gap-6 '>
@@ -63,7 +57,6 @@ export default function NavBar() {
           <NavbarItem>
             <Mail />
           </NavbarItem>
-
           <NavbarItem className="hidden lg:flex">
             <SwitchCreator />
           </NavbarItem>
