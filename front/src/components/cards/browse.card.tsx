@@ -17,8 +17,8 @@ interface Props {
 
 export function BrowseCard({ description, functionalities, image, title }: Props) {
   return (
-    <li className="flex rounded-xl overflow-hidden">
-      <figure className="relative w-[400px] h-[315px]">
+    <li className="flex rounded-xl overflow-hidden bg-card">
+      <figure className="relative aspect-[3/2] hidden min-h-[300px] md:block">
         <Image
           className="w-full h-full object-cover"
           // TODO - Cambiar por course.image cuando esten hosteadas las imagenes
@@ -35,7 +35,7 @@ export function BrowseCard({ description, functionalities, image, title }: Props
         <PlatformLink platform={"AppSheet"} />
         <RatingSection rating={3} reviews={12} />
         <ChipsList className="flex-row" items={functionalities} />
-        <footer className="flex items-center gap-6">
+        <footer className="flex items-center gap-6 flex-wrap">
           <Button>
             <ShoppingCartIcon />
             añadir al carrito

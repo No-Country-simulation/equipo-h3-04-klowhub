@@ -8,7 +8,7 @@ interface Props extends ComponentProps<"ul"> {
 
 export function ChipsList({ items, className, ...args }: Props) {
   return (
-    <ul className={cn('flex flex-col gap-2 items-center', className)} {...args}>
+    <ul className={cn('flex flex-col gap-2 items-center flex-wrap', className)} {...args}>
       {
         items.map(item =>
           <Chip className='bg-primario-100 text-primario-400 text-xs'>
