@@ -5,10 +5,7 @@ import { PilarFilters } from "./PilarFilters";
 import { SearchHeader } from "./SearchHeader";
 
 interface Props {
-  searchParams: {
-    query?: string;
-    pilar?: string;
-  }
+  searchParams: Promise<Record<string, string | undefined>>;
 }
 
 export default async function CursosYLeccionesPage(props: Props) {

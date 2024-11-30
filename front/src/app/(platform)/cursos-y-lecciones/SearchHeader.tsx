@@ -6,11 +6,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useDebouncedCallback } from 'use-debounce'
 import { FilterButton } from "./FilterButton"
 
+// 1 Segundo
+const DEBOUNCE_DELAY = 1000
+
 export function SearchHeader() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const pathname = usePathname()
 
+  // useDebounce para evitar cambiar los searchParams cada vez que se
+  // escribe algo en el input, tiene un delay de 1 Segundo
   const handleChange = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams);
     if (value) {
@@ -20,7 +25,7 @@ export function SearchHeader() {
       params.delete("query")
     }
     router.replace(`${pathname}?${params.toString()}`)
-  }, 1000)
+  }, DEBOUNCE_DELAY)
 
   return (
     <header className="flex gap-4 items-center">
