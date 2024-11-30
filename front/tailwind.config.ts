@@ -56,6 +56,13 @@ export default {
         },
         card: '#1F2937',
         chart1: 'hsl(var(--chart1))',
+        gradient: {
+          start: '#492181',
+          second: '#514B8F',
+          third: '#556096',
+          end: '#58759D',
+        },
+        'link-blue': '#7CB4FF',
       },
       gridTemplateColumns: {
         consults: 'repeat(auto-fit, minmax(150px, 1fr))',
@@ -64,6 +71,9 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to right, #58759D, #556096, #514B8F, #492181)',
       },
     },
   },

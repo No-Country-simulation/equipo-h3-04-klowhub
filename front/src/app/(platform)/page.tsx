@@ -3,9 +3,13 @@ import UltimateCourseCard from '@/components/cards/ultimatecourse.card';
 import { Navbutton } from '@/components/navbar/navbutton';
 import LatestQueries from '@/components/querys/latestqueries';
 import TextTitleSub from '@/components/text/titlesubtitle';
+import { courseService } from '@/services/course.service';
 import Image from 'next/image';
 
 export default async function Home() {
+  const courses = await courseService({
+    relations: ['sectors', 'contentPillars', 'functionalities', 'platforms', 'platformsAndTool']
+  })
   return (
     <section>
       <Navbutton />
@@ -13,10 +17,10 @@ export default async function Home() {
         <UltimateCourseCard />
       </div>
       <TextTitleSub title='Cursos recomendados' subtitle='Descubre los cursos más destacados y lleva tus habilidades al siguiente nivel. Aprende de expertos y aplica tus conocimientos en proyectos reales.' />
-      <CardMore service="course" />
+      <CardMore service="course" initialCourses={courses} />
       <TextTitleSub title='Aplicaciones recomendadas' subtitle='Descubre los cursos más destacados y lleva tus habilidades al siguiente nivel. Aprende de expertos y aplica tus conocimientos en proyectos reales.' />
 
-      <CardMore service="app" />
+      <CardMore service="app" initialCourses={courses} />
       <div className='mt-20 mb-20'>
         <TextTitleSub title='Ultimas consultas' subtitle='' />
         <LatestQueries />
@@ -34,7 +38,7 @@ export default async function Home() {
         </h3>
         <p className="relative m-2 ml-0 text-sm text-gray-400">Aprende de los mejores: Impulsa tu conocimiento con nuestros mentores especializados</p>
       </div>
-      <CardMore service="app" />
+      <CardMore service="app" initialCourses={courses} />
     </section>
   );
 }
