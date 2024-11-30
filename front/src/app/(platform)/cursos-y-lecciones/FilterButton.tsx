@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { FiltersModal } from "./FiltersModal";
@@ -45,11 +46,15 @@ export function FilterButton() {
     <>
       {
         createPortal(
-          openModal &&
-          <FiltersModal
-            onCloseModal={() => setOpenModal(false)}
-            ref={modalRef}
-          />,
+          <AnimatePresence mode="wait">
+            {openModal &&
+              <FiltersModal
+                onCloseModal={() => setOpenModal(false)}
+                ref={modalRef}
+              />
+            }
+          </AnimatePresence>
+          ,
           document.querySelector("body")!
         )
       }
