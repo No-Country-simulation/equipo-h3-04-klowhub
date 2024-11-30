@@ -1,17 +1,21 @@
 import { BrowseCard } from "@/components/cards/browse.card";
+import { searchParamsCache } from "@/lib/createSearchParamsCache";
 import { courseService } from "@/services/course.service";
+import { SearchParams } from "nuqs";
 import { Header } from "./Header";
 import { PilarFilters } from "./PilarFilters";
 import { SearchHeader } from "./SearchHeader";
 
 interface Props {
-  searchParams: Promise<Record<string, string | undefined>>;
+  searchParams: Promise<SearchParams & { query?: string, pilar?: string }>;
 }
 
-export default async function CursosYLeccionesPage(props: Props) {
-  const searchParams = await props.searchParams;
-  const query = searchParams?.query || null;
-  const pilar = searchParams?.pilar || null;
+export default async function CursosYLeccionesPage({ searchParams }: Props) {
+  const params = await searchParams
+  const filters = searchParamsCache.parse(params);
+
+  const query = params.query || null
+  const pilar = params.pilar || null
 
   const courses = await courseService({
     relations: ['sectors', 'contentPillars', 'functionalities', 'platforms', 'platformsAndTool'],
@@ -23,10 +27,50 @@ export default async function CursosYLeccionesPage(props: Props) {
     }
   })
 
-  // TODO - FILTRANDO EN EL CLIENTE POR QUE EL SERVICIO DE COURSO AUN NO LO MANEJA CORRECTAMENTE
-  const filteredCourses = pilar
-    ? courses.filter(c => c.contentPillars.some(p => p.name === pilar))
-    : courses;
+  // // TODO - FILTRANDO EN EL CLIENTE POR QUE EL SERVICIO DE CURSO AUN NO LO MANEJA CORRECTAMENTE
+  const filteredCourses = courses.filter((course) => {
+    // Contenido pilar
+    if (
+      filters.contentPillar.length > 0 &&
+      !filters.contentPillar.some((pillar) =>
+        course.contentPillars.some((cp) => cp.name === pillar)
+      )
+    ) {
+      return false;
+    }
+
+    // Funcionalidades
+    if (
+      filters.functionalities.length > 0 &&
+      !filters.functionalities.some((func) =>
+        course.functionalities.some((cf) => cf.name === func)
+      )
+    ) {
+      return false;
+    }
+
+    // Lenguaje
+    if (
+      filters.languages.length > 0 &&
+      !filters.languages.some((lang) => course.language.includes(lang))
+    ) {
+      return false;
+    }
+
+    // Plataformas
+    if (
+      filters.platforms.length > 0 &&
+      !filters.platforms.some((platform) =>
+        course.platforms.some((cp) => cp.name === platform)
+      )
+    ) {
+      return false;
+    }
+
+    // Agregar los filtros que faltan
+    return true;
+  });
+
 
   return (
     <>

@@ -11,10 +11,10 @@ export function PilarFilters() {
 
   const handleClickFilter = (value: string) => {
     const params = new URLSearchParams(searchParams)
-    if (value === params.get("pilar")) {
-      params.delete("pilar")
+    if (value === params.get("contentPillar")) {
+      params.delete("contentPillar")
     } else {
-      params.set("pilar", value)
+      params.set("contentPillar", value)
     }
     router.replace(`${pathname}?${params.toString()}`)
   }
@@ -25,7 +25,7 @@ export function PilarFilters() {
         <Chip
           key={item}
           onClick={() => handleClickFilter(item)}
-          className={`text-xs px-4 py-4 transition cursor-pointer active:scale-[90%] rounded-xl ${searchParams.get("pilar")?.toString() === item ? "bg-primario-100 text-primario-400" : "border-1 border-primario-100 text-primario-100 bg-transparent"}`}>
+          className={`text-xs px-4 py-4 transition cursor-pointer active:scale-[90%] rounded-xl ${searchParams.get("contentPillar")?.toString() === item ? "bg-primario-100 text-primario-400" : "border-1 border-primario-100 text-primario-100 bg-transparent"}`}>
           {item}
         </Chip>
       )}

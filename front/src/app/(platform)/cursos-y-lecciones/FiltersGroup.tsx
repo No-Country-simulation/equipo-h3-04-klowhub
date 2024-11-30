@@ -15,7 +15,10 @@ interface Props {
 }
 
 export function FiltersGroup({ filters, title, field, singleFilterPerRow = false }: Props) {
-  const [queryParam, setQueryParam] = useQueryState(field, parseAsArrayOf(parseAsString))
+  const [queryParam, setQueryParam] = useQueryState(field,
+    parseAsArrayOf(parseAsString).withDefault([]).withOptions({
+      shallow: false,
+    }))
 
   const handleSelectFilter = (value: string) => {
     setQueryParam((prevState) => {
