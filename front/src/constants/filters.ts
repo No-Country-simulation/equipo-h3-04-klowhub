@@ -81,3 +81,7 @@ export const HERRAMIENTAS_Y_PLATAFORMAS = [
 export const LENGUAJES = ['Español', 'Inglés'] as const;
 
 export const PLATAFORMA = ['AppSheet', 'Powerapps'] as const;
+
+export const TIPO_CONTENIDO = ['Curso', 'Leccion'] as const;
+
+export const NIVEL = ['Bàsico', 'Intermedio'] as const;
