@@ -2,21 +2,32 @@
 
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
-import { FiltersState, useFiltersStore } from "@/store/filtersStore";
+import { FiltersFields } from "@/types/filters.type";
 import { Checkbox } from "@nextui-org/react";
 import { XIcon } from "lucide-react";
+import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs';
 
 interface Props {
   filters: string[];
   title: string;
   singleFilterPerRow?: boolean;
-  field: keyof FiltersState;
+  field: keyof FiltersFields;
 }
 
 export function FiltersGroup({ filters, title, field, singleFilterPerRow = false }: Props) {
-  const selectedFilters = useFiltersStore(state => state[field])
-  const resetFilter = useFiltersStore(state => state.resetFilter)
-  const addFilter = useFiltersStore(state => state.addFilter)
+  const [queryParam, setQueryParam] = useQueryState(field, parseAsArrayOf(parseAsString))
+
+  const handleSelectFilter = (value: string) => {
+    setQueryParam((prevState) => {
+      if (!prevState) {
+        return [value]
+      }
+
+      return prevState.includes(value)
+        ? prevState.filter((item) => item !== value) // Agregar filtro si no estaba
+        : [...prevState, value]; // Removerlo si ya estaba
+    })
+  }
 
   return (
     <Section className="justify-between gap-6">
@@ -27,9 +38,8 @@ export function FiltersGroup({ filters, title, field, singleFilterPerRow = false
             filters.map((value, index) =>
               <Checkbox
                 classNames={{ wrapper: "group-data[selected=true]:bg-transparent bg-white", label: "text-sm pl-2" }}
-                // @ts-ignore
-                isSelected={selectedFilters?.some((filter) => filter === value)}
-                onValueChange={() => addFilter(field, value)}
+                isSelected={queryParam?.some((filter) => filter === value)}
+                onValueChange={() => handleSelectFilter(value)}
                 color="secondary"
                 key={index}>
                 {value}
@@ -39,7 +49,11 @@ export function FiltersGroup({ filters, title, field, singleFilterPerRow = false
         </ul>
       </section>
       <Button
-        onClick={() => resetFilter(field)}
+        onClick={() => {
+          if (queryParam) {
+            setQueryParam([])
+          }
+        }}
         variant="outlined">
         <span><XIcon /></span>
         Limpiar
