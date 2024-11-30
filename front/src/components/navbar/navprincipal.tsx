@@ -43,47 +43,36 @@ export default function NavBar() {
             <SwitchHome />
             <div></div>
           </NavbarBrand>
-
-          <NavbarContent className="hidden lg:flex gap-2" justify="center">
-
-            {navLinks.map(({ id, path, text }) => (
-              <NavbarItem key={id}>
-
-                <Link className='text-sm lg:text-base '
-                  href={path}>
-                  {text + " "}
-                </Link>
-
-              </NavbarItem>
-            ))}
+          <NavbarContent className="hidden xl:flex gap-2" justify="center">
+            <NavigationTabs links={NAV_LINKS} />
           </NavbarContent>
-          <NavbarContent justify="end">
-            <NavbarItem>
-              <ShoppingCart />
-            </NavbarItem>
-            <NavbarItem>
-              <Bell />
-            </NavbarItem>
-            <NavbarItem>
-              <Mail />
-            </NavbarItem>
+        </section>
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <ShoppingCart />
+          </NavbarItem>
+          <NavbarItem>
+            <Bell />
+          </NavbarItem>
+          <NavbarItem>
+            <Mail />
+          </NavbarItem>
 
-            <NavbarItem className="hidden lg:flex mr-5">
-              <SwitchCreator />
-            </NavbarItem>
-            <NavbarItem>
-              <Link href="/perfil">
-                <Image
-                  alt="profile avatar"
-                  className="object-cover rounded-switch w-full"
-                  src="/avatar.png"
-                  width={40}
-                  height={40}
-                /></Link>
-            </NavbarItem>
-          </NavbarContent>
+          <NavbarItem className="hidden lg:flex mr-5">
+            <SwitchCreator />
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="/perfil">
+              <Image
+                alt="profile avatar"
+                className="object-cover rounded-switch w-full"
+                src="/avatar.png"
+                width={40}
+                height={40}
+              /></Link>
+          </NavbarItem>
+        </NavbarContent>
       </Navbar>
     </div>
-    </>
   );
 }
