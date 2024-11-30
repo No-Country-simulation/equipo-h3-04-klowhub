@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button"
 import { Input } from "@nextui-org/react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useDebouncedCallback } from 'use-debounce'
+import { FilterButton } from "./FilterButton"
 
 export function SearchHeader() {
   const router = useRouter()
@@ -28,7 +29,7 @@ export function SearchHeader() {
         defaultValue={searchParams.get('query')?.toString()}
         placeholder="Buscar cursos y lecciones"
         className="flex-1" />
-      <Button variant={"outlined"}>Filtrar</Button>
+      <FilterButton />
       <Button variant={"outlined"}>Ordenar Por</Button>
     </header>
   )

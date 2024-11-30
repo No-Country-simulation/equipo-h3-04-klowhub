@@ -20,7 +20,7 @@ export default async function CursosYLeccionesPage(props: Props) {
     relations: ['sectors', 'contentPillars', 'functionalities', 'platforms', 'platformsAndTool'],
     take: 2,
     where: {
-      // TODO - Tiene que se posible filtrar por titulos parciales, por ej si el input tiene el texto
+      // TODO - Tiene que ser posible filtrar por titulos parciales, por ej si el input tiene el texto
       //        "Introdución" tengo que obtener todos los cursos que tengan esa palabra en el titulo
       title: query as string,
     }

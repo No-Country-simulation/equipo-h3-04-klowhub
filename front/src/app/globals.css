@@ -46,3 +46,9 @@ body {
   border-top: none !important;
   border-inline: none !important;
 }
+
+/* Saca la barra de scroll cuando se abre el panel de filtro */
+html:has([filter-dialog='open']) {
+  background-color: red !important;
+  overflow: hidden;
+}

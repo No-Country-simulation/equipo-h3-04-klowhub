@@ -78,6 +78,6 @@ export const HERRAMIENTAS_Y_PLATAFORMAS = [
   'Google Maps',
 ] as const;
 
-export const LENGUAJES = ['español', 'ingles'] as const;
+export const LENGUAJES = ['Español', 'Inglés'] as const;
 
 export const PLATAFORMA = ['AppSheet', 'Powerapps'] as const;
