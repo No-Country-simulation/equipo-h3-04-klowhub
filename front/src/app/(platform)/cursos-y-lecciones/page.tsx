@@ -1,6 +1,7 @@
 import { BrowseCard } from "@/components/cards/browse.card";
 import { searchParamsCache } from "@/lib/createSearchParamsCache";
 import { courseService } from "@/services/course.service";
+import { TextSearchIcon } from "lucide-react";
 import { SearchParams } from "nuqs";
 import { Header } from "./Header";
 import { PilarFilters } from "./PilarFilters";
@@ -71,7 +72,6 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
     return true;
   });
 
-
   return (
     <>
       <Header />
@@ -79,19 +79,29 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
         <p className="font-bold">Encuentra el aprendizaje que estás buscando</p>
         <SearchHeader />
         <PilarFilters />
-        <ul className="flex flex-col gap-6">
-          {
-            filteredCourses.map((course) =>
-              <BrowseCard
-                functionalities={course.functionalities.map(f => f.name)}
-                description={course.description}
-                image={course.image}
-                title={course.title}
-                key={course.id}
-              />
-            )
-          }
-        </ul>
+        {
+          filteredCourses.length ?
+            <ul className="flex flex-col gap-6">
+              {
+                filteredCourses.map((course) =>
+                  <BrowseCard
+                    functionalities={course.functionalities.map(f => f.name)}
+                    description={course.description}
+                    image={course.image}
+                    title={course.title}
+                    key={course.id}
+                  />
+                )
+              }
+            </ul>
+            :
+            <section className="bg-white/5 rounded-2xl text-primario-400 border border-primario-400 flex flex-col items-center justify-center p-20 border-dashed gap-4 h-full">
+              <TextSearchIcon />
+              <p className="font-bold text-sm text-center">
+                No se encontraron cursos/lecciones que cumplan con los filtros seleccionados
+              </p>
+            </section>
+        }
       </section>
     </>
   )

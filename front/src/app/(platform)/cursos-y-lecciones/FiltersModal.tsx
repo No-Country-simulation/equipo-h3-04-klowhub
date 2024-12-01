@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { XIcon } from "lucide-react";
 import React from "react";
 import { FiltersGroup } from "./FiltersGroup";
+import './vertical-scroll-bar.css';
 
 interface Props {
   onCloseModal: () => void;
@@ -15,6 +16,7 @@ const FiltersModal = React.forwardRef<HTMLDivElement, Props>(({ onCloseModal }, 
     {...filtersOverlayAnimations}
     filter-dialog="open">
     <motion.div
+      id="filters-modal"
       className="max-w-[1000px] w-full rounded-tl-xl rounded-bl-xl bg-gradient-to-tr from-[#34395C] via-[#181941] to-[#1B1B1F] h-full flex flex-col gap-6 p-6 overflow-y-auto"
       {...filtersPanelAnimation}
       ref={ref}

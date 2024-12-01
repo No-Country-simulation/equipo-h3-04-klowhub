@@ -1,0 +1,22 @@
+/* width */
+#filters-modal::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 0.5em;
+}
+
+/* Track */
+#filters-modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0.5em;
+}
+
+/* Handle */
+#filters-modal::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.5em;
+}
+
+/* Handle on hover */
+#filters-modal::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

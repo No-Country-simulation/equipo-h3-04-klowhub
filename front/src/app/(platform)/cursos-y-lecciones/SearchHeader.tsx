@@ -28,14 +28,16 @@ export function SearchHeader() {
   }, DEBOUNCE_DELAY)
 
   return (
-    <header className="flex gap-4 items-center">
+    <header className="flex gap-4 items-center flex-wrap">
       <Input
         onChange={(e) => handleChange(e.target.value)}
         defaultValue={searchParams.get('query')?.toString()}
         placeholder="Buscar cursos y lecciones"
-        className="flex-1" />
-      <FilterButton />
-      <Button variant={"outlined"}>Ordenar Por</Button>
+        className="flex-1 min-w-[180px]" />
+      <section className="flex gap-4 flex-wrap">
+        <FilterButton />
+        <Button variant={"outlined"}>Ordenar Por</Button>
+      </section>
     </header>
   )
 }
