@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { PlatformLink } from "@/components/ui/PlatformLink";
 import { Course } from "@/interfaces/course";
 import { ModalBody } from "@nextui-org/react";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { VideoPlayer } from "../../dashboard/courses/vista-previa/_components/VideoPlayer";
 import { VistaPreviaCompartir } from "../../dashboard/courses/vista-previa/_components/VistaPreviaCompartir";
 import { CourseInformation } from "../../dashboard/courses/vista-previa/_components/VistaPreviaGeneralInfo";

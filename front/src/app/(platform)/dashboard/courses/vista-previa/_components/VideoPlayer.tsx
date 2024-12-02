@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function VideoPlayer() {
   return (
-    <figure className='relative h-[350px] w-full overflow-hidden rounded-lg'>
+    <figure className='relative aspect-video min-h-96 w-full overflow-hidden rounded-lg'>
       <div className='z-10 absolute bottom-0 bg-black/30 backdrop-blur-sm w-full flex justify-between px-8 py-2 items-center gap-9'>
         <section>
           <p className='text-sm'>
