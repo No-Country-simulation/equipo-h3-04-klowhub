@@ -2,6 +2,7 @@
 
 import { detallesSchema, DetallesSchema } from '@/components/forms/createCourse/schemas/detalles'
 import { CreateCourseRichTextFields } from '@/components/forms/createCourse/schemas/type'
+import { ErrorMessage } from '@/components/forms/multiStepForm/ErrorMessage'
 import { FileField } from '@/components/forms/multiStepForm/FileField'
 import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
 import { Form } from '@/components/ui/form'
@@ -50,7 +51,7 @@ export default function DetallesPage() {
         />
         <section className='flex flex-col gap-2'>
           <FileField onDrop={(file) => form.setValue("coverImage", file[0])} />
-          {form.formState.errors.coverImage && <p className='text-red-500 text-xs'>{form.formState.errors.coverImage.message}</p>}
+          <ErrorMessage message={form.formState.errors.coverImage?.message?.toString()} />
         </section>
       </Form>
       <Button className='col-span-2' type="submit">Continuar</Button>

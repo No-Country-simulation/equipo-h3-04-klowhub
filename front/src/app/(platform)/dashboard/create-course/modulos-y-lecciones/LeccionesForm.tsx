@@ -1,3 +1,5 @@
+"use client"
+
 import { ModulosSchema } from "@/components/forms/createCourse/schemas/modulos-y-lecciones"
 import { ErrorMessage } from "@/components/forms/multiStepForm/ErrorMessage"
 import { FileField } from "@/components/forms/multiStepForm/FileField"
@@ -7,6 +9,7 @@ import { Section } from "@/components/ui/Section"
 import { Button, Input } from "@nextui-org/react"
 import { XIcon } from "lucide-react"
 import { useFieldArray, useFormContext } from "react-hook-form"
+import { toast } from "sonner"
 
 export function LeccionesForm() {
   const form = useFormContext<ModulosSchema>()
@@ -74,7 +77,7 @@ export function LeccionesForm() {
             {
               form.watch(`lessons.${index}.lessonCoverImages`).length < 3 &&
               <section className='flex flex-col gap-2'>
-                <FileField maxFiles={3} onDrop={(file) => form.setValue(`lessons.${index}.lessonCoverImages`, file)} />
+                <FileField maxFiles={3} onDropRejected={() => toast("Maximo 3 imagenes")} onDrop={(file) => form.setValue(`lessons.${index}.lessonCoverImages`, file)} />
                 <ErrorMessage
                   message={form.formState.errors.lessons?.[index]?.lessonCoverImages?.message} />
               </section>

@@ -7,7 +7,7 @@ const MAX_SIZE = 5 * 1024 * 1024;
 const VALID_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 
 export const imageValidation = z
-  .instanceof(File, { message: 'Insertar portada del curso' })
+  .any()
   .refine(
     (file) => VALID_TYPES.includes(file.type),
     'La imagen debe ser en formato JPEG o PNG',
@@ -18,7 +18,7 @@ export const imageValidation = z
   );
 
 export const pdfSchema = z
-  .instanceof(File)
+  .any()
   .refine((file) => file.type === 'application/pdf', {
     message: 'File must be a PDF',
   })
