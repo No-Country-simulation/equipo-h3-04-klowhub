@@ -4,6 +4,7 @@ import { SearchParams } from "nuqs";
 import { CoursesList } from "./CoursesList";
 import { CoursesNotFound } from "./CoursesNotFound";
 import { Header } from "./Header";
+import { PagesNavigation } from "./PagesNavigation";
 import { PilarFilters } from "./PilarFilters";
 import { SearchHeader } from "./SearchHeader";
 
@@ -20,7 +21,8 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
 
   const courses = await courseService({
     relations: ['sectors', 'contentPillars', 'functionalities', 'platforms', 'platformsAndTool'],
-    take: 2,
+    take: 4,
+    offset: (filters.page - 1) * 4,
     where: {
       // TODO - Tiene que ser posible filtrar por titulos parciales, por ej si el input tiene el texto
       //        "Introdución" tengo que obtener todos los cursos que tengan esa palabra en el titulo
@@ -81,7 +83,12 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
         <PilarFilters />
         {
           filteredCourses.length
-            ? <CoursesList courses={filteredCourses} />
+            ?
+            <>
+              <CoursesList courses={filteredCourses} />
+              {/* TODO - Obtener el total de items usando el servicio de cursos */}
+              <PagesNavigation totalItems={100} />
+            </>
             : <CoursesNotFound />
         }
       </section>

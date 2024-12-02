@@ -2,6 +2,7 @@
 import {
   createSearchParamsCache,
   parseAsArrayOf,
+  parseAsInteger,
   parseAsString,
 } from 'nuqs/server';
 
@@ -14,4 +15,5 @@ export const searchParamsCache = createSearchParamsCache({
   platforms: parseAsArrayOf(parseAsString).withDefault([]),
   sectors: parseAsArrayOf(parseAsString).withDefault([]),
   toolsAndPlatforms: parseAsArrayOf(parseAsString).withDefault([]),
+  page: parseAsInteger.withDefault(1),
 });
