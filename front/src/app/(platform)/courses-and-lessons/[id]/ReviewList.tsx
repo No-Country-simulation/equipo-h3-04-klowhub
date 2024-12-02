@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/Button";
 import { RatingStars } from "@/components/ui/RatingSection";
 
 interface Review {
@@ -12,12 +13,16 @@ interface Props {
 
 export function ReviewList({ reviews }: Props) {
   return (
-    <ul className="flex flex-col divide-y divide-primario-200">
-      {
-        reviews.map((review, index) =>
-          <Review key={index} review={review} />)
-      }
-    </ul>
+    <section className="flex flex-col gap-4">
+      <p className="text-xl font-semibold">{reviews.length} Reseñas</p>
+      <ul className="flex flex-col divide-y divide-primario-200">
+        {
+          reviews.map((review, index) =>
+            <Review key={index} review={review} />)
+        }
+      </ul>
+      <Button variant="outlined" size="big">Ver más</Button>
+    </section>
   )
 }
 
