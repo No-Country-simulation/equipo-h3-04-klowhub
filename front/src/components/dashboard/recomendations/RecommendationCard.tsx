@@ -1,6 +1,6 @@
+import { PlatformLink } from "@/components/ui/PlatformLink"
 import { User } from "@nextui-org/react"
 import { HeartIcon, LinkIcon, MenuIcon, StarIcon } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { Recommendation } from "./Recommendations"
 
@@ -28,10 +28,7 @@ export function RecommendationCard({ recommendation }: Props) {
           </span>
         ))}
       </div>
-      <Link href="#" className="w-fit bg-white/10 rounded-lg px-4 py-2 flex gap-2 items-center">
-        <Image width={24} height={24} alt="appsheet icon" src="/imgs/appsheet-logo.webp" />
-        {recommendation.platform}
-      </Link>
+      <PlatformLink platform="AppSheet" />
       <User
         className="self-start"
         avatarProps={{ src: AVATAR_SRC, alt: `${recommendation.instructor.name}'s avatar`, size: "lg" }}
