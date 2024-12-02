@@ -12,7 +12,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SwitchCreator from '../switch/switch.creator';
 import SwitchHome from '../switch/switch.home';
-import { NavigationTabs } from '../ui/NavigationTabs';
 
 export default function NavBar() {
   return (
@@ -44,7 +43,13 @@ export default function NavBar() {
             <div></div>
           </NavbarBrand>
           <NavbarContent className="hidden xl:flex gap-2" justify="center">
-            <NavigationTabs links={NAV_LINKS} />
+            {
+              NAV_LINKS.map(link =>
+                <Link className='p-2 px-3 text-sm font-semibold hover:text-primario-600 transition text-primario-200' key={link.id} href={link.path}>
+                  {link.value}
+                </Link>
+              )
+            }
           </NavbarContent>
         </section>
         <NavbarContent justify="end">
