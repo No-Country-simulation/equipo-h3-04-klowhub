@@ -1,12 +1,12 @@
 import { searchParamsCache } from "@/lib/createSearchParamsCache";
 import { courseService } from "@/services/course.service";
 import { SearchParams } from "nuqs";
-import { CoursesList } from "./CoursesList";
-import { CoursesNotFound } from "./CoursesNotFound";
-import { Header } from "./Header";
-import { PagesNavigation } from "./PagesNavigation";
-import { PilarFilters } from "./PilarFilters";
-import { SearchHeader } from "./SearchHeader";
+import { CoursesList } from "./_components/CoursesList";
+import { CoursesNotFound } from "./_components/CoursesNotFound";
+import { Header } from "./_components/Header";
+import { PagesNavigation } from "./_components/PagesNavigation";
+import { PilarFilters } from "./_components/PilarFilters";
+import { SearchHeader } from "./_components/SearchHeader";
 
 interface Props {
   searchParams: Promise<SearchParams & { query?: string, pilar?: string }>;

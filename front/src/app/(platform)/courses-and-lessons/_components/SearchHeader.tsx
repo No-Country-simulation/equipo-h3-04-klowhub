@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button"
 import { Input } from "@nextui-org/react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useDebouncedCallback } from 'use-debounce'
-import { FilterButton } from "./FilterButton"
+import { FilterButton } from "./filtersPanel/FilterButton"
 
 // 1 Segundo
 const DEBOUNCE_DELAY = 1000
