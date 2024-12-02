@@ -1,5 +1,6 @@
+import { VideoPlayer } from "@/components/multimedia/video-player";
 import Image from "next/image";
-import { VideoPlayer } from "../../../../../../components/multimedia/video-player";
+import './horizontal-scroll-bar.css';
 
 export function VistaPreviaMultimedia() {
   return (
