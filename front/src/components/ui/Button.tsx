@@ -3,7 +3,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 // Estilos de Figma
 const buttonStyles = cva(
-  "w-fit font-bold",
+  "w-fit font-bold disabled:opacity-50",
   {
     variants: {
       variant: {

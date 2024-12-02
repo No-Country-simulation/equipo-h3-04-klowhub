@@ -32,7 +32,6 @@ export function FilterButton() {
         return
       }
 
-      // @ts-ignore
       if (event.key === "Escape") {
         setOpenModal(false)
       }
@@ -40,7 +39,7 @@ export function FilterButton() {
 
     document.addEventListener("keydown", closeDialogWithKeyboard)
     return () => document.removeEventListener("keydown", closeDialogWithKeyboard)
-  }, [openModal])
+  }, [])
 
   return (
     <>
