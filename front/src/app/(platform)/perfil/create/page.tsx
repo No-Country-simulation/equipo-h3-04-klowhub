@@ -1,9 +1,8 @@
 'use client'
 
-import { Tabs, Tab, Input, Button, RadioGroup, Radio, Select, SelectItem } from "@nextui-org/react"
-import { Image } from "@nextui-org/image"
-import { Upload } from 'lucide-react'
 import OptimatePerfil from "@/components/cards/optimate.perfil.card"
+import { Button, Input, Radio, RadioGroup, Select, SelectItem, Tab, Tabs } from "@nextui-org/react"
+import { Upload } from 'lucide-react'
 
 export default function MentorProfile() {
   return (
