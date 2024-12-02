@@ -2,10 +2,7 @@
 
 import { HeartIcon } from "@/components/icons/hearticon"
 import { Course } from "@/interfaces/course"
-import { Button } from "@nextui-org/react"
-import { Chip } from "@nextui-org/react"
-import { Image } from "@nextui-org/react"
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react"
+import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Image } from "@nextui-org/react"
 import { StarIcon } from 'lucide-react'
 import { useState } from "react"
 
