@@ -2,9 +2,14 @@
 
 import { Button } from "@/components/ui/Button"
 import { Input } from "@nextui-org/react"
+import dynamic from "next/dynamic"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useDebouncedCallback } from 'use-debounce'
-import { FilterButton } from "./filtersPanel/FilterButton"
+
+const DynamicFilterButton = dynamic(() => import("./filtersPanel/FilterButton").then((mod) => mod.FilterButton), {
+  ssr: false,
+  loading: () => <Button disabled variant={"outlined"}>loading...</Button>
+})
 
 // 1 Segundo
 const DEBOUNCE_DELAY = 1000
@@ -35,7 +40,7 @@ export function SearchHeader() {
         placeholder="Buscar cursos y lecciones"
         className="flex-1 min-w-[180px]" />
       <section className="flex gap-4 flex-wrap">
-        <FilterButton />
+        <DynamicFilterButton />
         <Button variant={"outlined"}>Ordenar Por</Button>
       </section>
     </header>
