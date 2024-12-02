@@ -4,7 +4,7 @@ import Link from "next/link"
 const DASHBOARD_NAV = [
   {
     value: "Mis Cursos",
-    path: "/"
+    path: "/dashboard/courses"
   },
   {
     value: "Explorar Proyectos",
