@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { VideoPlayer } from "./VideoPlayer";
+import { VideoPlayer } from "../../../../../../components/multimedia/video-player";
 
 export function VistaPreviaMultimedia() {
   return (

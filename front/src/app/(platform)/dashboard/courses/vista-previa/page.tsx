@@ -2,12 +2,12 @@
 import TextTitleSub from '@/components/text/titlesubtitle'
 import { Button } from '@/components/ui/Button'
 import { Section } from '@/components/ui/Section'
+import { CourseInformation } from './_components/CourseInformation'
 import './_components/horizontal-scroll-bar.css'
 import { VistaPreviaAside } from './_components/VistaPreviaAside'
 import { VistaPreviaBreadcrumns } from './_components/VistaPreviaBreadcrumbs'
 import { VistaPreviaCompartir } from './_components/VistaPreviaCompartir'
 import { VistaPreviaFunctionalities } from './_components/VistaPreviaFunctionalities'
-import { VistaPreviaGeneralInfo } from './_components/VistaPreviaGeneralInfo'
 import { VistaPreviaInstructor } from './_components/VistaPreviaInstructor'
 import { VistaPreviaList } from './_components/VistaPreviaList'
 import { VistaPreviaMultimedia } from './_components/VistaPreviaMultimedia'
@@ -21,13 +21,15 @@ export default async function VistaPreviaPage() {
       <VistaPreviaBreadcrumns />
       <section className='grid grid-cols-1 lg:grid-cols-[1fr_minmax(200px,400px)] gap-12'>
         <section className='flex flex-col gap-6'>
-          <VistaPreviaGeneralInfo
-            description={courseData.description}
+          <TextTitleSub
+            title={courseData.title}
+            subtitle={courseData.description} />
+          <CourseInformation
             duration={courseData.duration}
             rating={courseData.rating}
             reviews={courseData.reviews}
-            title={courseData.title}
-            videos={courseData.videos} />
+            videos={5}
+          />
           <VistaPreviaMultimedia />
           <Section className='bg-card gap-7'>
             <VistaPreviaInstructor
