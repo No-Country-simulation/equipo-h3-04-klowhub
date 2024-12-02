@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 
 interface OptimatePerfilProps {
-  className?: string; // Prop para el className
+  className?: string;
   imageSrc: string;
   title: string;
   description: string;
@@ -11,24 +11,27 @@ interface OptimatePerfilProps {
 }
 
 const OptimatePerfil: React.FC<OptimatePerfilProps> = ({
-  className, // Recibe className como prop
+  className,
   imageSrc,
   title,
   description,
   buttonText,
 }) => {
   return (
-    <Card isBlurred className={`bg-background/60 ${className}`} shadow="lg"> {/* Aplica className aquí */}
+    <Card isBlurred className={`bg-background/60 ${className}`} shadow="lg">
       <CardBody className="p-0 gap-4 mb-4 flex flex-col justify-center">
-        <Image
-          alt={title} // Mejora la accesibilidad
-          className="object-cover rounded-sm w-full aspect-video -z-1"
-          src={imageSrc}
-        />
+        <div className="relative w-full h-48">
+          <Image
+            alt={title}
+            className="object-cover rounded-sm w-full h-full"
+            src={imageSrc}
+            fill
+          />
+        </div>
         <div className="text-center">
           <h3 className="text-sm font-semibold mb-2">{title}</h3>
           <p className="text-xs mb-4">{description}</p>
-          <Button color="secondary" className="bg-purple-600 text-white" >
+          <Button color="secondary" className="bg-purple-600 text-white">
             {buttonText}
           </Button>
         </div>
