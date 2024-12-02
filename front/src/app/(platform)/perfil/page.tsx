@@ -1,10 +1,9 @@
 'use client'
 
-import { Card, CardBody, Button, Avatar, Badge, Breadcrumbs, BreadcrumbItem } from "@nextui-org/react"
-import { Image } from "@nextui-org/image"
-import PerfilCard from "@/components/cards/perfil.card"
 import OptimatePerfil from "@/components/cards/optimate.perfil.card"
+import PerfilCard from "@/components/cards/perfil.card"
 import TextTitleSub from "@/components/text/titlesubtitle"
+import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react"
 import Link from "next/link"
 
 export default function Perfil() {
