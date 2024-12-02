@@ -1,3 +1,5 @@
+"use client"
+
 import { ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,14 +10,16 @@ import { RatingSection } from "../ui/RatingSection";
 import { Section } from "../ui/Section";
 
 interface Props {
-  title: string;
-  description: string;
   functionalities: string[];
+  description: string;
+  title: string;
   image: string;
+  id: string;
+  onOpenDetails: () => void;
   // TODO - agregar rating y reviews props
 }
 
-export function BrowseCard({ description, functionalities, image, title }: Props) {
+export function BrowseCard({ description, functionalities, image, title, id, onOpenDetails }: Props) {
   return (
     <li className="flex rounded-xl overflow-hidden bg-card">
       <figure className="relative aspect-[3/2] hidden min-h-[300px] md:block">
@@ -29,7 +33,7 @@ export function BrowseCard({ description, functionalities, image, title }: Props
       </figure>
       <Section className="rounded-none bg-card flex-1 justify-between">
         <header className="flex flex-col gap-4">
-          <p className="text-xl">{title}</p>
+          <Link href={`/course/${id}`} className="text-xl">{title}</Link>
           <p>{description}</p>
         </header>
         <PlatformLink platform={"AppSheet"} />
@@ -40,9 +44,12 @@ export function BrowseCard({ description, functionalities, image, title }: Props
             <ShoppingCartIcon />
             añadir al carrito
           </Button>
-          <Link href={"/#"} className="text-primario-200 hover:underline p-2">
+          <button
+            className="text-primario-200 hover:underline p-2"
+            onClick={onOpenDetails}
+          >
             Ver detalles
-          </Link>
+          </button>
         </footer>
       </Section>
     </li>

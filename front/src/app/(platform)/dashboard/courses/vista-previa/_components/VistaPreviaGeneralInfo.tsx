@@ -17,21 +17,35 @@ export function VistaPreviaGeneralInfo({ description, duration, rating, reviews,
         <p className='font-bold'>{title}</p>
         <p className='text-sm'>{description}</p>
       </section>
-      <footer className='flex items-center gap-4'>
-        <RatingSection rating={rating} reviews={reviews} />
-        <section className='flex gap-2 items-center text-white/50'>
-          <VideoIcon />
-          <p className='text-sm'>
-            {videos} videos
-          </p>
-        </section>
-        <section className='flex gap-2 items-center text-white/50'>
-          <ClockIcon />
-          <p className='text-sm'>
-            {duration}
-          </p>
-        </section>
-      </footer>
+      <CourseInformation duration={duration} rating={rating} reviews={reviews} videos={videos} />
     </section>
   )
 }
+
+interface CourseMetricProps {
+  rating: number;
+  reviews: number;
+  videos: number;
+  duration: string;
+}
+
+export function CourseInformation({ duration, rating, reviews, videos }: CourseMetricProps) {
+  return (
+    <footer className='flex items-center gap-4'>
+      <RatingSection rating={rating} reviews={reviews} />
+      <section className='flex gap-2 items-center text-white/50'>
+        <VideoIcon />
+        <p className='text-sm'>
+          {videos} videos
+        </p>
+      </section>
+      <section className='flex gap-2 items-center text-white/50'>
+        <ClockIcon />
+        <p className='text-sm'>
+          {duration}
+        </p>
+      </section>
+    </footer>
+  )
+}
+
