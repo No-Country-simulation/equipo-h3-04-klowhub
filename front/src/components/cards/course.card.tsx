@@ -51,7 +51,7 @@ export default function CourseCard({ course }: { course: Course }) {
         </div>
         <div className="flex gap-2 flex-wrap">
           {
-            course.sectors.map((sector) => <Chip color="secondary" key={sector.id} size="sm" variant="flat" className="text-white">{sector.name}</Chip>)
+            course.sectors?.map((sector) => <Chip color="secondary" key={sector.id} size="sm" variant="flat" className="text-white">{sector.name}</Chip>)
           }
         </div>
         <div className="flex items-center gap-2">

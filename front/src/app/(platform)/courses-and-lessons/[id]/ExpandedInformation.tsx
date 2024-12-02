@@ -6,8 +6,9 @@ import { VistaPreviaFunctionalities } from "../../dashboard/courses/vista-previa
 import { VistaPreviaInstructor } from "../../dashboard/courses/vista-previa/_components/VistaPreviaInstructor"
 import { VistaPreviaList } from "../../dashboard/courses/vista-previa/_components/VistaPreviaList"
 import { courseData } from "../../dashboard/courses/vista-previa/data"
-import { ReviewList } from "./ReviewList"
 import { reviews } from "./data"
+import { RecommendedCourses } from "./RecommendedCourses"
+import { ReviewList } from "./ReviewList"
 
 export function ExpandedInformation() {
   return (
@@ -49,7 +50,7 @@ export function ExpandedInformation() {
         />
         {/* TODO - Reemplazar reviews for informacion del backend */}
         <ReviewList reviews={reviews} />
-        {/* TODO - Agregar reseñas */}
+        <RecommendedCourses />
       </Section>
       {/* PONER EL FOOTER */}
     </section>
