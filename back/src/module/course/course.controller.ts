@@ -56,7 +56,12 @@ export class CourseController {
   ): Promise<GenericResponse<Course>> {
     try {
       const data = await this.courseService.findOne(params);
-
+      if (!data)
+        return new GenericResponse<Course>({
+          data: null,
+          message: 'Course not found',
+          code: HttpStatus.NOT_FOUND,
+        });
       return new GenericResponse<Course>({
         data,
         message: 'Course found',

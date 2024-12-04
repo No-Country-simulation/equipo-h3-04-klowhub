@@ -3,7 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsOptional, IsArray, IsString, IsNotEmpty } from 'class-validator';
 import { ICourse } from 'src/common/interface/db/course.interface';
-import { Course } from 'src/entity/course.entity';
 
 const allowedSelectKeys: (keyof ICourse)[] = [
   'title',
@@ -40,6 +39,7 @@ export class FindOneCourseParamsDto {
       }
     }
 
+    // Si el objeto está vacío, lanza un error
     if (Object.keys(value).length === 0) {
       throw new HttpException(
         'Empty object for "where" parameter',
@@ -49,11 +49,13 @@ export class FindOneCourseParamsDto {
     return value;
   })
   @ApiProperty({
+    description: 'Condiciones para buscar un curso (en formato JSON)',
     required: true,
-    description: 'Course search parameters value',
+    type: String,
+    example: { id: '1f5d7c35-1f43-4d21-a1b8-98af309d7066' },
   })
-  @IsNotEmpty({ message: 'where params is mandatory' })
-  where: Partial<Course>;
+  @IsNotEmpty()
+  where: Record<string, any>;
 
   @IsOptional()
   @IsArray()
