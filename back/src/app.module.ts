@@ -6,6 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthModule } from './module/auth/auth.module';
 import { CourseModule } from './module/course/course.module';
 import { LessonModule } from './module/lesson/lesson.module';
+import { ApplicationModule } from './module/application/application.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { LessonModule } from './module/lesson/lesson.module';
     AuthModule,
     CourseModule,
     LessonModule,
+    ApplicationModule,
   ],
   providers: [],
   controllers: [],
