@@ -1,6 +1,6 @@
 import LoginForm from '@/components/forms/login';
 import SocialIcon from '@/components/icons/social';
-import { Link } from '@nextui-org/react';
+import Link from 'next/link';
 
 export default function LoginPage() {
   return (

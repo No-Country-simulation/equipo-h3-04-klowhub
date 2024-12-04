@@ -1,8 +1,8 @@
-export const navLinks = [
-    { id: 1, text: "Dashboard", path: "/" },
-    { id: 2, text: "Curso y lecciones", path: "/curso" },
-    { id: 3, text: "Appstore", path: "/appstore" },
-    { id: 4, text: "Proyectos", path: "/proyectos" },
-    { id: 5, text: "Consultoria", path: "/consultoria" },
-    { id: 6, text: "Sobre Appsheet", path: "/sobreappsheet" },
-  ];
+export const NAV_LINKS = [
+  { id: 1, value: 'Dashboard', path: '/dashboard' },
+  { id: 2, value: 'Curso y lecciones', path: '/courses-and-lessons' },
+  { id: 3, value: 'Appstore', path: '/appstore' },
+  { id: 4, value: 'Proyectos', path: '/proyectos' },
+  { id: 5, value: 'Consultoria', path: '/consultoria' },
+  { id: 6, value: 'Sobre Appsheet', path: '/sobreappsheet' },
+];

@@ -8,7 +8,6 @@
   --navbar-height: 79px;
 }
 
-
 body {
   color: var(--foreground);
   background: linear-gradient(180deg, #34395c 0%, #181941 50%, #1b1b1f 100%);
@@ -19,7 +18,8 @@ html {
   background: #181941;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -27,4 +27,28 @@ html, body {
 
 .rounded-switch {
   border-radius: 999px; /* Aplica un radio de borde de 999px al switch */
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --chart-1: 265 59% 89%;
+    --chart-2: 287 58% 47%;
+  }
+}
+
+/* Modificar estilos del editor de quilljs (Formulario creacion de curso)*/
+.ql-container.ql-snow {
+  border: none !important;
+}
+
+.ql-toolbar.ql-snow {
+  border-top: none !important;
+  border-inline: none !important;
+}
+
+/* Saca la barra de scroll cuando se abre el panel de filtro */
+html:has([filter-dialog='open']) {
+  background-color: red !important;
+  overflow: hidden;
 }

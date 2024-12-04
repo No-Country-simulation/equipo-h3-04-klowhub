@@ -1,6 +1,6 @@
 import RegisterForm from '@/components/forms/register';
 import SocialIcon from '@/components/icons/social';
-import { Link } from '@nextui-org/react';
+import Link from 'next/link';
 
 export default function RegisterPage() {
   return (

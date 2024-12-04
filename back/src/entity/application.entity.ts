@@ -6,9 +6,10 @@ import {
   Column,
 } from 'typeorm';
 import { VendorProfile } from './vendor-profile.entity';
+import { IApplication } from 'src/common/interface/db/application.interface';
 
 @Entity('application')
-export class Application {
+export class Application implements IApplication {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

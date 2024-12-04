@@ -1,0 +1,23 @@
+/*  */
+#modulos-accordion {
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #1f2937;
+  padding: 0;
+}
+
+/* Color de fondo por defecto a todos los items */
+#modulos-accordion > div {
+  background-color: rgb(255, 255, 255, 0.1);
+  transition: background-color 150ms;
+}
+
+/* El item seleccionado tiene background transparente */
+#modulos-accordion > div[data-open='true'] {
+  background-color: transparent;
+}
+
+/* Los items que esten cerrados tienen un efecto de hover */
+#modulos-accordion > div:not([data-open='true']):hover {
+  background-color: rgb(255, 255, 255, 0.05);
+}
