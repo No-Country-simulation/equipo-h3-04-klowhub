@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   Course,
@@ -68,13 +68,15 @@ export class CourseService {
 
   async findOne(params?: FindOneCourseParamsDto): Promise<Course | undefined> {
     try {
-      console.log('params', params);
-      console.log('where', params?.where);
-      console.log(typeof params?.where);
-      console.log(typeof params);
-      return await this.courseRepository.findOne({
-        where: params?.where,
-      });
+      const { where } = params;
+
+      if (where) {
+        Logger.log(where);
+        return await this.courseRepository.findOne({
+          where,
+        });
+      }
+      return null;
     } catch (error: any) {
       console.error('[ERROR]', error);
 
