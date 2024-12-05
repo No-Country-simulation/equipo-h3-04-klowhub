@@ -26,7 +26,7 @@ export function BrowseCard({ description, functionalities, image, title, id, onO
         <Image
           className="w-full h-full object-cover"
           // TODO - Cambiar por course.image cuando esten hosteadas las imagenes
-          src="/imgs/DALL·E 2024-09-04 14.27.44.webp"
+          src={image}
           alt="course image"
           fill
         />
