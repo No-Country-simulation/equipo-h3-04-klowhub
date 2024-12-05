@@ -11,7 +11,8 @@ export interface ICourse {
   contentPillars: any[];
   sectors: any[];
   functionalities: any[];
-  platforms: any[];
+  // platforms: any[];
+  platform: string;
   platformsAndTool: any[];
   owner: any;
   modules: any[];

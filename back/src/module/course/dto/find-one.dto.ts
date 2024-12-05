@@ -20,7 +20,7 @@ const allowedRelations: (keyof ICourse)[] = [
   'contentPillars',
   'sectors',
   'functionalities',
-  'platforms',
+  // 'platforms',
   'platformsAndTool',
   'owner',
   'modules',
