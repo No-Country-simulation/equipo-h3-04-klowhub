@@ -16,7 +16,7 @@ export default function CourseCard({ course }: { course: Course }) {
         <Image
           alt="Course banner showing connected gears"
           className="object-cover rounded-sm w-full aspect-video -z-1"
-          src="/imgs/DALL·E 2024-09-04 14.27.44.webp"
+          src={course.image}
         />
         <Chip
           className="absolute top-2 left-2 z-15 bg-green-200 text-green-600"
@@ -51,7 +51,7 @@ export default function CourseCard({ course }: { course: Course }) {
         </div>
         <div className="flex gap-2 flex-wrap">
           {
-            course.sectors.map((sector) => <Chip color="secondary" key={sector.id} size="sm" variant="flat" className="text-white">{sector.name}</Chip>)
+            course.sectors?.map((sector) => <Chip color="secondary" key={sector.id} size="sm" variant="flat" className="text-white">{sector.name}</Chip>)
           }
         </div>
         <div className="flex items-center gap-2">
