@@ -7,11 +7,10 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { LessonService } from '../lesson/lesson.service';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { SpeechService } from 'src/common/service/speech/speech.service';
+import { UploadService } from './upload.service';
 
-interface UploadedFileInfo {
+export interface UploadedFileInfo {
   fieldname: string;
   originalname: string;
   encoding: string;
@@ -22,27 +21,21 @@ interface UploadedFileInfo {
 
 @Controller('upload')
 export class UploadController {
-  constructor(
-    private readonly lessonService: LessonService,
-    private readonly speechService: SpeechService,
-  ) {}
+  constructor(private readonly uploadService: UploadService) {}
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async upload(@Body() body: any, @UploadedFile() file: UploadedFileInfo) {
-    const { data } = body;
-    // TODO: definir DATA para que se actualice la info en la DB con el curso/app/lección/mentoría correspondiente
-
+    const { id } = JSON.parse(body.data);
+    if (!id) {
+      throw new HttpException('Se necesita un id', 500);
+    }
     if (file.mimetype.includes('audio')) {
-      // text: transcripcion, confidence: indice de certeza del texto según el audio
-      const { text, confidence } =
-        await this.speechService.transcribeAudioBuffer(file.buffer);
-      Logger.log('Audio detected');
-      return { text };
+      return await this.uploadService.processAndUploadAudio(file);
     } else if (file.mimetype.includes('video')) {
       return Logger.log('Video detected');
     } else if (file.mimetype.includes('image')) {
-      return Logger.log('Image detected');
+      return await this.uploadService.processAndUploadImage(id, file);
     }
     throw new HttpException('Tipo de archivo no soportado', 500);
   }

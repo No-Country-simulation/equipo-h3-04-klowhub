@@ -9,12 +9,11 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import {
-  CourseLanguage,
-  CourseLevel,
-  CourseType,
-} from 'src/entity/course.entity';
 import { FindAllCourseParamsDto } from './find-all.dto';
+import {
+  CourseLevel,
+  CreationType,
+} from 'src/common/interface/db/course.interface';
 
 export class PropertyDto {
   @IsOptional()
@@ -30,25 +29,23 @@ export class PropertyDto {
 
   @IsOptional()
   @IsArray()
-  @IsEnum(CourseLanguage, { each: true })
   @ApiProperty({
     type: [String],
-    enum: CourseLanguage,
     required: false,
     description: 'Array of course languages',
   })
-  languages?: CourseLanguage[];
+  languages?: string[];
 
   @IsOptional()
   @IsArray()
-  @IsEnum(CourseType, { each: true })
+  @IsEnum(CreationType, { each: true })
   @ApiProperty({
     type: [String],
-    enum: CourseType,
+    enum: CreationType,
     required: false,
     description: 'Array of course types',
   })
-  type?: CourseType[];
+  type?: CreationType[];
 
   @IsOptional()
   @IsBoolean()
@@ -80,17 +77,6 @@ export class PropertyDto {
     description: 'Array of tool UUIDs',
   })
   tools?: string[];
-
-  @IsOptional()
-  @IsArray()
-  @IsUUID('all', { each: true })
-  @ApiProperty({
-    type: [String],
-    format: 'uuid',
-    required: false,
-    description: 'Array of platform and tool UUIDs',
-  })
-  plantformsAndTools?: string[];
 
   @IsOptional()
   @IsArray()

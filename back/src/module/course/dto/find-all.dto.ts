@@ -2,8 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { FindOneCourseParamsDto } from './find-one.dto';
 import { IsOptional, Max, Min } from 'class-validator';
 import { Course } from 'src/entity/course.entity';
-import { Transform } from 'class-transformer';
-import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class FindAllCourseParamsDto extends FindOneCourseParamsDto {
   @ApiProperty({

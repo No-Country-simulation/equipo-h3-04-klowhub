@@ -6,25 +6,23 @@ import { ICourse } from 'src/common/interface/db/course.interface';
 
 const allowedSelectKeys: (keyof ICourse)[] = [
   'title',
-  'price',
-  'type',
-  'level',
   'language',
-  'id',
-  'image',
-  'isFree',
+  'contentType',
+  'creationType',
   'description',
+  'skillLevel',
+  'platform',
+  'sector',
+  'contentPillar',
 ];
 
 const allowedRelations: (keyof ICourse)[] = [
-  'contentPillars',
-  'sectors',
-  'functionalities',
-  'platforms',
-  'platformsAndTool',
-  'owner',
-  'modules',
+  'contentPillar',
+  'platform',
+  'skillLevel',
+  'creationType',
 ];
+
 export class FindOneCourseParamsDto {
   @Transform((param) => {
     let value = param.value;

@@ -5,7 +5,6 @@ export interface UploadResponse {
   id: string;
   name: string;
   url: string;
-  urlSigned: string;
   bucket: string;
 }
 
@@ -47,16 +46,17 @@ export class UploadService {
       });
 
       stream.on('finish', async () => {
-        const [url] = await file.getSignedUrl({
-          action: this.permission,
-          expires: Date.now() + this.signExpiry,
-        });
+        // const options = {
+        //   action: this.permission,
+        //   expires: Date.now() + this.signExpiry,
+        // };
+
+        await file.makePublic(); // Así se evita que la carga expire
 
         resolve({
           id: file.id,
           name: file.name,
           url: file.publicUrl(),
-          urlSigned: url,
           bucket: file.bucket.name,
         });
       });
