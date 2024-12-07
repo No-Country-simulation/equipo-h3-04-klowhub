@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { VendorProfile } from './vendor-profile.entity';
@@ -30,6 +31,9 @@ export class Course {
   @Column({ type: 'enum', enum: ContentType })
   contentType: ContentType;
 
+  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
+  price: number;
+
   @Column({ type: 'enum', enum: CreationType })
   creationType: CreationType;
 
@@ -44,12 +48,6 @@ export class Course {
 
   @Column({ type: 'simple-array', nullable: true })
   labels: string[];
-
-  @Column({ type: 'varchar', length: 255 })
-  moduleTitle: string;
-
-  @Column({ type: 'text', nullable: false })
-  moduleDescription: string;
 
   @Column({ type: 'enum', enum: DiscountOption })
   hasDiscount: DiscountOption;
@@ -89,7 +87,7 @@ export class Course {
   owner: VendorProfile;
 
   @OneToMany(() => Module, (module) => module.course)
-  modules: Module[];
+  modules: Module;
 
   constructor(partial?: Partial<Course>) {
     Object.assign(this, partial);

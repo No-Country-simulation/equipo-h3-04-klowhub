@@ -25,7 +25,7 @@ export class CourseService {
         take: params?.take || this.DEFAULT_LIMIT,
         skip: params?.offset || 0,
         order: params?.order,
-        relations: params.relations,
+        relations: ['modules', 'modules.lessons'],
       });
 
       const total = await this.courseRepository.count();
@@ -54,6 +54,7 @@ export class CourseService {
         Logger.log(where);
         return await this.courseRepository.findOne({
           where,
+          relations: ['modules'],
         });
       }
       return null;

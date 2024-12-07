@@ -5,9 +5,16 @@ import { IdFinderModule } from 'src/common/service/idFinder/idfinder.module';
 import { CourseModule } from '../course/course.module';
 import { UploadService } from './upload.service';
 import { UploadModule as UploadGoogle } from 'src/common/service/upload/upload.module';
+import { LessonModule } from '../lesson/lesson.module';
 
 @Module({
-  imports: [SpeechModule, IdFinderModule, CourseModule, UploadGoogle],
+  imports: [
+    SpeechModule,
+    IdFinderModule,
+    CourseModule,
+    LessonModule,
+    UploadGoogle,
+  ],
   providers: [UploadService],
   controllers: [UploadController],
 })

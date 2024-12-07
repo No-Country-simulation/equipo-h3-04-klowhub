@@ -7,8 +7,6 @@ export interface ICourse {
   platform: Platform;
   language: string;
   labels: string[];
-  moduleTitle: string;
-  moduleDescription: string;
   hasDiscount: DiscountOption;
   discountProductId: string;
   learningOutcomes: string;

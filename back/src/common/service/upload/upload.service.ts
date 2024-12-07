@@ -12,7 +12,7 @@ export interface UploadResponse {
 export class UploadService {
   private storage: Storage;
   private bucket: string;
-  private signExpiry = 1000 * 60 * 60;
+  private signExpiry = 1000 * 60 * 60 * 24 * 30;
 
   private permission: 'read' | 'write' | 'delete' | 'resumable' = 'read';
 
@@ -46,17 +46,17 @@ export class UploadService {
       });
 
       stream.on('finish', async () => {
-        // const options = {
-        //   action: this.permission,
-        //   expires: Date.now() + this.signExpiry,
-        // };
+        const options = {
+          action: this.permission,
+          expires: Date.now() + this.signExpiry,
+        };
 
-        await file.makePublic(); // Así se evita que la carga expire
+        const [uploadedFile] = await file.getSignedUrl(options); // Así se evita que la carga expire
 
         resolve({
           id: file.id,
           name: file.name,
-          url: file.publicUrl(),
+          url: uploadedFile,
           bucket: file.bucket.name,
         });
       });

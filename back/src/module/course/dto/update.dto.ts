@@ -22,6 +22,14 @@ export class UpdateCourseDto extends PartialType(CreateCourseDto) {
 
   @IsOptional()
   @ApiPropertyOptional({
+    description: 'Price of the course',
+    example: 'Learn how to create apps using AppSheet efficiently.',
+    maxLength: 600,
+  })
+  price?: number;
+
+  @IsOptional()
+  @ApiPropertyOptional({
     description: 'URL de la imagen de portada del curso',
     example: 'https://example.com/image.jpg',
   })

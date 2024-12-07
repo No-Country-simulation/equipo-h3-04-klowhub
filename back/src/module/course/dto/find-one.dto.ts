@@ -16,13 +16,6 @@ const allowedSelectKeys: (keyof ICourse)[] = [
   'contentPillar',
 ];
 
-const allowedRelations: (keyof ICourse)[] = [
-  'contentPillar',
-  'platform',
-  'skillLevel',
-  'creationType',
-];
-
 export class FindOneCourseParamsDto {
   @Transform((param) => {
     let value = param.value;
@@ -54,30 +47,6 @@ export class FindOneCourseParamsDto {
   })
   @IsNotEmpty()
   where: Record<string, any>;
-
-  @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  @ApiProperty({
-    isArray: true,
-    required: false,
-    description: 'Relations to load',
-  })
-  @Transform((param) => {
-    if (typeof param.value === 'string') {
-      return param.value.split(',');
-    }
-    console.log('param.value', param.value);
-
-    if (!param.value.every((e) => allowedRelations.includes(e))) {
-      throw new HttpException(
-        `Invalid relation key. Allowed keys: ${allowedRelations.join(', ')}`,
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-    return param.value;
-  })
-  relations: string[];
 
   @IsOptional()
   @IsArray()

@@ -77,20 +77,6 @@ export class CreateCourseDto {
   })
   labels: string[];
 
-  @IsString()
-  @ApiProperty({
-    description: 'Title of the module',
-    example: 'Getting Started with AppSheet',
-  })
-  moduleTitle: string;
-
-  @IsString()
-  @ApiProperty({
-    description: 'Description of the module',
-    example: 'An introduction to AppSheet and its core features.',
-  })
-  moduleDescription: string;
-
   @IsEnum(DiscountOption)
   @ApiProperty({
     description: 'Indicates if the course has a discount',
@@ -185,6 +171,15 @@ export class CreateCourseDto {
 
   @IsOptional()
   @ApiProperty({
+    description: 'Price of the course (optional)',
+    type: 'number',
+    example: 999,
+    required: false,
+  })
+  price?: number;
+
+  @IsOptional()
+  @ApiProperty({
     description: 'Cover image file (optional)',
     type: 'string',
     format: 'binary',
@@ -192,3 +187,29 @@ export class CreateCourseDto {
   })
   coverImage?: string;
 }
+
+const demoCreateCourseDto: CreateCourseDto = {
+  title: 'Introduction to AppSheet Development',
+  contentType: ContentType.PAGO,
+  creationType: CreationType.COURSE,
+  description: 'Learn how to create apps using AppSheet efficiently.',
+  skillLevel: CourseLevel.BASIC,
+  language: 'English',
+  labels: ['Low-code', 'App Development', 'AppSheet'],
+  learningOutcomes: 'Create simple and effective AppSheet applications.',
+  sector: ['Technology', 'Software Development'],
+  contentPillar: ['Learning by Doing', 'Practical Applications'],
+  toolsAndPlatforms: ['Google Sheets', 'AppSheet'],
+  functionalities: [
+    'Workflow automation',
+    'Data visualization',
+    'App integration',
+  ],
+  prerequisites: ['Basic knowledge of spreadsheets'],
+  detailedDescription:
+    'This course covers all aspects of AppSheet, including creating workflows, connecting data sources, and deploying applications.',
+  hasDiscount: DiscountOption.YES,
+  discountPercentage: 10,
+  discountTypeProduct: DicountType.COURSE,
+  coverImage: undefined,
+};

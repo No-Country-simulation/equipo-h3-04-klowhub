@@ -1,13 +1,27 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
 import { LessonService } from './lesson.service';
-import { ApiTags } from '@nestjs/swagger';
-@ApiTags('lesson')
+import { CreateLessonDto } from './dto/create-lesson.dto';
+import { UpdateLessonDto } from './dto/update-lesson.dto';
+
 @Controller('lesson')
 export class LessonController {
   constructor(private readonly lessonService: LessonService) {}
 
   @Post()
-  async create() {
-    return await this.lessonService.create();
+  async createLesson(@Body() createLessonDto: CreateLessonDto) {
+    return this.lessonService.createLesson(createLessonDto);
+  }
+
+  @Patch(':id')
+  async updateLesson(
+    @Param('id') id: string,
+    @Body() updateLessonDto: UpdateLessonDto,
+  ) {
+    return this.lessonService.updateLesson(id, updateLessonDto);
+  }
+
+  @Delete(':id')
+  async deleteLesson(@Param('id') id: string) {
+    return this.lessonService.deleteLesson(id);
   }
 }
