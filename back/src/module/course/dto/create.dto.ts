@@ -54,6 +54,27 @@ export class CreateCourseDto {
   })
   description: string;
 
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(600)
+  @ApiProperty({
+    description: 'Platform',
+    example: 'Name of platform',
+    enum: ['appsheet', 'powerapps'],
+    maxLength: 600,
+  })
+  platform: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(600)
+  @ApiProperty({
+    description: 'Tools and Platforms',
+    example: 'Description of tools',
+    maxLength: 600,
+  })
+  toolsAndPlatforms: string;
+
   @IsEnum(CourseLevel)
   @ApiProperty({
     description: 'Skill level of the course',
@@ -116,14 +137,6 @@ export class CreateCourseDto {
     example: ['Learning by Doing', 'Practical Applications'],
   })
   contentPillar: string[];
-
-  @IsArray()
-  @IsString({ each: true })
-  @ApiProperty({
-    description: 'Tools and platforms relevant to the course',
-    example: ['Google Sheets', 'AppSheet'],
-  })
-  toolsAndPlatforms: string[];
 
   @IsArray()
   @IsString({ each: true })
@@ -199,7 +212,8 @@ const demoCreateCourseDto: CreateCourseDto = {
   learningOutcomes: 'Create simple and effective AppSheet applications.',
   sector: ['Technology', 'Software Development'],
   contentPillar: ['Learning by Doing', 'Practical Applications'],
-  toolsAndPlatforms: ['Google Sheets', 'AppSheet'],
+  toolsAndPlatforms: 'Google Sheets',
+  platform: 'appsheet',
   functionalities: [
     'Workflow automation',
     'Data visualization',

@@ -12,7 +12,7 @@ export interface ICourse {
   learningOutcomes: string;
   sector: string[];
   contentPillar: string[];
-  toolsAndPlatforms: string[];
+  toolsAndPlatforms: string;
   functionalities: string[];
   prerequisites: string[];
   detailedDescription: string;

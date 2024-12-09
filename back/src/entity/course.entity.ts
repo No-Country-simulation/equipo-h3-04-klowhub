@@ -16,6 +16,7 @@ import {
   CreationType,
   DicountType,
   DiscountOption,
+  Platform,
 } from 'src/common/interface/db/course.interface';
 
 @Index(['title', 'description', 'skillLevel', 'language'])
@@ -34,7 +35,13 @@ export class Course {
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
   price: number;
 
-  @Column({ type: 'enum', enum: CreationType })
+  @Column({ type: 'enum', enum: Platform })
+  platform: string;
+
+  @Column({ type: 'text', nullable: true })
+  toolsAndPlatforms: string;
+
+  @Column({ type: 'text', enum: CreationType })
   creationType: CreationType;
 
   @Column({ type: 'text', nullable: false })
