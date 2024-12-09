@@ -1,0 +1,50 @@
+"use client"
+
+import TextTitleSub from "@/components/text/titlesubtitle";
+import { Course } from "@/interfaces/course";
+import { useState } from "react";
+import { CourseInformation } from "../../dashboard/courses/vista-previa/_components/CourseInformation";
+import { VistaPreviaAside } from "../../dashboard/courses/vista-previa/_components/VistaPreviaAside";
+import { VistaPreviaBreadcrumns } from "../../dashboard/courses/vista-previa/_components/VistaPreviaBreadcrumbs";
+import { VistaPreviaMultimedia } from "../../dashboard/courses/vista-previa/_components/VistaPreviaMultimedia";
+import { courseData } from "../../dashboard/courses/vista-previa/data";
+import { ExpandedInformation } from "./ExpandedInformation";
+import { ShortInformation } from "./ShortInformation";
+
+interface Props {
+  course: Course
+}
+
+export function CourseDetails({ course }: Props) {
+  const [showMore, setShowMore] = useState<boolean>(false)
+
+  return (
+    <section className='flex flex-col gap-6'>
+      <VistaPreviaBreadcrumns />
+      <section className='grid grid-cols-1 lg:grid-cols-[1fr_minmax(200px,400px)] gap-20'>
+        <section className='flex flex-col gap-6'>
+          <TextTitleSub
+            title={course.title}
+            subtitle={courseData.description} />
+          <CourseInformation
+            duration={courseData.duration}
+            rating={courseData.rating}
+            reviews={courseData.reviews}
+            videos={5}
+          />
+          <VistaPreviaMultimedia />
+          {
+            showMore
+              ? <ExpandedInformation />
+              : <ShortInformation onShowMore={() => setShowMore(true)} />
+          }
+        </section>
+        <VistaPreviaAside
+          instructor={courseData.instructor}
+          courseProgram={courseData.courseProgram}
+        />
+      </section >
+    </section>
+  )
+
+}
