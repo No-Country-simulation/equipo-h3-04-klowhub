@@ -1,5 +1,6 @@
 "use client"
 
+import { useCartStore } from "@/store/cart.store";
 import { ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +21,10 @@ interface Props {
 }
 
 export function BrowseCard({ description, functionalities, image, title, id, onOpenDetails, onAddToCart }: Props) {
+  const courses = useCartStore((state) => state.courses)
+
+  const courseAlreadyInCart = courses.some((course) => course.id === id)
+
   return (
     <li className="flex rounded-xl overflow-hidden bg-card">
       <figure className="relative aspect-[3/2] hidden min-h-[300px] md:block">
@@ -39,7 +44,7 @@ export function BrowseCard({ description, functionalities, image, title, id, onO
         <ChipsList className="flex-row" items={functionalities} />
         <RatingSection rating={3} reviews={12} />
         <footer className="flex items-center gap-6 flex-wrap">
-          <Button onClick={onAddToCart}>
+          <Button disabled={courseAlreadyInCart} onClick={onAddToCart}>
             <ShoppingCartIcon />
             añadir al carrito
           </Button>

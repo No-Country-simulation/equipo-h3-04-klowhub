@@ -12,7 +12,7 @@ import { CheckoutPrice } from "./checkout-price";
 export function CheckoutCard() {
   const courses = useCartStore(state => state.courses)
 
-  const subtotal = courses.reduce((acc, course) => acc + course.price, 0)
+  const subtotal = courses.reduce((acc, course) => acc + (Number(course.price) || 0), 0)
 
   const tarifaServicio = 130
 

@@ -11,9 +11,10 @@ interface Props {
   rating: number;
   reviews: number;
   plataforma: string;
+  onRemoveCourse: () => void
 }
 
-export function CartCard({ img, plataforma, rating, reviews, sector, title }: Props) {
+export function CartCard({ img, plataforma, rating, reviews, sector, title, onRemoveCourse }: Props) {
   return (
     <Section className="bg-card">
       <div className="flex gap-6 border-y py-3">
@@ -30,7 +31,7 @@ export function CartCard({ img, plataforma, rating, reviews, sector, title }: Pr
           </ul>
           <RatingSection rating={4} reviews={74} />
           <ChipsList className="flex-row" items={["Logística", "Optimización"]} />
-          <button className="absolute bottom-0 right-0 text-primario-200 px-12 py-3 font-bold">Eliminar</button>
+          <button onClick={onRemoveCourse} className="absolute bottom-0 right-0 text-primario-200 px-12 py-3 font-bold">Eliminar</button>
         </section>
       </div>
     </Section>

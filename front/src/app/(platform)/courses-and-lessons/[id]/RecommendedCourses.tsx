@@ -22,7 +22,7 @@ export function RecommendedCourses() {
       <TextTitleSub
         title='Cursos Similares'
         subtitle="También te pueden interesar estas lecciones y cursos" />
-      <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6">
         {
           courses?.map((course) =>
             <CourseCard key={course.id} course={course} />)

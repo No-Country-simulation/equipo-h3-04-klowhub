@@ -8,8 +8,7 @@ import Link from "next/link"
 
 export function CartCoursesList() {
   const courses = useCartStore(state => state.courses)
-
-  console.log({ courses });
+  const removeCourse = useCartStore(state => state.removeCourse)
 
   if (!courses.length) {
     return (
@@ -29,6 +28,7 @@ export function CartCoursesList() {
       {
         courses.map((course, index) =>
           <CartCard
+            onRemoveCourse={() => removeCourse(course.id)}
             plataforma={""}
             sector={course.sector[0]}
             title={course.title}
