@@ -5,13 +5,15 @@ import { ConfirmationDialog } from '@/components/forms/ConfirmationDialog'
 import { promocionesSchema, PromocionesSchema } from '@/components/forms/createCourse/schemas/promociones'
 import { ErrorMessage } from '@/components/forms/multiStepForm/ErrorMessage'
 import { RadioField } from '@/components/forms/multiStepForm/RadioField'
+import { Button } from '@/components/ui/Button'
 import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Section } from '@/components/ui/Section'
 import { Course } from '@/interfaces/course'
 import { tabsStyles } from '@/lib/tabs-styles'
 import { useCreateCourseStore } from '@/store/createCourseStore'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Input, Tab, Tabs, useDisclosure } from "@nextui-org/react"
+import { Input, Tab, Tabs, useDisclosure } from "@nextui-org/react"
+import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from "react-hook-form"
 
@@ -52,7 +54,22 @@ export function PromocionesForm({ courses, applications }: Props) {
 
   return (
     <>
-      <ConfirmationDialog {...dialogState} />
+      <ConfirmationDialog
+        actions={
+          <>
+            <Link href={"/dashboard/courses/vista-previa"}>
+              <Button size={"big"}>Vista Previa</Button>
+            </Link>
+            <Link href={"/dashboard"}>
+              <Button size={"big"} variant={"outlined"}>
+                Volver al dashboard
+              </Button>
+            </Link>
+          </>
+        }
+        description='Ya está disponible para que estudiantes de todo el mundo lo descubran y aprovechen.'
+        title='¡Felicitaciones! Tu curso/Leccion se publicó con exito'
+        {...dialogState} />
       <form className="grid grid-cols-2 gap-12" onSubmit={form.handleSubmit(handleSubmit)}>
         <Form {...form}>
           <RadioField

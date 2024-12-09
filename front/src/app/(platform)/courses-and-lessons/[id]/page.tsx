@@ -1,13 +1,11 @@
 // Static data, this should be replaced for data in global state
-import { courseService } from '@/services/course.service'
+import { courseService } from '@/services/course.service';
 
 // COMPONENTES COMPARTIDOS
-import { CourseDetails } from './CourseDetails'
+import { CourseDetails } from './CourseDetails';
 
 interface Props {
-  params: {
-    id: string
-  }
+  params: Promise<{ id?: string }>;
 }
 
 export default async function CoursePage(props: Props) {

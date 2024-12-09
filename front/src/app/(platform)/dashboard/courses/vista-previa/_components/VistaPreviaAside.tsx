@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { BACK_URL } from "@/constants/constants";
