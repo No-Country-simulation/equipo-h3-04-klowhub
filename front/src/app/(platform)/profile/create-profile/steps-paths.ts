@@ -1,4 +1,4 @@
-const BASE_PATH = '/mentor/create-profile/';
+const BASE_PATH = '/profile/create-profile/';
 
 export const FORM_STEPS_PATHS = {
   '1': BASE_PATH + 'general-information',

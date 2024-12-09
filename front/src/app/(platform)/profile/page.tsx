@@ -10,13 +10,11 @@ export default function Perfil() {
 
 
   return (
-    <div className="p-4 max-w-7xl mx-auto items-between">
+    <div className="p-4 max-w-7xl mx-auto items-between flex flex-col gap-12">
       <Breadcrumbs paths={["Home", "Perfil de mentor"]} />
 
       <TextTitleSub title="Perfil de mentor" subtitle=""></TextTitleSub>
-      <div className="flex flex-col md:flex-row gap-8 mt-8 ">
-
-
+      <div className="flex flex-col md:flex-row gap-8">
         {/* Profile Card */}
         <PerfilCard
           className="w-full md:w-2/3 border-none " // Aquí pasas el className
@@ -27,8 +25,6 @@ export default function Perfil() {
           createdApps={3}
           subscribers={3}
           mentorshipDescription="Además de vender tus cursos y apps, ahora puedes ofrecer sesiones de mentoría personalizadas a otros creadores y emprendedores. Comparte tu experiencia y ayuda a otros a alcanzar sus objetivos, mientras expandes tu red y monetizas tus conocimientos. Conviértete en mentor y deja tu huella en la comunidad."
-
-
         />
 
         {/* Optimization Card */}

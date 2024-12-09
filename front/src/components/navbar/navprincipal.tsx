@@ -78,7 +78,7 @@ export default function NavBar() {
             <SwitchCreator />
           </NavbarItem>
           <NavbarItem>
-            <Link href="/perfil">
+            <Link href="/profile">
               <Image
                 alt="profile avatar"
                 className="object-cover rounded-switch w-full"

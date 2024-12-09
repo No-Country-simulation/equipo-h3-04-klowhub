@@ -61,7 +61,7 @@ const PerfilCard: React.FC<PerfilCardProps> = ({
             <h3 className="text-sm font-semibold mb-2">Ofrece sesiones de mentoría</h3>
             <p className="text-xs mb-4">{mentorshipDescription}</p>
             <Button color="secondary" className="bg-purple-600 text-white" >
-              <Link href="/perfil/create">
+              <Link href="/profile/create-profile/general-information">
                 Crear mi perfil de mentor
               </Link>
             </Button>
