@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 import { FindOneApplicationParamsDto } from './dto/find-one.dto';
@@ -56,13 +56,15 @@ export class ApplicationService {
     params?: FindOneApplicationParamsDto,
   ): Promise<Application | undefined> {
     try {
-      console.log('params', params);
-      console.log('where', params?.where);
-      console.log(typeof params?.where);
-      console.log(typeof params);
-      return await this.applicationRepository.findOne({
-        where: params?.where,
-      });
+      const { where } = params;
+
+      if (where) {
+        Logger.log(where);
+        return await this.applicationRepository.findOne({
+          where,
+        });
+      }
+      return null;
     } catch (error: any) {
       console.error('[ERROR]', error);
 

@@ -1,4 +1,5 @@
 import { nextui } from '@nextui-org/react';
+import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 
 export default {
@@ -73,10 +74,11 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(to right, #58759D, #556096, #514B8F, #492181)',
+        'custom-gradient':
+          'linear-gradient(to right, #58759D, #556096, #514B8F, #492181)',
       },
     },
   },
   darkMode: ['class'],
-  plugins: [nextui(), require('tailwindcss-animate')],
+  plugins: [nextui(), require('tailwindcss-animate'), typography()],
 } satisfies Config;

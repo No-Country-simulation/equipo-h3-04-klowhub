@@ -64,7 +64,12 @@ export class ApplicationController {
   ): Promise<GenericResponse<Application>> {
     try {
       const data = await this.applicationService.findOne(params);
-
+      if (!data)
+        return new GenericResponse<Application>({
+          data: null,
+          message: 'Application not found',
+          code: HttpStatus.NOT_FOUND,
+        });
       return new GenericResponse<Application>({
         data,
         message: 'Application found',

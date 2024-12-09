@@ -3,7 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsOptional, IsArray, IsString, IsNotEmpty } from 'class-validator';
 import { IApplication } from 'src/common/interface/db/application.interface';
-import { Application } from 'src/entity/application.entity';
 
 const allowedSelectKeys: (keyof IApplication)[] = ['id', 'description'];
 
@@ -22,6 +21,7 @@ export class FindOneApplicationParamsDto {
       }
     }
 
+    // Si el objeto está vacío, lanza un error
     if (Object.keys(value).length === 0) {
       throw new HttpException(
         'Empty object for "where" parameter',
@@ -31,11 +31,13 @@ export class FindOneApplicationParamsDto {
     return value;
   })
   @ApiProperty({
+    description: 'Condiciones para buscar una aplicación (en formato JSON)',
     required: true,
-    description: 'Application search parameters value',
+    type: String,
+    example: { id: 'a48c9347-8fcb-4c50-a405-ea58faff0c34' },
   })
-  @IsNotEmpty({ message: 'where params is mandatory' })
-  where: Partial<Application>;
+  @IsNotEmpty()
+  where: Record<string, any>;
 
   @IsOptional()
   @IsArray()
