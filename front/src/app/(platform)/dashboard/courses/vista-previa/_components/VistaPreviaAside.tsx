@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
+import { BACK_URL } from "@/constants/constants";
+import { Course } from "@/interfaces/course";
+import { useCartStore } from "@/store/cart.store";
 import { User } from "@nextui-org/react";
 import { GraduationCapIcon, MessageSquareIcon, StarIcon, VideoIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { CoursePreview } from "../page";
 import { ModulosAccordion } from "./ModulosAccordion";
 
@@ -13,6 +17,21 @@ interface Props {
 }
 
 export function VistaPreviaAside({ instructor, courseProgram }: Props) {
+  const addCourse = useCartStore((state) => state.addCourse)
+  const { id } = useParams()
+
+  const fetchAndAddCourse = async (id: Course['id']) => {
+    try {
+      const response = await fetch(`${BACK_URL}/course/${id}`);
+      const course = await response.json();
+
+      // Add the course to the store
+      addCourse(course);
+    } catch (error) {
+      console.error('Failed to fetch course:', error);
+    }
+  }
+
   return (
     <aside className="flex flex-col gap-6">
       <Section className="bg-card">
@@ -51,7 +70,7 @@ export function VistaPreviaAside({ instructor, courseProgram }: Props) {
       <ModulosAccordion modulos={courseProgram} />
       <section className="flex flex-col gap-6 items-center">
         <Button size={"big"}>Comprar Curso</Button>
-        <Button size={"big"} variant={"outlined"}>Añadir al carrito</Button>
+        <Button onClick={() => fetchAndAddCourse(id as string)} size={"big"} variant={"outlined"}>Añadir al carrito</Button>
       </section>
       <section className="p-4 rounded-lg border border-primario-300 flex flex-col gap-6">
         <p className="font-bold text-sm">Con la compra de este curso tiene un 50% OFF en la compra de “Título del producto”. </p>

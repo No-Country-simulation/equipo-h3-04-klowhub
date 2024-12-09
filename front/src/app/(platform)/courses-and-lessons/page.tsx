@@ -1,4 +1,5 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { fakeCourses } from "@/constants/fakeCourses";
 import { searchParamsCache } from "@/lib/createSearchParamsCache";
 import { courseService } from "@/services/course.service";
 import { SearchParams } from "nuqs";
@@ -31,7 +32,7 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
   })
 
   // // TODO - FILTRANDO EN EL CLIENTE POR QUE EL SERVICIO DE CURSO AUN NO LO MANEJA CORRECTAMENTE
-  const filteredCourses = courses.filter((course) => {
+  const filteredCourses = fakeCourses.filter((course) => {
     // Contenido pilar
     if (
       filters.contentPillar.length > 0 &&
