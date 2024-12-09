@@ -4,7 +4,16 @@ import { ChipsList } from "../ui/ChipsList";
 import { RatingSection } from "../ui/RatingSection";
 import { Section } from "../ui/Section";
 
-export function CartCard() {
+interface Props {
+  title: string;
+  img: string;
+  sector: string;
+  rating: number;
+  reviews: number;
+  plataforma: string;
+}
+
+export function CartCard({ img, plataforma, rating, reviews, sector, title }: Props) {
   return (
     <Section className="bg-card">
       <div className="flex gap-6 border-y py-3">

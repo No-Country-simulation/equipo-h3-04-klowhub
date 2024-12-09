@@ -1,3 +1,6 @@
+"use client"
+
+import { useCartStore } from "@/store/cart.store";
 import { Input } from "@nextui-org/react";
 import { EthereumiIcon } from "../icons/ethereum-icon";
 import { PaypalIcon } from "../icons/paypal-icon";
@@ -7,12 +10,18 @@ import { CheckoutButton } from "./checkout-button";
 import { CheckoutPrice } from "./checkout-price";
 
 export function CheckoutCard() {
+  const courses = useCartStore(state => state.courses)
+
+  const subtotal = courses.reduce((acc, course) => acc + course.price, 0)
+
+  const tarifaServicio = 130
+
   return (
     <Section className="flex flex-col gap-4 max-w-[400px] bg-card h-fit">
       <p className="font-bold text-xl">Resumen</p>
       <section className="flex flex-col gap-2">
-        <CheckoutPrice amount="$6.071" label="Subtotal" />
-        <CheckoutPrice amount="$130" label="Tarifa de Servicio" />
+        <CheckoutPrice amount={`$${subtotal}`} label="Subtotal" />
+        <CheckoutPrice amount={`$${tarifaServicio}`} label="Tarifa de Servicio" />
       </section>
       <section className="flex flex-col gap-3 pt-4">
         <p>Cupón de descuento</p>
@@ -25,18 +34,18 @@ export function CheckoutCard() {
       </section>
       <section className="flex flex-col gap-2">
         <CheckoutPrice amount="20%" label="Cupón HotSale" />
-        <CheckoutPrice amount="$6.201" label="Total" />
+        <CheckoutPrice amount={`$${subtotal + tarifaServicio}`} label="Total" />
       </section>
       <section className="flex flex-col gap-2">
         <p>Seleccione un método de pago</p>
         <footer className="grid grid-cols-3 gap-4">
-          <CheckoutButton>
+          <CheckoutButton disabled={!courses.length}>
             <StripeIcon />
           </CheckoutButton>
-          <CheckoutButton>
+          <CheckoutButton disabled={!courses.length}>
             <PaypalIcon />
           </CheckoutButton>
-          <CheckoutButton>
+          <CheckoutButton disabled={!courses.length}>
             <EthereumiIcon />
           </CheckoutButton>
         </footer>

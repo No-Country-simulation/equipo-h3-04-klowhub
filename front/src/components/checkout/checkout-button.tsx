@@ -2,11 +2,11 @@
 
 import { useDisclosure } from "@nextui-org/react";
 import Link from "next/link";
-import { PropsWithChildren } from "react";
+import { ComponentProps } from "react";
 import { ConfirmationDialog } from "../forms/ConfirmationDialog";
 import { Button } from "../ui/Button";
 
-export function CheckoutButton({ children }: PropsWithChildren) {
+export function CheckoutButton({ ...args }: ComponentProps<"button">) {
   const modalState = useDisclosure()
 
   return (
@@ -26,10 +26,11 @@ export function CheckoutButton({ children }: PropsWithChildren) {
           </>
         } />
       <button
-        className="rounded-lg bg-primario-100 p-3 flex justify-center items-center hover:bg-primario-300 transition"
+        {...args}
+        className="rounded-lg bg-primario-100 p-3 flex justify-center items-center hover:bg-primario-300 transition disabled:opacity-30 disabled:hover:bg-primario-100"
         onClick={() => modalState.onOpen()}
       >
-        {children}
+        {args.children}
       </button>
     </>
   )

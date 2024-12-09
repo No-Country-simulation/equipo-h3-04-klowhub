@@ -10,7 +10,7 @@ interface CartStoreActions {
   removeCourse: (id: Course['id']) => void;
 }
 
-export const useUserStore = create<CartStore & CartStoreActions>((set) => ({
+export const useCartStore = create<CartStore & CartStoreActions>((set) => ({
   courses: [],
   addCourse(course) {
     set((prevState) => ({

@@ -1,8 +1,8 @@
-import { CartCard } from "@/components/cards/cart.card";
 import { CheckoutCard } from "@/components/checkout/checkout-card";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { SupportMessage } from "@/components/ui/support-message";
 import { RecommendedCourses } from "../courses-and-lessons/[id]/RecommendedCourses";
+import { CartCoursesList } from "./cart-courses-list";
 
 export default function CartPage() {
   return (
@@ -14,13 +14,7 @@ export default function CartPage() {
         </p>
       </header>
       <section className="flex gap-6 flex-wrap">
-        <ul className="flex flex-col gap-6 flex-1">
-          {
-            Array(3).fill(1).map((n, index) =>
-              <CartCard key={index} />
-            )
-          }
-        </ul>
+        <CartCoursesList />
         <CheckoutCard />
       </section>
       <SupportMessage />
