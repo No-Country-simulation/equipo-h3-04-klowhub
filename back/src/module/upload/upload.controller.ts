@@ -2,16 +2,17 @@ import {
   Body,
   Controller,
   HttpException,
-  Logger,
   Post,
   UploadedFile,
+  UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
-import { LessonService } from '../lesson/lesson.service';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { SpeechService } from 'src/common/service/speech/speech.service';
+import { AnyFilesInterceptor, FileInterceptor } from '@nestjs/platform-express';
+import { UploadService } from './upload.service';
+import { GenericService } from 'src/common/service/idFinder/idfinder.service';
+import { UploadResponse } from 'src/common/service/upload/upload.service';
 
-interface UploadedFileInfo {
+export interface UploadedFileInfo {
   fieldname: string;
   originalname: string;
   encoding: string;
@@ -23,26 +24,54 @@ interface UploadedFileInfo {
 @Controller('upload')
 export class UploadController {
   constructor(
-    private readonly lessonService: LessonService,
-    private readonly speechService: SpeechService,
+    private readonly uploadService: UploadService,
+    private readonly idFinderService: GenericService,
   ) {}
 
   @Post()
-  @UseInterceptors(FileInterceptor('file'))
-  async upload(@Body() body: any, @UploadedFile() file: UploadedFileInfo) {
-    const { data } = body;
-    // TODO: definir DATA para que se actualice la info en la DB con el curso/app/lección/mentoría correspondiente
+  @UseInterceptors(
+    AnyFilesInterceptor({
+      limits: { fileSize: 30 * 1024 * 1024 }, // Limite de los archivos a 30MB
+    }),
+  )
+  async upload(@Body() body: any, @UploadedFiles() files: UploadedFileInfo[]) {
+    const { id } = JSON.parse(body.data);
+    if (!id) {
+      throw new HttpException('Se necesita un id', 500);
+    }
+    const finded = await this.idFinderService.findEntityById(id);
+    if (!finded) {
+      throw new HttpException(
+        'No se encontro el id para actualizar con imagen',
+        500,
+      );
+    }
+    interface Info {
+      video?: UploadResponse;
+      text?: string;
+    }
+    let info: Info = {};
+    for (const file of files) {
+      if (file.mimetype.includes('video')) {
+        const videoUrl = await this.uploadService.processAndUploadVideo(file);
+        console.log({ videoUrl });
+        info.video = videoUrl.video;
+      }
+      if (file.mimetype.includes('audio')) {
+        const audioData = await this.uploadService.processAndUploadAudio(file);
+        console.log({ audioData });
+        info.text = audioData.text;
+      }
+      if (file.mimetype.includes('image')) {
+        return await this.uploadService.processAndUploadImage(id, file);
+      }
+    }
 
-    if (file.mimetype.includes('audio')) {
-      // text: transcripcion, confidence: indice de certeza del texto según el audio
-      const { text, confidence } =
-        await this.speechService.transcribeAudioBuffer(file.buffer);
-      Logger.log('Audio detected');
-      return { text };
-    } else if (file.mimetype.includes('video')) {
-      return Logger.log('Video detected');
-    } else if (file.mimetype.includes('image')) {
-      return Logger.log('Image detected');
+    if (finded.entityName === 'Lesson' && info.video && info.text) {
+      return await this.uploadService.updateLesson(id, {
+        video: info.video.url,
+        translation: info.text,
+      });
     }
     throw new HttpException('Tipo de archivo no soportado', 500);
   }

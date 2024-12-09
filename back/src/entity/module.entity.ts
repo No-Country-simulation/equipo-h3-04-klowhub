@@ -1,39 +1,34 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
   Column,
-  OneToMany,
+  Entity,
   Index,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Course } from './course.entity';
 import { Lesson } from './lesson.entity';
 
+@Index(['title'])
 @Entity('module')
 export class Module {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Course, (course) => course.modules)
-  @JoinColumn({ name: 'course_id' })
-  course: Course;
-
-  @Column({
-    type: 'varchar',
-    length: 100,
-    nullable: false,
-  })
-  @Index()
+  @Column({ type: 'varchar', length: 255 })
   title: string;
 
-  @Column({
-    type: 'varchar',
-    length: 600,
-    nullable: true,
-  })
+  @Column({ type: 'text', nullable: false })
   description: string;
+
+  @ManyToOne(() => Course, (course) => course.modules)
+  course: Course;
 
   @OneToMany(() => Lesson, (lesson) => lesson.module)
   lessons: Lesson[];
+
+  constructor(partial?: Partial<Module>) {
+    Object.assign(this, partial);
+  }
 }

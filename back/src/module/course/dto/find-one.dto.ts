@@ -6,25 +6,16 @@ import { ICourse } from 'src/common/interface/db/course.interface';
 
 const allowedSelectKeys: (keyof ICourse)[] = [
   'title',
-  'price',
-  'type',
-  'level',
   'language',
-  'id',
-  'image',
-  'isFree',
+  'contentType',
+  'creationType',
   'description',
+  'skillLevel',
+  'platform',
+  'sector',
+  'contentPillar',
 ];
 
-const allowedRelations: (keyof ICourse)[] = [
-  'contentPillars',
-  'sectors',
-  'functionalities',
-  // 'platforms',
-  'platformsAndTool',
-  'owner',
-  'modules',
-];
 export class FindOneCourseParamsDto {
   @Transform((param) => {
     let value = param.value;
@@ -56,30 +47,6 @@ export class FindOneCourseParamsDto {
   })
   @IsNotEmpty()
   where: Record<string, any>;
-
-  @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  @ApiProperty({
-    isArray: true,
-    required: false,
-    description: 'Relations to load',
-  })
-  @Transform((param) => {
-    if (typeof param.value === 'string') {
-      return param.value.split(',');
-    }
-    console.log('param.value', param.value);
-
-    if (!param.value.every((e) => allowedRelations.includes(e))) {
-      throw new HttpException(
-        `Invalid relation key. Allowed keys: ${allowedRelations.join(', ')}`,
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-    return param.value;
-  })
-  relations: string[];
 
   @IsOptional()
   @IsArray()
