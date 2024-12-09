@@ -23,8 +23,10 @@ export function CheckoutCard() {
           </button>
         </div>
       </section>
-      <CheckoutPrice amount="20%" label="Cupón HotSale" />
-      <CheckoutPrice amount="$6.201" label="Total" />
+      <section className="flex flex-col gap-2">
+        <CheckoutPrice amount="20%" label="Cupón HotSale" />
+        <CheckoutPrice amount="$6.201" label="Total" />
+      </section>
       <section className="flex flex-col gap-2">
         <p>Seleccione un método de pago</p>
         <footer className="grid grid-cols-3 gap-4">

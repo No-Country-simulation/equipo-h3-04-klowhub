@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/Button"
 import { Form, FormLabel } from "@/components/ui/form"
 import { useCreateProfileStore } from "@/store/createMentorProfile.store"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useDisclosure } from "@nextui-org/react"
+import { Link, useDisclosure } from "@nextui-org/react"
 import { useForm } from "react-hook-form"
 
 export default function EducationPage() {
@@ -34,7 +34,18 @@ export default function EducationPage() {
 
   return (
     <>
-      <ConfirmationDialog {...dialogState} />
+      <ConfirmationDialog
+        {...dialogState}
+        description="Tu experiencia y conocimiento están a un paso de guiar a nuevos talentos. Nuestro equipo revisará tu perfil y te notificaremos tan pronto esté aprobado. ¡Gracias por ser parte de esta comunidad!"
+        title="¡Perfil creado exitosamente!"
+        actions={
+          <Link href="/dashboard">
+            <Button size={"big"}>
+              Ir al dashboard
+            </Button>
+          </Link>
+        }
+      />
       <form className="grid grid-cols-2 gap-6" onSubmit={form.handleSubmit(handleSubmit)}>
         <p className="col-span-2">Detallá la formación académica y las certificaciones que avalen tu conocimiento.</p>
         <Form {...form}>
