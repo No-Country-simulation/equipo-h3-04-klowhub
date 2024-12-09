@@ -1,10 +1,10 @@
 // Static data, this should be replaced for data in global state
 import TextTitleSub from '@/components/text/titlesubtitle'
+import { Breadcrumbs } from '@/components/ui/breadcrumbs'
 import { Button } from '@/components/ui/Button'
 import { Section } from '@/components/ui/Section'
 import { CourseInformation } from './_components/CourseInformation'
 import { VistaPreviaAside } from './_components/VistaPreviaAside'
-import { VistaPreviaBreadcrumns } from './_components/VistaPreviaBreadcrumbs'
 import { VistaPreviaCompartir } from './_components/VistaPreviaCompartir'
 import { VistaPreviaFunctionalities } from './_components/VistaPreviaFunctionalities'
 import { VistaPreviaInstructor } from './_components/VistaPreviaInstructor'
@@ -17,7 +17,7 @@ export type CoursePreview = typeof courseData
 export default async function VistaPreviaPage() {
   return (
     <section className='flex flex-col gap-6'>
-      <VistaPreviaBreadcrumns />
+      <Breadcrumbs paths={["Home", "Mis Cursos", "Vista Previa"]} />
       <section className='grid grid-cols-1 lg:grid-cols-[1fr_minmax(200px,400px)] gap-12'>
         <section className='flex flex-col gap-6'>
           <TextTitleSub

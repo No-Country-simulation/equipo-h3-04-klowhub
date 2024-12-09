@@ -3,7 +3,7 @@
 import OptimatePerfil from "@/components/cards/optimate.perfil.card"
 import PerfilCard from "@/components/cards/perfil.card"
 import TextTitleSub from "@/components/text/titlesubtitle"
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import Link from "next/link"
 
 export default function Perfil() {
@@ -11,10 +11,7 @@ export default function Perfil() {
 
   return (
     <div className="p-4 max-w-7xl mx-auto items-between">
-      <Breadcrumbs className="mb-4">
-        <BreadcrumbItem href="/">Home</BreadcrumbItem>
-        <BreadcrumbItem>Perfil de mentor</BreadcrumbItem>
-      </Breadcrumbs>
+      <Breadcrumbs paths={["Home", "Perfil de mentor"]} />
 
       <TextTitleSub title="Perfil de mentor" subtitle=""></TextTitleSub>
       <div className="flex flex-col md:flex-row gap-8 mt-8 ">

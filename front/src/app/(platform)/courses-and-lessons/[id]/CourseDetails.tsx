@@ -1,11 +1,11 @@
 "use client"
 
 import TextTitleSub from "@/components/text/titlesubtitle";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Course } from "@/interfaces/course";
 import { useState } from "react";
 import { CourseInformation } from "../../dashboard/courses/vista-previa/_components/CourseInformation";
 import { VistaPreviaAside } from "../../dashboard/courses/vista-previa/_components/VistaPreviaAside";
-import { VistaPreviaBreadcrumns } from "../../dashboard/courses/vista-previa/_components/VistaPreviaBreadcrumbs";
 import { VistaPreviaMultimedia } from "../../dashboard/courses/vista-previa/_components/VistaPreviaMultimedia";
 import { courseData } from "../../dashboard/courses/vista-previa/data";
 import { ExpandedInformation } from "./ExpandedInformation";
@@ -20,7 +20,7 @@ export function CourseDetails({ course }: Props) {
 
   return (
     <section className='flex flex-col gap-6'>
-      <VistaPreviaBreadcrumns />
+      <Breadcrumbs paths={["Home", "Mis Cursos", "Vista Previa"]} />
       <section className='grid grid-cols-1 lg:grid-cols-[1fr_minmax(200px,400px)] gap-20'>
         <section className='flex flex-col gap-6'>
           <TextTitleSub

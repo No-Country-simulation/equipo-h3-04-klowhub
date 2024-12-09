@@ -34,7 +34,7 @@ export const courseService = async (
       },
     };
     const resCourse: ResCourse = await fetchData(url, options);
-    return resCourse.data.result;
+    return resCourse.data?.result ?? [];
   } catch (error) {
     console.error('Error fetching courses', error);
     return [];

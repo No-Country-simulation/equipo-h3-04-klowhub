@@ -1,12 +1,9 @@
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function Header() {
   return (
     <section>
-      <Breadcrumbs>
-        <BreadcrumbItem>Home</BreadcrumbItem>
-        <BreadcrumbItem>Perfil de Mentor</BreadcrumbItem>
-      </Breadcrumbs>
+      <Breadcrumbs paths={["Home", "Perfil de Mentor"]} />
       <p>Conviértete en mentor: Comparte tu experiencia</p>
     </section>
   )

@@ -1,9 +1,9 @@
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { searchParamsCache } from "@/lib/createSearchParamsCache";
 import { courseService } from "@/services/course.service";
 import { SearchParams } from "nuqs";
 import { CoursesList } from "./_components/CoursesList";
 import { CoursesNotFound } from "./_components/CoursesNotFound";
-import { Header } from "./_components/Header";
 import { PagesNavigation } from "./_components/PagesNavigation";
 import { PilarFilters } from "./_components/PilarFilters";
 import { SearchHeader } from "./_components/SearchHeader";
@@ -76,7 +76,7 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
 
   return (
     <>
-      <Header />
+      <Breadcrumbs paths={["Home", "Cursos y lecciones"]} />
       <section className="flex flex-col gap-6 pt-12">
         <p className="font-bold">Encuentra el aprendizaje que estás buscando</p>
         <SearchHeader />
