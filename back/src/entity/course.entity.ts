@@ -3,49 +3,25 @@ import {
   Entity,
   Index,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { VendorProfile } from './vendor-profile.entity';
 import { Module } from './module.entity';
-import { ContentPillar } from './content-pillar.entity';
-import { Sector } from './sector.entity';
-import { Functionality } from './funcionality.entity';
-import { Platform } from './platform.entity';
-import { PlatformAndTool } from './plantform_and_tool.entity';
-import { ICourse } from 'src/common/interface/db/course.interface';
+import {
+  ContentType,
+  CourseLevel,
+  CreationType,
+  DicountType,
+  DiscountOption,
+  Platform,
+} from 'src/common/interface/db/course.interface';
 
-export enum CourseLevel {
-  BASIC = 'basic',
-  INTERMEDIATE = 'intermediate',
-  ADVANCED = 'advanced',
-}
-
-export enum CourseLanguage {
-  ENGLISH = 'english',
-  SPANISH = 'spanish',
-}
-
-export enum CoursePlatform {
-  APPSHEET = 'AppSheet',
-  POWERAPPS = 'Power Apps',
-}
-
-export enum CourseType {
-  COURSE = 'course',
-  LESSON = 'lesson',
-}
-
-@Index(['title', 'description', 'level', 'language'])
-@Index(['language'])
-@Index(['type', 'level', 'language'])
-@Index(['isFree', 'price'])
-@Index(['language', 'level'])
+@Index(['title', 'description', 'skillLevel', 'language'])
 @Entity('course')
-export class Course implements ICourse {
+export class Course {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -53,71 +29,72 @@ export class Course implements ICourse {
   @Index()
   title: string;
 
-  @Column({ type: 'varchar', length: 600, nullable: true })
-  @Index()
-  description: string;
-
-  @Column({ type: 'varchar', length: 600, nullable: true })
-  @Index()
-  image: string;
-
-  @Column({ type: 'boolean', default: true })
-  isFree: boolean;
+  @Column({ type: 'enum', enum: ContentType })
+  contentType: ContentType;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
   price: number;
 
-  @Column({ type: 'enum', enum: CourseType, default: CourseType.COURSE })
-  @Index()
-  type: CourseType;
+  @Column({ type: 'enum', enum: Platform })
+  platform: string;
 
-  @Column({
-    type: 'enum',
-    enum: CourseLevel,
-    default: CourseLevel.BASIC,
-  })
-  @Index()
-  level: CourseLevel;
+  @Column({ type: 'text', nullable: true })
+  toolsAndPlatforms: string;
 
-  @Column({ type: 'enum', enum: CourseLanguage })
-  language: CourseLanguage;
+  @Column({ type: 'text', enum: CreationType })
+  creationType: CreationType;
 
-  @ManyToMany(() => ContentPillar)
-  @JoinTable({ name: 'course_content_pillar' })
-  contentPillars: ContentPillar[];
+  @Column({ type: 'text', nullable: false })
+  description: string;
 
-  @ManyToMany(() => Sector)
-  @JoinTable({
-    name: 'course_sector',
-  })
-  sectors: Sector[];
+  @Column({ type: 'enum', enum: CourseLevel })
+  skillLevel: CourseLevel;
 
-  @ManyToMany(() => Functionality)
-  @JoinTable({
-    name: 'course_functionality',
-  })
-  functionalities: Functionality[];
+  @Column({ type: 'varchar', length: 50 })
+  language: string;
 
-  // @ManyToMany(() => Platform)
-  // @JoinTable({
-  //   name: 'course_platform',
-  // })
-  // platforms: Platform[];
-  @Column({ type: 'enum', enum: CoursePlatform })
-  platform: CoursePlatform;
+  @Column({ type: 'simple-array', nullable: true })
+  labels: string[];
 
-  @ManyToMany(() => PlatformAndTool)
-  @JoinTable({
-    name: 'course_platform_and_tool',
-  })
-  platformsAndTool: PlatformAndTool[];
+  @Column({ type: 'enum', enum: DiscountOption })
+  hasDiscount: DiscountOption;
+
+  @Column({ type: 'uuid', nullable: true })
+  discountProductId: string;
+
+  @Column({ type: 'text', nullable: false })
+  learningOutcomes: string;
+
+  @Column({ type: 'simple-array', nullable: true })
+  sector: string[];
+
+  @Column({ type: 'simple-array', nullable: true })
+  contentPillar: string[];
+
+  @Column({ type: 'simple-array', nullable: true })
+  functionalities: string[];
+
+  @Column({ type: 'simple-array', nullable: true })
+  prerequisites: string[];
+
+  @Column({ type: 'text', nullable: false })
+  detailedDescription: string;
+
+  @Column({ type: 'float', nullable: true })
+  discountPercentage?: number;
+
+  @Column({ type: 'enum', enum: DicountType, nullable: true })
+  discountTypeProduct?: DicountType;
+
+  @Column({ type: 'varchar', nullable: true })
+  coverImage?: string;
 
   @ManyToOne(() => VendorProfile, (vendor) => vendor.courses)
   @JoinColumn({ name: 'owner_id' })
   owner: VendorProfile;
 
   @OneToMany(() => Module, (module) => module.course)
-  modules: Module[];
+  modules: Module;
 
   constructor(partial?: Partial<Course>) {
     Object.assign(this, partial);

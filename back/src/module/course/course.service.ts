@@ -1,30 +1,12 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Course,
-  CourseLanguage,
-  CourseLevel,
-  CourseType,
-} from 'src/entity/course.entity';
-import { FindOneOptions, Repository } from 'typeorm';
+import { Course } from 'src/entity/course.entity';
+import { Repository } from 'typeorm';
 import { FindOneCourseParamsDto } from './dto/find-one.dto';
 import { FindAllCourseParamsDto } from './dto/find-all.dto';
 import { FindAllCourseResponse } from './interface/find-all.response';
-
-export interface CourseProperties {
-  levels?: CourseLevel[];
-  languages?: CourseLanguage[];
-  isFree?: boolean;
-  type?: CourseType[];
-  platforms?: string[];
-  tools?: string[];
-  plantformsAndTools?: string[];
-  sector?: string[];
-}
-
-export interface FindByProperties extends FindAllCourseParamsDto {
-  properties: CourseProperties;
-}
+import { CreateCourseDto } from './dto/create.dto';
+import { UpdateCourseDto } from './dto/update.dto';
 
 @Injectable()
 export class CourseService {
@@ -43,9 +25,7 @@ export class CourseService {
         take: params?.take || this.DEFAULT_LIMIT,
         skip: params?.offset || 0,
         order: params?.order,
-        where: params?.where,
-        relations: params.relations,
-        select: params?.select ? ['id', ...params.select] : undefined,
+        relations: ['modules', 'modules.lessons'],
       });
 
       const total = await this.courseRepository.count();
@@ -74,6 +54,7 @@ export class CourseService {
         Logger.log(where);
         return await this.courseRepository.findOne({
           where,
+          relations: ['modules'],
         });
       }
       return null;
@@ -87,11 +68,62 @@ export class CourseService {
     }
   }
 
-  async findByProperties(param: FindByProperties): Promise<Course[]> {
+  async findByProperties(param: any): Promise<Course[]> {
     try {
-      const qb = await this.courseRepository.createQueryBuilder('course');
+      const qb = this.courseRepository.createQueryBuilder('course');
 
-      return [];
+      // Aplicar filtros dinámicos
+      if (param.properties.levels && param.properties.levels.length > 0) {
+        qb.andWhere('course.level IN (:...levels)', {
+          levels: param.properties.levels,
+        });
+      }
+
+      if (param.properties.languages && param.properties.languages.length > 0) {
+        qb.andWhere('course.language IN (:...languages)', {
+          languages: param.properties.languages,
+        });
+      }
+
+      if (param.properties.isFree !== undefined) {
+        qb.andWhere('course.isFree = :isFree', {
+          isFree: param.properties.isFree,
+        });
+      }
+
+      if (param.properties.platforms && param.properties.platforms.length > 0) {
+        qb.innerJoinAndSelect('course.platforms', 'platform').andWhere(
+          'platform.id IN (:...platforms)',
+          {
+            platforms: param.properties.platforms,
+          },
+        );
+      }
+
+      if (param.properties.tools && param.properties.tools.length > 0) {
+        qb.innerJoinAndSelect('course.tools', 'tool').andWhere(
+          'tool.id IN (:...tools)',
+          {
+            tools: param.properties.tools,
+          },
+        );
+      }
+
+      if (param.properties.sector && param.properties.sector.length > 0) {
+        qb.innerJoinAndSelect('course.sectors', 'sector').andWhere(
+          'sector.name IN (:...sector)',
+          {
+            sector: param.properties.sector,
+          },
+        );
+      }
+
+      // Paginación y orden
+      qb.take(param.take || this.DEFAULT_LIMIT).skip(param.offset || 0);
+
+      const result = await qb.getMany();
+
+      return result;
     } catch (error: unknown) {
       console.error(error);
 
@@ -99,9 +131,49 @@ export class CourseService {
         throw error;
       }
       throw new HttpException(
-        'Failed to fetch courses',
+        'Failed to fetch courses by properties',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  async createCourse(createCourseDto: CreateCourseDto): Promise<Course> {
+    try {
+      // Validar y mapear DTO a la entidad `Course`
+      const newCourse = this.courseRepository.create(createCourseDto);
+
+      // Guardar en la base de datos
+      const savedCourse = await this.courseRepository.save(newCourse);
+
+      return savedCourse;
+    } catch (error) {
+      console.error('Error creating course:', error);
+      throw new HttpException(
+        'Failed to create course',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  async updateCourse(
+    id: string,
+    updateCourseDto: UpdateCourseDto,
+  ): Promise<Course> {
+    const existingCourse = await this.courseRepository.findOne({
+      where: { id },
+    });
+
+    if (!existingCourse) {
+      throw new HttpException(
+        `Curso no encontrado con id: ${id}`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    const updatedCourse = this.courseRepository.merge(
+      existingCourse,
+      updateCourseDto,
+    );
+    return this.courseRepository.save(updatedCourse);
   }
 }

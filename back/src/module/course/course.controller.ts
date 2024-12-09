@@ -6,6 +6,10 @@ import {
   ValidationPipe,
   HttpException,
   HttpStatus,
+  Post,
+  Body,
+  Patch,
+  Param,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -13,6 +17,8 @@ import { Course } from 'src/entity/course.entity';
 import { FindOneCourseParamsDto } from './dto/find-one.dto';
 import { FindAllCourseParamsDto } from './dto/find-all.dto';
 import { FindAllCourseResponse } from './interface/find-all.response';
+import { CreateCourseDto } from './dto/create.dto';
+import { UpdateCourseDto } from './dto/update.dto';
 
 @ApiTags('course')
 @Controller('course')
@@ -79,7 +85,35 @@ export class CourseController {
     }
   }
 
-  // @Get('/filter')
-  // @ApiResponse({ status: 200, description: 'Curso encontrado', type: Course[] })
-  // @ApiResponse({ status: 404, description: 'Curso no encontrado' })
+  @Post('/')
+  @ApiResponse({ status: 200, description: 'Curso creado', type: Course })
+  @ApiResponse({ status: 404, description: 'Curso no creado' })
+  async createCourse(@Body() createCourseDto: CreateCourseDto) {
+    try {
+      const data = await this.courseService.createCourse(createCourseDto);
+
+      return new GenericResponse<Course>({
+        data,
+        message: 'Course created',
+        code: HttpStatus.OK,
+      });
+    } catch (error: unknown) {
+      console.error(error);
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        'Failed to create course',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Patch(':id')
+  async updateCourse(
+    @Param('id') id: string,
+    @Body() updateCourseDto: UpdateCourseDto,
+  ) {
+    return this.courseService.updateCourse(id, updateCourseDto);
+  }
 }
