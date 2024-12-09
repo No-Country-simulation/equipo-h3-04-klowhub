@@ -1,0 +1,4 @@
+/* El item seleccionado del accordion tiene otro color */
+#modulos-accordion > div[data-open='true'] span {
+  color: blueviolet;
+}
