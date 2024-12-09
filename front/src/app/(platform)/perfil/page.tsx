@@ -4,7 +4,7 @@ import OptimatePerfil from "@/components/cards/optimate.perfil.card"
 import PerfilCard from "@/components/cards/perfil.card"
 import TextTitleSub from "@/components/text/titlesubtitle"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import Link from "next/link"
+import { SupportMessage } from "@/components/ui/support-message"
 
 export default function Perfil() {
 
@@ -40,15 +40,7 @@ export default function Perfil() {
           buttonText="Ir a los recursos"
         />
       </div >
-      <div className="border border-red flex mt-8 justify-center">
-        <TextTitleSub title="" subtitle="¿Tenés alguna pregunta? No dudes en escribirnos a klowhub@soporte.com o visitar nuestro centro de ayuda. ¡Estamos aquí para asistirte!"></TextTitleSub>
-
-      </div>
-      <div className="flex justify-center mt-8 gap-4 text-link-blue">
-        <Link href="#" className="hover:text-blue-700" >Centro de ayuda</Link>
-        <Link href="#" className="hover:text-blue-700">Soporte</Link>
-      </div>
+      <SupportMessage />
     </div >
   )
 }
-
