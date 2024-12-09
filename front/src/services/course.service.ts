@@ -15,18 +15,20 @@ export const courseService = async (
   params: IFindAllCourseParams,
 ): Promise<Course[]> => {
   try {
-    const queryParams = new URLSearchParams();
+    // const queryParams = new URLSearchParams();
 
-    if (params.take) queryParams.append('take', String(params.take));
-    if (params.offset) queryParams.append('offset', String(params.offset));
-    if (params.order) queryParams.append('order', JSON.stringify(params.order));
-    if (params.where) queryParams.append('where', JSON.stringify(params.where));
-    if (params.relations)
-      queryParams.append('relations', params.relations.toString());
-    if (params.select)
-      queryParams.append('select', JSON.stringify(params.select));
+    // if (params.take) queryParams.append('take', String(params.take));
+    // if (params.offset) queryParams.append('offset', String(params.offset));
+    // if (params.order) queryParams.append('order', JSON.stringify(params.order));
+    // if (params.where) queryParams.append('where', JSON.stringify(params.where));
+    // if (params.relations)
+    //   queryParams.append('relations', params.relations.toString());
+    // if (params.select)
+    //   queryParams.append('select', JSON.stringify(params.select));
 
-    const url = `/course?${queryParams.toString()}`;
+    // console.log(queryParams.toString());
+
+    const url = `/course`;
     const options = {
       method: 'GET',
       headers: {

@@ -9,6 +9,8 @@ import Link from "next/link"
 export function CartCoursesList() {
   const courses = useCartStore(state => state.courses)
 
+  console.log({ courses });
+
   if (!courses.length) {
     return (
       <Section className="bg-card flex-1 flex items-center justify-center flex-col gap-6">
@@ -27,10 +29,10 @@ export function CartCoursesList() {
       {
         courses.map((course, index) =>
           <CartCard
-            plataforma={course.platforms[0]}
-            sector={course.sectors[0].name}
+            plataforma={""}
+            sector={course.sector[0]}
             title={course.title}
-            img={course.image}
+            img={course.coverImage || ""}
             reviews={14}
             rating={12}
             key={index} />

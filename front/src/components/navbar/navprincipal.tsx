@@ -1,6 +1,7 @@
 'use client';
 
 import { NAV_LINKS } from '@/constants/navLinks';
+import { useCartStore } from '@/store/cart.store';
 import {
   Navbar,
   NavbarBrand,
@@ -14,6 +15,8 @@ import SwitchCreator from '../switch/switch.creator';
 import SwitchHome from '../switch/switch.home';
 
 export default function NavBar() {
+  const courses = useCartStore(state => state.courses)
+
   return (
     <div className="w-full h-[93px]">
       <Image
@@ -53,9 +56,17 @@ export default function NavBar() {
           </NavbarContent>
         </section>
         <NavbarContent justify="end">
-          <NavbarItem>
-            <ShoppingCart />
-          </NavbarItem>
+          <Link className='relative' href={"/cart"}>
+            {
+              courses.length > 0 &&
+              <span className='absolute size-6 text-xs  bg-primario-600 rounded-full flex items-center justify-center -translate-x-4 translate-y-3'>
+                {courses.length}
+              </span>
+            }
+            <NavbarItem>
+              <ShoppingCart />
+            </NavbarItem>
+          </Link>
           <NavbarItem>
             <Bell />
           </NavbarItem>

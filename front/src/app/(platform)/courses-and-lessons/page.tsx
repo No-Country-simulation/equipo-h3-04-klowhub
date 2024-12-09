@@ -1,5 +1,4 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { fakeCourses } from "@/constants/fakeCourses";
 import { searchParamsCache } from "@/lib/createSearchParamsCache";
 import { courseService } from "@/services/course.service";
 import { SearchParams } from "nuqs";
@@ -32,12 +31,12 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
   })
 
   // // TODO - FILTRANDO EN EL CLIENTE POR QUE EL SERVICIO DE CURSO AUN NO LO MANEJA CORRECTAMENTE
-  const filteredCourses = fakeCourses.filter((course) => {
+  const filteredCourses = courses.filter((course) => {
     // Contenido pilar
     if (
       filters.contentPillar.length > 0 &&
       !filters.contentPillar.some((pillar) =>
-        course.contentPillars.some((cp) => cp.name === pillar)
+        course.contentPillar.some((cp) => cp === pillar)
       )
     ) {
       return false;
@@ -47,7 +46,7 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
     if (
       filters.functionalities.length > 0 &&
       !filters.functionalities.some((func) =>
-        course.functionalities.some((cf) => cf.name === func)
+        course.functionalities.some((cf) => cf === func)
       )
     ) {
       return false;
@@ -61,15 +60,39 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
       return false;
     }
 
-    // Plataformas
     if (
-      filters.platforms.length > 0 &&
-      !filters.platforms.some((platform) =>
-        course.platforms.some((cp) => cp.name === platform)
+      filters.languages.length > 0 &&
+      !filters.languages.some((lang) => course.language.includes(lang))
+    ) {
+      return false;
+    }
+
+    // Sectores
+    if (
+      filters.sectors.length > 0 &&
+      !filters.sectors.some((sector) =>
+        course.sector.some((cs) => cs === sector)
       )
     ) {
       return false;
     }
+
+    if (
+      filters.contentType.length &&
+      filters.contentType[0] !== (course.contentType as string)
+    ) {
+      return false;
+    }
+
+    // Herramientas y Plataformas
+    // if (
+    //   filters.toolsAndPlatforms.length > 0 &&
+    //   !filters.toolsAndPlatforms.some((tool) =>
+    //     course.platformsAndTool.some((pt) => pt === tool)
+    //   )
+    // ) {
+    //   return false;
+    // }
 
     // Agregar los filtros que faltan
     return true;
@@ -88,7 +111,7 @@ export default async function CursosYLeccionesPage({ searchParams }: Props) {
             <>
               <CoursesList courses={filteredCourses} />
               {/* TODO - Obtener el total de items usando el servicio de cursos */}
-              <PagesNavigation totalItems={100} />
+              <PagesNavigation totalItems={courses.length} />
             </>
             : <CoursesNotFound />
         }

@@ -44,12 +44,11 @@ export default async function UltimateCourseCard() {
                 <div className="flex flex-col gap-0 w-full h-full m-4">
                   <TextTitleSub title="Automatización de flujos de trabajo con AppSheet" subtitle="                                        Aprende a crear flujos de trabajo automatizados en AppSheet, optimizando la gestión de tareas y aprobaciones, lo que mejorará la productividad en tus proyectos.
 "/>
-
                   <div className="flex m-4 ml-0 gap-2 flex-wrap">
                     {
-                      courses[0].sectors.map((sector) => (
-                        <Chip color="secondary" key={sector.id} size="md" variant="flat" className="text-white">
-                          {sector.name}
+                      courses[0].sector.map((sector) => (
+                        <Chip color="secondary" key={sector} size="md" variant="flat" className="text-white">
+                          {sector}
                         </Chip>
                       ))
                     }

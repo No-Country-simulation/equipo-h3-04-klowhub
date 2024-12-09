@@ -1,8 +1,5 @@
 "use client"
 
-import { BACK_URL } from "@/constants/constants";
-import { Course } from "@/interfaces/course";
-import { useCartStore } from "@/store/cart.store";
 import { ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,30 +16,15 @@ interface Props {
   image: string;
   id: string;
   onOpenDetails: () => void;
-  // TODO - agregar rating y reviews props
+  onAddToCart: () => void;
 }
 
-export function BrowseCard({ description, functionalities, image, title, id, onOpenDetails }: Props) {
-  const addCourse = useCartStore((state) => state.addCourse)
-
-  const fetchAndAddCourse = async (id: Course['id']) => {
-    try {
-      const response = await fetch(`${BACK_URL}/course/${id}`);
-      const course = await response.json();
-
-      // Add the course to the store
-      addCourse(course);
-    } catch (error) {
-      console.error('Failed to fetch course:', error);
-    }
-  };
-
+export function BrowseCard({ description, functionalities, image, title, id, onOpenDetails, onAddToCart }: Props) {
   return (
     <li className="flex rounded-xl overflow-hidden bg-card">
       <figure className="relative aspect-[3/2] hidden min-h-[300px] md:block">
         <Image
           className="w-full h-full object-cover"
-          // TODO - Cambiar por course.image cuando esten hosteadas las imagenes
           src={image}
           alt="course image"
           fill
@@ -57,7 +39,7 @@ export function BrowseCard({ description, functionalities, image, title, id, onO
         <ChipsList className="flex-row" items={functionalities} />
         <RatingSection rating={3} reviews={12} />
         <footer className="flex items-center gap-6 flex-wrap">
-          <Button onClick={() => fetchAndAddCourse(id)}>
+          <Button onClick={onAddToCart}>
             <ShoppingCartIcon />
             añadir al carrito
           </Button>

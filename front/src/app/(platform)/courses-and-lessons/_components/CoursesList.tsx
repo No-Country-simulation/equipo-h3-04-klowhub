@@ -4,9 +4,11 @@ import { BrowseCard } from "@/components/cards/browse.card";
 import { Modal } from "@/components/modal/Modal";
 import { MotionItem } from "@/components/motion/MotionItem";
 import { Course } from "@/interfaces/course";
+import { useCartStore } from "@/store/cart.store";
 import { useDisclosure } from "@nextui-org/react";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { toast } from "sonner";
 import { CourseDetails } from "./CourseDetails";
 
 interface Props {
@@ -14,6 +16,7 @@ interface Props {
 }
 
 export function CoursesList({ courses }: Props) {
+  const addCourse = useCartStore((state) => state.addCourse)
   const modalState = useDisclosure()
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
 
@@ -31,10 +34,14 @@ export function CoursesList({ courses }: Props) {
             courses.map((course) =>
               <MotionItem key={course.id} layout>
                 <BrowseCard
-                  functionalities={course.functionalities.map(f => f.name)}
+                  onAddToCart={() => {
+                    addCourse(course);
+                    toast("Curso añadido al carrito!")
+                  }}
+                  functionalities={course.functionalities.map(f => f)}
                   onOpenDetails={() => handleSelectCourse(course)}
                   description={course.description}
-                  image={course.image}
+                  image={course.coverImage || ""}
                   title={course.title}
                   id={course.id}
                 />
