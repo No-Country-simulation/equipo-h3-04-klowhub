@@ -29,6 +29,11 @@ export enum CourseLanguage {
   SPANISH = 'spanish',
 }
 
+export enum CoursePlatform {
+  APPSHEET = 'AppSheet',
+  POWERAPPS = 'Power Apps',
+}
+
 export enum CourseType {
   COURSE = 'course',
   LESSON = 'lesson',
@@ -93,11 +98,13 @@ export class Course implements ICourse {
   })
   functionalities: Functionality[];
 
-  @ManyToMany(() => Platform)
-  @JoinTable({
-    name: 'course_platform',
-  })
-  platforms: Platform[];
+  // @ManyToMany(() => Platform)
+  // @JoinTable({
+  //   name: 'course_platform',
+  // })
+  // platforms: Platform[];
+  @Column({ type: 'enum', enum: CoursePlatform })
+  platform: CoursePlatform;
 
   @ManyToMany(() => PlatformAndTool)
   @JoinTable({

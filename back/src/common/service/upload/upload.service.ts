@@ -49,7 +49,7 @@ export class UploadService {
       stream.on('finish', async () => {
         const [url] = await file.getSignedUrl({
           action: this.permission,
-          expires: this.signExpiry,
+          expires: Date.now() + this.signExpiry,
         });
 
         resolve({

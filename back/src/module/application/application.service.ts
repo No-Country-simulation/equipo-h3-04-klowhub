@@ -1,45 +1,31 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Course,
-  CourseLanguage,
-  CourseLevel,
-  CourseType,
-} from 'src/entity/course.entity';
 import { FindOneOptions, Repository } from 'typeorm';
-import { FindOneCourseParamsDto } from './dto/find-one.dto';
-import { FindAllCourseParamsDto } from './dto/find-all.dto';
-import { FindAllCourseResponse } from './interface/find-all.response';
+import { FindOneApplicationParamsDto } from './dto/find-one.dto';
+import { FindAllApplicationParamsDto } from './dto/find-all.dto';
+import { FindAllApplicationResponse } from './interface/find-all.response';
+import { Application } from 'src/entity/application.entity';
 
-export interface CourseProperties {
-  levels?: CourseLevel[];
-  languages?: CourseLanguage[];
-  isFree?: boolean;
-  type?: CourseType[];
-  platforms?: string[];
-  tools?: string[];
-  plantformsAndTools?: string[];
-  sector?: string[];
-}
+export interface ApplicationProperties {}
 
-export interface FindByProperties extends FindAllCourseParamsDto {
-  properties: CourseProperties;
+export interface FindByProperties extends FindAllApplicationParamsDto {
+  properties: ApplicationProperties;
 }
 
 @Injectable()
-export class CourseService {
+export class ApplicationService {
   constructor(
-    @InjectRepository(Course)
-    private courseRepository: Repository<Course>,
+    @InjectRepository(Application)
+    private applicationRepository: Repository<Application>,
   ) {}
 
   private readonly DEFAULT_LIMIT = 30;
 
   async findAll(
-    params?: FindAllCourseParamsDto,
-  ): Promise<FindAllCourseResponse> {
+    params?: FindAllApplicationParamsDto,
+  ): Promise<FindAllApplicationResponse> {
     try {
-      const result = await this.courseRepository.find({
+      const result = await this.applicationRepository.find({
         take: params?.take || this.DEFAULT_LIMIT,
         skip: params?.offset || 0,
         order: params?.order,
@@ -48,7 +34,7 @@ export class CourseService {
         select: params?.select ? ['id', ...params.select] : undefined,
       });
 
-      const total = await this.courseRepository.count();
+      const total = await this.applicationRepository.count();
 
       return {
         result,
@@ -60,19 +46,21 @@ export class CourseService {
       console.error(error);
 
       throw new HttpException(
-        'Failed to fetch courses',
+        'Failed to fetch applications',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
 
-  async findOne(params?: FindOneCourseParamsDto): Promise<Course | undefined> {
+  async findOne(
+    params?: FindOneApplicationParamsDto,
+  ): Promise<Application | undefined> {
     try {
       const { where } = params;
 
       if (where) {
         Logger.log(where);
-        return await this.courseRepository.findOne({
+        return await this.applicationRepository.findOne({
           where,
         });
       }
@@ -81,15 +69,17 @@ export class CourseService {
       console.error('[ERROR]', error);
 
       throw new HttpException(
-        error?.message || 'Failed to fetch course',
+        error?.message || 'Failed to fetch application',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
 
-  async findByProperties(param: FindByProperties): Promise<Course[]> {
+  async findByProperties(param: FindByProperties): Promise<Application[]> {
     try {
-      const qb = await this.courseRepository.createQueryBuilder('course');
+      const qb = await this.applicationRepository.createQueryBuilder(
+        'application',
+      );
 
       return [];
     } catch (error: unknown) {
@@ -99,7 +89,7 @@ export class CourseService {
         throw error;
       }
       throw new HttpException(
-        'Failed to fetch courses',
+        'Failed to fetch applications',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

@@ -2,30 +2,12 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsOptional, IsArray, IsString, IsNotEmpty } from 'class-validator';
-import { ICourse } from 'src/common/interface/db/course.interface';
+import { IApplication } from 'src/common/interface/db/application.interface';
 
-const allowedSelectKeys: (keyof ICourse)[] = [
-  'title',
-  'price',
-  'type',
-  'level',
-  'language',
-  'id',
-  'image',
-  'isFree',
-  'description',
-];
+const allowedSelectKeys: (keyof IApplication)[] = ['id', 'description'];
 
-const allowedRelations: (keyof ICourse)[] = [
-  'contentPillars',
-  'sectors',
-  'functionalities',
-  // 'platforms',
-  'platformsAndTool',
-  'owner',
-  'modules',
-];
-export class FindOneCourseParamsDto {
+const allowedRelations: (keyof IApplication)[] = ['owner'];
+export class FindOneApplicationParamsDto {
   @Transform((param) => {
     let value = param.value;
     if (typeof param.value !== 'object') {
@@ -49,10 +31,10 @@ export class FindOneCourseParamsDto {
     return value;
   })
   @ApiProperty({
-    description: 'Condiciones para buscar un curso (en formato JSON)',
+    description: 'Condiciones para buscar una aplicación (en formato JSON)',
     required: true,
     type: String,
-    example: { id: '1f5d7c35-1f43-4d21-a1b8-98af309d7066' },
+    example: { id: 'a48c9347-8fcb-4c50-a405-ea58faff0c34' },
   })
   @IsNotEmpty()
   where: Record<string, any>;
@@ -103,5 +85,5 @@ export class FindOneCourseParamsDto {
     }
     return param.value;
   })
-  select?: (keyof ICourse)[];
+  select?: (keyof IApplication)[];
 }
