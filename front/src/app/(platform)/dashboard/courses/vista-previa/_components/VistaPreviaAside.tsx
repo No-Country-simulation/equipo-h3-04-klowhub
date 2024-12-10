@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
-import { BACK_URL } from "@/constants/constants";
 import { Course } from "@/interfaces/course";
 import { useCartStore } from "@/store/cart.store";
 import { User } from "@nextui-org/react";
@@ -10,6 +9,7 @@ import { GraduationCapIcon, MessageSquareIcon, StarIcon, VideoIcon } from "lucid
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { toast } from "sonner";
 import { CoursePreview } from "../page";
 import { ModulosAccordion } from "./ModulosAccordion";
 
@@ -24,13 +24,19 @@ export function VistaPreviaAside({ instructor, courseProgram }: Props) {
 
   const fetchAndAddCourse = async (id: Course['id']) => {
     try {
-      const response = await fetch(`${BACK_URL}/course/${id}`);
-      const course = await response.json();
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/course/one?where={"id":"${id}"}`);
+      const json = await response.json();
+
+      if (json.code >= 400) {
+        throw new Error("Error al obtener el curso")
+      }
 
       // Add the course to the store
-      addCourse(course);
+      addCourse(json.data);
+      toast("Curso añadido al carrito!")
     } catch (error) {
       console.error('Failed to fetch course:', error);
+      toast("Ooop! hubo un problema, vuelve a intentarlo")
     }
   }
 

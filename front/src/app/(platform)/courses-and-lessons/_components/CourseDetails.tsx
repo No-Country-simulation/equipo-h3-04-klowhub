@@ -31,7 +31,9 @@ export function CourseDetails({ selectedCourse }: Props) {
         reviews={12}
         videos={12}
       />
-      <VideoPlayer />
+      <section>
+        <VideoPlayer />
+      </section>
       <VistaPreviaInstructor
         bio="Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores."
         avatarSrc="/avatar.png"

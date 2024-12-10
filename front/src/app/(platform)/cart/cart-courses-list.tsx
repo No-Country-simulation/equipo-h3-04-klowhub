@@ -24,7 +24,7 @@ export function CartCoursesList() {
   }
 
   return (
-    <ul className="flex flex-col gap-6 flex-1">
+    <ul className="flex flex-col gap-6 lg:col-span-2 col-span-1">
       {
         courses.map((course, index) =>
           <CartCard

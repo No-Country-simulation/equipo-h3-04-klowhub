@@ -17,7 +17,7 @@ export function CheckoutCard() {
   const tarifaServicio = 130
 
   return (
-    <Section className="flex flex-col gap-4 max-w-[400px] bg-card h-fit">
+    <Section className="flex flex-col gap-4 bg-card h-fit">
       <p className="font-bold text-xl">Resumen</p>
       <section className="flex flex-col gap-2">
         <CheckoutPrice amount={`$${subtotal}`} label="Subtotal" />
