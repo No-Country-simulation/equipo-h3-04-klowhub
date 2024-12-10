@@ -5,10 +5,10 @@ import { CreateCourseRichTextFields } from '@/components/forms/createCourse/sche
 import { ErrorMessage } from '@/components/forms/multiStepForm/ErrorMessage'
 import { FileField } from '@/components/forms/multiStepForm/FileField'
 import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
+import { Button } from '@/components/ui/Button'
 import { Form } from '@/components/ui/form'
 import { useCreateCourseStore } from '@/store/createCourseStore'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
@@ -32,7 +32,7 @@ export default function DetallesPage() {
   }
 
   return (
-    <form className="grid grid-cols-2 gap-12" onSubmit={form.handleSubmit(handleSubmit)}>
+    <form className="grid grid-cols-2 gap-12 w-full" onSubmit={form.handleSubmit(handleSubmit)}>
       <Form {...form}>
         <RichTextField<CreateCourseRichTextFields>
           label='Decinos qué van a aprender tus estudiantes al finalizar el curso.'

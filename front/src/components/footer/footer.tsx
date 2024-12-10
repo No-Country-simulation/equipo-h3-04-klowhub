@@ -14,11 +14,11 @@ const FOOTER_SECTIONS = [{
 }
 ]
 
-export function AuthFooter() {
+export function Footer() {
   return (
     <footer className="bg-gradient-to-r from-acento-900 via-acento-800 to-acento-700 ">
-      <section className="w-full border-b border-white">
-        <nav className="flex gap-28 max-w-screen-xl mx-auto w-full p-8 flex-wrap">
+      <section className="w-full border-b border-white/10">
+        <nav className="flex gap-28 max-w-screen-xl mx-auto w-full p-8 pb-20 flex-wrap">
           {
             FOOTER_SECTIONS.map(section =>
               <article className="flex flex-col gap-4">
@@ -40,7 +40,7 @@ export function AuthFooter() {
           </article>
         </nav>
       </section>
-      <section className="text-center p-4">
+      <section className="text-center p-4 text-xs">
         © Klowhub
       </section>
     </footer>

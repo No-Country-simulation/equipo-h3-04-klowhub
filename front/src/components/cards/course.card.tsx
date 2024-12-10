@@ -16,7 +16,7 @@ export default function CourseCard({ course }: { course: Course }) {
         <Image
           alt="Course banner showing connected gears"
           className="object-cover rounded-sm w-full aspect-video -z-1"
-          src={course.coverImage || ""}
+          src={"/imgs/DALL·E 2024-09-04 01.43.39.webp"}
         />
         <Chip
           className="absolute top-2 left-2 z-15 bg-green-200 text-green-600"
