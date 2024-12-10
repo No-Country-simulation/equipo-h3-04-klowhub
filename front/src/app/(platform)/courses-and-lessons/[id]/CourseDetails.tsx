@@ -9,6 +9,7 @@ import { VistaPreviaAside } from "../../dashboard/courses/vista-previa/_componen
 import { VistaPreviaMultimedia } from "../../dashboard/courses/vista-previa/_components/VistaPreviaMultimedia";
 import { courseData } from "../../dashboard/courses/vista-previa/data";
 import { ExpandedInformation } from "./ExpandedInformation";
+import { RecommendedCourses } from "./RecommendedCourses";
 import { ShortInformation } from "./ShortInformation";
 
 interface Props {
@@ -21,8 +22,8 @@ export function CourseDetails({ course }: Props) {
   return (
     <section className='flex flex-col gap-6'>
       <Breadcrumbs paths={["Home", "Mis Cursos", "Vista Previa"]} />
-      <section className='grid grid-cols-1 lg:grid-cols-[1fr_minmax(200px,400px)] gap-20'>
-        <section className='flex flex-col gap-6'>
+      <section className='grid grid-cols-1 lg:grid-cols-3 gap-20'>
+        <section className='flex flex-col gap-6 col-span-1 lg:col-span-2'>
           <TextTitleSub
             title={course.title}
             subtitle={courseData.description} />
@@ -44,6 +45,7 @@ export function CourseDetails({ course }: Props) {
           courseProgram={courseData.courseProgram}
         />
       </section >
+      <RecommendedCourses />
     </section>
   )
 

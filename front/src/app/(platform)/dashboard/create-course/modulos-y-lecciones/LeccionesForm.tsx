@@ -3,10 +3,11 @@
 import { ModulosSchema } from "@/components/forms/createCourse/schemas/modulos-y-lecciones"
 import { ErrorMessage } from "@/components/forms/multiStepForm/ErrorMessage"
 import { FileField } from "@/components/forms/multiStepForm/FileField"
+import { Button } from "@/components/ui/Button"
 import { Editor } from "@/components/ui/Editor"
 import { FormItem, FormLabel } from "@/components/ui/form"
 import { Section } from "@/components/ui/Section"
-import { Button, Input } from "@nextui-org/react"
+import { Input } from "@nextui-org/react"
 import { XIcon } from "lucide-react"
 import { useFieldArray, useFormContext } from "react-hook-form"
 import { toast } from "sonner"
@@ -113,7 +114,7 @@ export function LeccionesForm() {
             >
               Borrar
             </Button>
-            <Button type="button" onClick={() => { }}>
+            <Button size={"big"} type="button" onClick={() => { }}>
               Guardar
             </Button>
           </footer>

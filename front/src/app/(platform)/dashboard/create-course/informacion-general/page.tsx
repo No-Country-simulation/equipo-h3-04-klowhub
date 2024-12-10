@@ -6,11 +6,11 @@ import { InputField } from '@/components/forms/multiStepForm/InputField'
 import { RadioField } from '@/components/forms/multiStepForm/RadioField'
 import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
 import { SelectField } from '@/components/forms/multiStepForm/SelectField'
+import { Button } from "@/components/ui/Button"
 import { Form } from '@/components/ui/form'
 import { FUNCIONALIDADES, HERRAMIENTAS_Y_PLATAFORMAS, LENGUAJES, PILAR_DE_CONTENIDO, SECTOR } from '@/constants/filters'
 import { useCreateCourseStore } from '@/store/createCourseStore'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
@@ -94,7 +94,7 @@ export default function InformacionGeneralPage() {
           field='labels'
         />
       </Form>
-      <Button className='col-span-2' type="submit">Continuar</Button>
+      <Button size={"big"} className='col-span-2' type="submit">Continuar</Button>
     </form>
   )
 }

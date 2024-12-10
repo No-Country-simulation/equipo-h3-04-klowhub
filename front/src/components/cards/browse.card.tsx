@@ -20,7 +20,7 @@ interface Props {
   onAddToCart: () => void;
 }
 
-export function BrowseCard({ description, functionalities, image, title, id, onOpenDetails, onAddToCart }: Props) {
+export function BrowseCard({ description, functionalities, title, id, onOpenDetails, onAddToCart, image = "./imgs/DALL·E 2024-09-04 01.44.37.webp" }: Props) {
   const courses = useCartStore((state) => state.courses)
 
   const courseAlreadyInCart = courses.some((course) => course.id === id)
@@ -37,7 +37,7 @@ export function BrowseCard({ description, functionalities, image, title, id, onO
       </figure>
       <Section className="rounded-none bg-card flex-1 justify-between">
         <header className="flex flex-col gap-4">
-          <Link href={`/course/${id}`} className="text-xl">{title}</Link>
+          <Link href={`/courses-and-lessons/${id}`} className="text-xl">{title}</Link>
           <p>{description}</p>
         </header>
         <PlatformLink platform={"AppSheet"} />

@@ -4,10 +4,10 @@ import { modulosSchema, ModulosSchema } from '@/components/forms/createCourse/sc
 import { CreateCourseInputFields, CreateCourseRichTextFields } from '@/components/forms/createCourse/schemas/type'
 import { InputField } from '@/components/forms/multiStepForm/InputField'
 import { RichTextField } from '@/components/forms/multiStepForm/RichTextField'
+import { Button } from '@/components/ui/Button'
 import { Form } from '@/components/ui/form'
 import { useCreateCourseStore } from '@/store/createCourseStore'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
@@ -55,7 +55,7 @@ export default function ModulosYLeccionesPage() {
         />
         <LeccionesForm />
       </Form>
-      <Button className='col-span-2' type="submit">Continuar</Button>
+      <Button size={"big"} className='col-span-2' type="submit">Continuar</Button>
     </form>
   )
 }

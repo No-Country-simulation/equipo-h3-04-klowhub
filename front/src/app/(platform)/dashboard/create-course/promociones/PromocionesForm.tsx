@@ -149,7 +149,7 @@ export function PromocionesForm({ courses, applications }: Props) {
 
           }
         </Form>
-        <Button className='col-span-2' type="submit">Continuar</Button>
+        <Button size={"big"} className='col-span-2' type="submit">Continuar</Button>
       </form>
     </>
   )

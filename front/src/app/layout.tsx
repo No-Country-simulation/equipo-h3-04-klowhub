@@ -1,3 +1,4 @@
+import { Footer } from '@/components/footer/footer';
 import { NextUIProvider } from '@nextui-org/react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -24,7 +25,10 @@ export default function RootLayout({
       >
         <NextUIProvider>
           <NuqsAdapter>
-            {children}
+            <section className='grid grid-rows-[1fr_auto] min-h-dvh'>
+              {children}
+              <Footer />
+            </section>
           </NuqsAdapter>
           <Toaster />
         </NextUIProvider>

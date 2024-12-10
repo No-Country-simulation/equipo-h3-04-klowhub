@@ -19,7 +19,11 @@ export function CartCard({ img, plataforma, rating, reviews, sector, title, onRe
     <Section className="bg-card">
       <div className="flex gap-6 border-y py-3">
         <figure className="relative aspect-square rounded-lg overflow-hidden max-w-[240px] w-full">
-          <Image alt="" src={"/imgs/DALL·E 2024-09-04 01.43.39.webp"} fill className="w-full h-full object-cover" />
+          <Image
+            alt="Course's image"
+            src={"/imgs/DALL·E 2024-09-04 01.43.39.webp"}
+            fill
+            className="w-full h-full object-cover" />
         </figure>
         <section className="relative flex flex-col gap-3 w-full">
           <h4>Gestión de inventarios con AppSheet</h4>

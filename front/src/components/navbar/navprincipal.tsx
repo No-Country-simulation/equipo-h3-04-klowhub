@@ -18,7 +18,7 @@ export default function NavBar() {
   const courses = useCartStore(state => state.courses)
 
   return (
-    <div className="w-full h-[93px]">
+    <div className="relative w-full h-[93px]">
       <Image
         src="/navbar.png"
         alt="Navbar background"

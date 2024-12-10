@@ -29,13 +29,17 @@ export function VistaPreviaAside({ instructor, courseProgram }: Props) {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/course/one?where={"id":"${id}"}`);
       const json = await response.json();
-      const course = await json.data
+
+      if (json.code >= 400) {
+        throw new Error("Error al obtener el curso")
+      }
 
       // Add the course to the store
-      addCourse(course);
-      toast("Curso agregado al carrito!")
+      addCourse(json.data);
+      toast("Curso añadido al carrito!")
     } catch (error) {
       console.error('Failed to fetch course:', error);
+      toast("Ooop! hubo un problema, vuelve a intentarlo")
     }
   }
 

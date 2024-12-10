@@ -4,7 +4,7 @@ import { HeartIcon, LinkIcon, MenuIcon, StarIcon } from "lucide-react"
 import Link from "next/link"
 import { Recommendation } from "./Recommendations"
 
-const AVATAR_SRC = "https://s3-alpha-sig.figma.com/img/3f2b/45a6/6b21a2ba93c0fc519f3b03de9d622c14?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=I4uyOAPKg2Rj2wHRY5WFcZTIqKEoDONTJgZYjL9F7xMuEHhuszE151cwgkUMyMJyYkfwitDNLHfMDqPU0hcXW3hO5~64J2H8XabEcpNRpgy8krIqdjr6mkmIT54g7R0Xc0x4x8kMwgdNl5poUTAdJLhIxwkHFv8p-MCgxJjAXF4nXSNwuoYnxuW7dnBX2-PtvMx0qKTjwvB0C6sbiddR1Ifs1VvYoNf~UzbXBnNRPU-MspvC6nQxZdt9PGb7e36p8HVMyTVD2oaU0gOEy4kH2MVsOnynHprw-ifmiDP2m~Z1UsU-h2jjyrcsTk1BVKltmcwda-KhtmTGgGW0QgTWUQ__"
+const AVATAR_SRC = "https://s3-alpha-sig.figma.com/img/3f2b/45a6/6b21a2ba93c0fc519f3b03de9d622c14?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GPIegTsB3UDYFnIaqdqH14SR8-pbMpIAARYz6kyQ8MlvoakwXkAwWT3P7rqKz4d0ggw9pixV8l8h2uFMQ8fczob-qbyLm~uSB8EnOH4ScPrgCM9giqrxg0MQKf-omhtcJWdpZMZTCEMavZ92sZCfAjje9S9hqEU62rQAz-sH~VyzsUWXM80bdIq-UhwXHeuYB1CEO34oGOR175FnfwMbceKa8oe2f0QB7UqtQ0eY4xPRd6~a-pg1z3ifiCbl-JFLmhLqKO-Slv5v3qAR-ZD1sjwYAc4Z-IQUQ1FjZHvl5SNhMK34f8lzQPd7vAmrlw459s2LEEGkBBkABCOVdERA3g__"
 
 interface Props {
   recommendation: Recommendation

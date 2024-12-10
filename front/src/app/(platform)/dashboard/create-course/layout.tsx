@@ -7,7 +7,7 @@ import { TABS } from "./steps-paths";
 
 export default function CreateCourseLayout({ children }: PropsWithChildren) {
   return (
-    <section className="flex flex-col gap-12">
+    <section className="flex flex-col gap-12 w-full">
       <header className="flex flex-col gap-6">
         <Breadcrumbs paths={["Dashboard", "Crear Curso"]} />
         <p className="font-bold">Lanza tu curso: Comparte tu conocimiento</p>

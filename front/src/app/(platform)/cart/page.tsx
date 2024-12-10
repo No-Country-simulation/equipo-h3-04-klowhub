@@ -13,7 +13,7 @@ export default function CartPage() {
           Carrito De Compras
         </p>
       </header>
-      <section className="flex gap-6 flex-wrap">
+      <section className="gap-6 grid grid-cols-1 lg:grid-cols-3">
         <CartCoursesList />
         <CheckoutCard />
       </section>

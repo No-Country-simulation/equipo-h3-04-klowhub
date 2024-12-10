@@ -7,7 +7,6 @@ import { VistaPreviaInstructor } from "../../dashboard/courses/vista-previa/_com
 import { VistaPreviaList } from "../../dashboard/courses/vista-previa/_components/VistaPreviaList"
 import { courseData } from "../../dashboard/courses/vista-previa/data"
 import { reviews } from "./data"
-import { RecommendedCourses } from "./RecommendedCourses"
 import { ReviewList } from "./ReviewList"
 
 export function ExpandedInformation() {
@@ -50,9 +49,7 @@ export function ExpandedInformation() {
         />
         {/* TODO - Reemplazar reviews for informacion del backend */}
         <ReviewList reviews={reviews} />
-        <RecommendedCourses />
       </Section>
-      {/* PONER EL FOOTER */}
     </section>
   )
 }
