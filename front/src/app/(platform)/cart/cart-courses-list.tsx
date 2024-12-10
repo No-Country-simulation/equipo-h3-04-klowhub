@@ -12,7 +12,7 @@ export function CartCoursesList() {
 
   if (!courses.length) {
     return (
-      <Section className="bg-card flex-1 flex items-center justify-center flex-col gap-6">
+      <Section className="bg-card flex-1 flex items-center justify-center flex-col gap-6 lg:col-span-2 col-span-1">
         <p>
           No hay productos en tu carrito
         </p>
