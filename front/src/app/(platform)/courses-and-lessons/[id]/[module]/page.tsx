@@ -32,7 +32,7 @@ export default async function ModulePage(props: Props) {
   return (
     <section className="flex flex-col gap-12">
       <Breadcrumbs paths={["Home", "Cursos y lecciones", "Gestión de inventarios con Power Apps"]} />
-      <Section className="grid grid-cols-3 gap-6">
+      <Section className="grid grid-cols-1 xl:grid-cols-3 gap-16">
         <MultimediaSection />
         <AsideMenu />
       </Section>

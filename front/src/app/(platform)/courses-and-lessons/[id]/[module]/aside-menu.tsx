@@ -1,7 +1,8 @@
 "use client"
 
-import { NavigationTabs } from "@/components/ui/NavigationTabs";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { tabsStyles } from "@/lib/tabs-styles";
+import { Accordion, AccordionItem, Tab, Tabs } from "@nextui-org/react";
+import { useState } from "react";
 import './asideMenu.css';
 
 const links = [
@@ -34,29 +35,51 @@ const modules = [
   }
 ]
 
+type TabsOptions = "lecciones" | "consultas" | "recursos"
+
 export function AsideMenu() {
+  const [selectedTab, setSelectedTab] = useState<TabsOptions>("lecciones")
+
   return (
     <aside>
-      <NavigationTabs links={links} />
-      <Accordion id="modulos-accordion">
-        {
-          modules.map((module, index) =>
-            <AccordionItem
-              key={index}
-              aria-label={`Accordion ${index + 1}"`}
-              title={`Módulo ${index + 1}`}>
-              <ul className="flex flex-col">
-                {module.lessons.map((lesson, lessonIndex) =>
-                  <li
-                    className="p-2 bg-white/5 text-sm"
-                    key={lessonIndex}>
-                    Lección {lessonIndex + 1}</li>
-                )}
-              </ul>
-            </AccordionItem>
-          )
-        }
-      </Accordion>
+      <Tabs
+        onSelectionChange={(key) => setSelectedTab(key as TabsOptions)}
+        selectedKey={selectedTab}
+        classNames={tabsStyles}
+        variant="underlined"
+        aria-label="Options"
+        color="primary"
+      >
+        <Tab key="Lecciones" title="Lecciones">
+          <Accordion
+            id="modulos-accordion">
+            {
+              modules.map((module, index) =>
+                <AccordionItem
+                  key={index}
+                  aria-label={`Accordion ${index + 1}"`}
+                  title={`Módulo ${index + 1}`}>
+                  <ul className="flex flex-col">
+                    {module.lessons.map((lesson, lessonIndex) =>
+                      <li
+                        className="p-2 bg-white/5 text-sm"
+                        key={lessonIndex}>
+                        Lección {lessonIndex + 1}</li>
+                    )}
+                  </ul>
+                </AccordionItem>
+              )
+            }
+          </Accordion>
+        </Tab>
+        <Tab key="consultas" title="Consultas">
+
+        </Tab>
+        <Tab key="recursos" title="Recursos">
+
+        </Tab>
+      </Tabs>
+
     </aside>
   )
 }
