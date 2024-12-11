@@ -41,10 +41,16 @@ export function AsideMenu() {
       <Accordion id="modulos-accordion">
         {
           modules.map((module, index) =>
-            <AccordionItem key={index} aria-label={`Accordion ${index + 1}"`} title={`Módulo ${index + 1}`}>
+            <AccordionItem
+              key={index}
+              aria-label={`Accordion ${index + 1}"`}
+              title={`Módulo ${index + 1}`}>
               <ul className="flex flex-col">
                 {module.lessons.map((lesson, lessonIndex) =>
-                  <li className="p-2 bg-white/5 text-sm" key={lessonIndex}>Lección {lessonIndex + 1}</li>
+                  <li
+                    className="p-2 bg-white/5 text-sm"
+                    key={lessonIndex}>
+                    Lección {lessonIndex + 1}</li>
                 )}
               </ul>
             </AccordionItem>

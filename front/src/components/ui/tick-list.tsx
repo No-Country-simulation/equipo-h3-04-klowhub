@@ -5,7 +5,7 @@ interface Props {
   items: string[]
 }
 
-export function VistaPreviaList({ items, title }: Props) {
+export function TickList({ items, title }: Props) {
   return (
     <section className='flex flex-col gap-6 pb-4'>
       <p className='text-xl font-bold'>{title}</p>

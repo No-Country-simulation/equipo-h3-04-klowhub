@@ -3,12 +3,12 @@ import TextTitleSub from '@/components/text/titlesubtitle'
 import { Breadcrumbs } from '@/components/ui/breadcrumbs'
 import { Button } from '@/components/ui/Button'
 import { Section } from '@/components/ui/Section'
+import { TickList } from '@/components/ui/tick-list'
 import { CourseInformation } from './_components/CourseInformation'
 import { VistaPreviaAside } from './_components/VistaPreviaAside'
 import { VistaPreviaCompartir } from './_components/VistaPreviaCompartir'
 import { VistaPreviaFunctionalities } from './_components/VistaPreviaFunctionalities'
 import { VistaPreviaInstructor } from './_components/VistaPreviaInstructor'
-import { VistaPreviaList } from './_components/VistaPreviaList'
 import { VistaPreviaMultimedia } from './_components/VistaPreviaMultimedia'
 import { courseData } from './data'
 
@@ -36,7 +36,7 @@ export default async function VistaPreviaPage() {
               bio={courseData.instructor.bio}
               avatarSrc='/avatar.png'
             />
-            <VistaPreviaList
+            <TickList
               title='Después de completar este curso, serás capaz'
               items={courseData.benefits}
             />
@@ -51,11 +51,11 @@ export default async function VistaPreviaPage() {
             <TextTitleSub
               title='¿Para quién es este curso?'
               subtitle={courseData.audience} />
-            <VistaPreviaList
+            <TickList
               items={courseData.requirements}
               title='Requisitos'
             />
-            <VistaPreviaList
+            <TickList
               items={courseData.includes}
               title='¿Qué incluye?'
             />

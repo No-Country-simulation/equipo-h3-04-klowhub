@@ -5,7 +5,7 @@ export default function PlatformLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex flex-col">
       <NavBar />
-      <main className="flex-grow p-14 max-w-screen-2xl mx-auto w-full pb-20">
+      <main className="flex-grow p-14 max-w-screen-2xl mx-auto w-full pb-28">
         {children}
       </main>
     </div>

@@ -1,6 +1,6 @@
 import TextTitleSub from "@/components/text/titlesubtitle";
+import { TickList } from "@/components/ui/tick-list";
 import { VistaPreviaInstructor } from "../../dashboard/courses/vista-previa/_components/VistaPreviaInstructor";
-import { VistaPreviaList } from "../../dashboard/courses/vista-previa/_components/VistaPreviaList";
 import { courseData } from "../../dashboard/courses/vista-previa/data";
 
 // TODO - pasar informacion del curso, no usar courseData (información estática)
@@ -17,7 +17,7 @@ export function ShortInformation({ onShowMore }: Props) {
           bio={courseData.instructor.bio}
           avatarSrc='/avatar.png'
         />
-        <VistaPreviaList
+        <TickList
           title='Después de completar este curso, serás capaz'
           items={courseData.benefits}
         />

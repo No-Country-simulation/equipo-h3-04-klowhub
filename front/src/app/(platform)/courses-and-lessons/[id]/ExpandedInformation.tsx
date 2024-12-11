@@ -1,10 +1,10 @@
 import TextTitleSub from "@/components/text/titlesubtitle"
 import { Button } from "@/components/ui/Button"
 import { Section } from "@/components/ui/Section"
+import { TickList } from "@/components/ui/tick-list"
 import { VistaPreviaCompartir } from "../../dashboard/courses/vista-previa/_components/VistaPreviaCompartir"
 import { VistaPreviaFunctionalities } from "../../dashboard/courses/vista-previa/_components/VistaPreviaFunctionalities"
 import { VistaPreviaInstructor } from "../../dashboard/courses/vista-previa/_components/VistaPreviaInstructor"
-import { VistaPreviaList } from "../../dashboard/courses/vista-previa/_components/VistaPreviaList"
 import { courseData } from "../../dashboard/courses/vista-previa/data"
 import { reviews } from "./data"
 import { ReviewList } from "./ReviewList"
@@ -18,7 +18,7 @@ export function ExpandedInformation() {
           bio={courseData.instructor.bio}
           avatarSrc='/avatar.png'
         />
-        <VistaPreviaList
+        <TickList
           title='Después de completar este curso, serás capaz'
           items={courseData.benefits}
         />
@@ -33,11 +33,11 @@ export function ExpandedInformation() {
         <TextTitleSub
           title='¿Para quién es este curso?'
           subtitle={courseData.audience} />
-        <VistaPreviaList
+        <TickList
           items={courseData.requirements}
           title='Requisitos'
         />
-        <VistaPreviaList
+        <TickList
           items={courseData.includes}
           title='¿Qué incluye?'
         />

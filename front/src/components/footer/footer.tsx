@@ -18,14 +18,14 @@ export function Footer() {
   return (
     <footer className="bg-gradient-to-r from-acento-900 via-acento-800 to-acento-700 ">
       <section className="w-full border-b border-white/10">
-        <nav className="flex gap-28 max-w-screen-xl mx-auto w-full p-8 pb-20 flex-wrap">
+        <nav className="flex gap-28 max-w-screen-xl mx-auto w-full pt-8 px-14 pb-20 flex-wrap">
           {
-            FOOTER_SECTIONS.map(section =>
-              <article className="flex flex-col gap-4">
+            FOOTER_SECTIONS.map((section, index) =>
+              <article key={index} className="flex flex-col gap-4">
                 <p className=" opacity-50">{section.title}</p>
                 <ul className="flex flex-col gap-2" key={section.title}>
                   {section.links.map(link =>
-                    <li className="" key={link}>{link}</li>)
+                    <li key={link}>{link}</li>)
                   }
                 </ul>
               </article>)
