@@ -5,21 +5,6 @@ import { Accordion, AccordionItem, Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
 import './asideMenu.css';
 
-const links = [
-  {
-    path: "./lesson",
-    value: "Lecciones"
-  },
-  {
-    path: "./consult",
-    value: "Consulas"
-  },
-  {
-    path: "./resources",
-    value: "Recursos"
-  }
-]
-
 const modules = [
   {
     id: 1,

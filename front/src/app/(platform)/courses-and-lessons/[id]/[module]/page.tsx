@@ -1,5 +1,4 @@
 import { courseData } from "@/app/(platform)/dashboard/courses/vista-previa/data"
-import CourseCard from "@/components/cards/course.card"
 import TextTitleSub from "@/components/text/titlesubtitle"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Button } from "@/components/ui/Button"
@@ -9,6 +8,7 @@ import { TickList } from "@/components/ui/tick-list"
 import { courseService } from "@/services/course.service"
 import { User } from "@nextui-org/react"
 import { EllipsisVerticalIcon } from "lucide-react"
+import { RecommendedCourses } from "../RecommendedCourses"
 import { AsideMenu } from "./aside-menu"
 import { MultimediaSection } from "./multimedia-section"
 
@@ -23,10 +23,6 @@ export default async function ModulePage(props: Props) {
     where: {
       id: id
     }
-  })
-
-  const recommendedCourses = await courseService({
-    take: 3
   })
 
   return (
@@ -80,14 +76,8 @@ export default async function ModulePage(props: Props) {
             title='¿Qué incluye?'
           />
         </Section>
-        <Section className="gap-6 h-fit">
-          <p className="font-bold">Cursos que te pueden interesar </p>
-          <ul className="flex flex-col gap-6">
-            {
-              recommendedCourses.map((course) =>
-                <CourseCard key={course.id} course={course} />)
-            }
-          </ul>
+        <Section className="h-fit">
+          <RecommendedCourses />
         </Section>
       </section>
     </section>
